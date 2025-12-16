@@ -1,0 +1,1026 @@
+---
+interface Props {
+  apps: Array<{ name: string; icon: string }>;
+}
+
+const { apps } = Astro.props;
+
+/**
+ * GRAMMAR CORRECTION ANIMATION CONFIGURATION
+ * 
+ * This system automatically generates HTML and CSS animations for grammar correction demonstrations.
+ * To modify or add sentences, simply edit the `sentences` array below.
+ * 
+ * Each sentence object should have:
+ * - words: Array of words in the sentence
+ * - errorIndex: Index of the word that has an error (0-based)
+ * - correction: The corrected version of the error word
+ * - label: Description shown below the animation (e.g., "Medical term corrected")
+ * - isPunctuation (optional): Set to true if correction is only punctuation
+ * - hasPunctuation (optional): Index after which to add a colon punctuation
+ * 
+ * The animation timing is automatically calculated based on:
+ * - Number of words (WORD_DELAY * wordCount)
+ * - Strikethrough duration (STRIKETHROUGH_DURATION)
+ * - Correction appearance delay (CORRECTION_DELAY)
+ * - Pause between sentences (PAUSE_AFTER_SENTENCE)
+ * 
+ * No need to manually update CSS keyframes or timing percentages!
+ */
+const sentences = [
+  {
+    words: ['Patient', 'is', 'a', '58-year-old', 'woman'],
+    errorIndex: 4,
+    correction: 'female',
+    label: 'Medical term corrected'
+  },
+  {
+    words: ['presenting', 'with', 'worsening', 'shortness', 'of', 'breath'],
+    errorIndex: 5,
+    correction: 'breath.',
+    isPunctuation: true,
+    label: 'Period added'
+  },
+  {
+    words: ['Vital', 'signs', 'temperature', '101.2'],
+    errorIndex: 3,
+    correction: '101.2°F',
+    label: 'Temperature formatted',
+    hasPunctuation: 1 // colon after "signs"
+  },
+  {
+    words: ['Assessment', 'acute', 'exacerbation', 'COPD'],
+    errorIndex: 3,
+    correction: 'of COPD',
+    label: 'Grammar corrected',
+    hasPunctuation: 0
+  },
+  {
+    words: ['Plan', 'start', 'IV', 'methylprednisolone', '125 milligrams'],
+    errorIndex: 4,
+    correction: '125 mg',
+    label: 'Abbreviation standardized',
+    hasPunctuation: 0
+  }
+];
+
+// Animation timing configuration
+const WORD_DELAY = 0.35; // seconds between words (slower pace)
+const WORD_FADE_DURATION = 1.0; // seconds for each word to fully fade in (creates overlap)
+const CORRECTION_FADE_DURATION = 1.2; // seconds for correction to fade in (emphasized)
+const STRIKETHROUGH_DURATION = 0.6; // seconds to draw strikethrough
+const CORRECTION_DELAY = 0.15; // seconds after strikethrough before correction
+const PAUSE_AFTER_SENTENCE = 3.0; // seconds pause after sentence completes
+
+// Calculate timing for each sentence
+function calculateSentenceTiming(sentences: any[]) {
+  let currentTime = 0;
+  return sentences.map((sentence, index) => {
+    const wordCount = sentence.words.length;
+    const typingDuration = wordCount * WORD_DELAY;
+    const totalDuration = typingDuration + STRIKETHROUGH_DURATION + CORRECTION_DELAY + PAUSE_AFTER_SENTENCE;
+    
+    const timing = {
+      index: index + 1,
+      startTime: currentTime,
+      endTime: currentTime + totalDuration,
+      typingDuration,
+      strikethroughStart: currentTime + typingDuration,
+      strikethroughEnd: currentTime + typingDuration + STRIKETHROUGH_DURATION,
+      correctionStart: currentTime + typingDuration + STRIKETHROUGH_DURATION + CORRECTION_DELAY,
+      wordCount,
+      ...sentence
+    };
+    
+    currentTime += totalDuration;
+    return timing;
+  });
+}
+
+const sentenceTimings = calculateSentenceTiming(sentences);
+const totalDuration = sentenceTimings[sentenceTimings.length - 1].endTime + 1; // +1s for loop gap
+
+// Generate CSS percentages
+function timeToPercent(time: number) {
+  return ((time / totalDuration) * 100).toFixed(1);
+}
+
+// Generate dynamic CSS
+const sentenceAnimationsCSS = sentenceTimings.map((timing) => {
+  return `
+  /* Sentence ${timing.index}: ${timing.startTime.toFixed(1)}-${timing.endTime.toFixed(1)}s */
+  .sentence-${timing.index} { 
+    animation: sentence-${timing.index}-window ${totalDuration}s step-end 0s infinite; 
+  }
+  .sentence-${timing.index} .word {
+    animation: word-appear-${timing.index} ${totalDuration}s linear 0s infinite;
+    animation-delay: var(--delay);
+  }
+  .sentence-${timing.index} .error-word::after {
+    animation: strikethrough-${timing.index} ${totalDuration}s linear 0s infinite;
+  }
+  .sentence-${timing.index} .correction {
+    animation: correction-appear-${timing.index} ${totalDuration}s linear 0s infinite;
+  }
+  `.trim();
+}).join('\n\n');
+
+const keyframesCSS = sentenceTimings.map((timing) => {
+  const startPercent = parseFloat(timeToPercent(timing.startTime));
+  const endPercent = parseFloat(timeToPercent(timing.endTime));
+  const strikeStartPercent = parseFloat(timeToPercent(timing.strikethroughStart));
+  const strikeEndPercent = parseFloat(timeToPercent(timing.strikethroughEnd));
+  const correctionPercent = parseFloat(timeToPercent(timing.correctionStart));
+  
+  // Calculate fade-in span as percentage of total duration
+  const wordFadeSpan = (WORD_FADE_DURATION / totalDuration) * 100;
+  const corrFadeSpan = (CORRECTION_FADE_DURATION / totalDuration) * 100;
+  
+  // Word fade-in percentages (slow, overlapping ease-out)
+  const fadeStart = startPercent;
+  const fade1 = startPercent + (wordFadeSpan * 0.15); // 15% through fade
+  const fade2 = startPercent + (wordFadeSpan * 0.30); // 30% through fade
+  const fade3 = startPercent + (wordFadeSpan * 0.50); // 50% through fade
+  const fade4 = startPercent + (wordFadeSpan * 0.70); // 70% through fade
+  const fade5 = startPercent + (wordFadeSpan * 0.85); // 85% through fade
+  const fadeEnd = startPercent + wordFadeSpan; // 100% through fade
+  
+  // Correction fade-in percentages (emphasized, slower ease-out)
+  const corrStart = correctionPercent;
+  const corr1 = correctionPercent + (corrFadeSpan * 0.15);
+  const corr2 = correctionPercent + (corrFadeSpan * 0.35);
+  const corr3 = correctionPercent + (corrFadeSpan * 0.55);
+  const corr4 = correctionPercent + (corrFadeSpan * 0.75);
+  const corr5 = correctionPercent + (corrFadeSpan * 0.90);
+  const corrEnd = correctionPercent + corrFadeSpan;
+  
+  return `
+  /* Sentence ${timing.index} animations: ${timing.startTime.toFixed(1)}-${timing.endTime.toFixed(1)}s (${startPercent.toFixed(1)}-${endPercent.toFixed(1)}%) */
+  @keyframes word-appear-${timing.index} {
+    0% { opacity: 0; }
+    ${fadeStart.toFixed(1)}% { opacity: 0; }
+    ${fade1.toFixed(1)}% { opacity: 0.12; }
+    ${fade2.toFixed(1)}% { opacity: 0.28; }
+    ${fade3.toFixed(1)}% { opacity: 0.50; }
+    ${fade4.toFixed(1)}% { opacity: 0.72; }
+    ${fade5.toFixed(1)}% { opacity: 0.90; }
+    ${fadeEnd.toFixed(1)}%, ${endPercent.toFixed(1)}% { opacity: 1; }
+    ${(endPercent + 0.1).toFixed(1)}%, 100% { opacity: 0; }
+  }
+
+  @keyframes strikethrough-${timing.index} {
+    0%, ${strikeStartPercent.toFixed(1)}% { transform: translateY(-50%) scaleX(0); }
+    ${(strikeStartPercent + 0.1).toFixed(1)}%, ${endPercent.toFixed(1)}% { transform: translateY(-50%) scaleX(1); }
+    ${(endPercent + 0.1).toFixed(1)}%, 100% { transform: translateY(-50%) scaleX(0); }
+  }
+
+  @keyframes correction-appear-${timing.index} {
+    0%, ${corrStart.toFixed(1)}% { opacity: 0; }
+    ${corr1.toFixed(1)}% { opacity: 0.18; }
+    ${corr2.toFixed(1)}% { opacity: 0.38; }
+    ${corr3.toFixed(1)}% { opacity: 0.58; }
+    ${corr4.toFixed(1)}% { opacity: 0.78; }
+    ${corr5.toFixed(1)}% { opacity: 0.93; }
+    ${corrEnd.toFixed(1)}%, ${endPercent.toFixed(1)}% { opacity: 1; }
+    ${(endPercent + 0.1).toFixed(1)}%, 100% { opacity: 0; }
+  }
+  `.trim();
+}).join('\n\n');
+
+const visibilityWindowsCSS = sentenceTimings.map((timing) => {
+  const startPercent = parseFloat(timeToPercent(timing.startTime));
+  const endPercent = parseFloat(timeToPercent(timing.endTime));
+  
+  return `
+  @keyframes sentence-${timing.index}-window {
+    ${timing.index > 1 ? `0%, ${(startPercent - 0.1).toFixed(1)}% {
+      visibility: hidden;
+    }` : ''}
+    ${timing.index === 1 ? '0%, ' : ''}${startPercent.toFixed(1)}%, ${endPercent.toFixed(1)}% {
+      visibility: visible;
+    }
+    ${(endPercent + 0.1).toFixed(1)}%, 100% {
+      visibility: hidden;
+    }
+  }
+  `.trim();
+}).join('\n\n');
+
+const labelAnimationsCSS = sentenceTimings.map((timing) => {
+  return `.label-${timing.index} { animation: label-${timing.index}-flash ${totalDuration}s ease-out 0s infinite; }`;
+}).join('\n  ');
+
+const labelKeyframesCSS = sentenceTimings.map((timing) => {
+  const strikeStartPercent = parseFloat(timeToPercent(timing.strikethroughStart));
+  const endPercent = parseFloat(timeToPercent(timing.endTime));
+  const labelAppearPercent = strikeStartPercent + 1;
+  
+  return `
+  @keyframes label-${timing.index}-flash {
+    ${timing.index > 1 ? `0%, ${(strikeStartPercent - 0.1).toFixed(1)}% {
+      opacity: 0;
+      transform: translateY(5px);
+    }` : `0%, ${strikeStartPercent.toFixed(1)}% {
+      opacity: 0;
+      transform: translateY(5px);
+    }`}
+    ${labelAppearPercent.toFixed(1)}%, ${endPercent.toFixed(1)}% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    ${(endPercent + 0.1).toFixed(1)}%, 100% {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+  }
+  `.trim();
+}).join('\n\n');
+---
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge">One-Time Purchase</span>
+      </div>
+      
+      <h1 class="hero-title">Don't type, just speak</h1>
+      
+      <p class="hero-subtitle">
+        Voice dictation that works offline, respects your privacy, and costs what you pay once.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="#download" class="btn btn-primary btn-large">Download for macOS</a>
+      </div>
+      
+      <p class="hero-note">Available on Mac and iPhone • No subscription required</p>
+    </div>
+    
+    <div class="hero-visual">
+      <div class="voice-to-text-demo">
+        <!-- Waveform to Text Animation -->
+        <div class="waveform-transcription-demo">
+          <!-- Left side: Scrolling waveform -->
+          <div class="waveform-section">
+            <div class="waveform-scroll">
+              <!-- First group -->
+              <div class="waveform-bars-group">
+                <div class="bar" style="--height: 30%; --opacity: 0.7; --delay: 0s"></div>
+                <div class="bar" style="--height: 50%; --opacity: 0.9; --delay: 0.1s"></div>
+                <div class="bar" style="--height: 62%; --opacity: 1; --delay: 0.2s"></div>
+                <div class="bar" style="--height: 42%; --opacity: 0.8; --delay: 0.3s"></div>
+                <div class="bar" style="--height: 65%; --opacity: 1; --delay: 0.4s"></div>
+                <div class="bar" style="--height: 38%; --opacity: 0.75; --delay: 0.5s"></div>
+                <div class="bar" style="--height: 52%; --opacity: 0.85; --delay: 0.6s"></div>
+                <div class="bar" style="--height: 68%; --opacity: 1; --delay: 0.7s"></div>
+                <div class="bar" style="--height: 34%; --opacity: 0.7; --delay: 0.8s"></div>
+                <div class="bar" style="--height: 56%; --opacity: 0.9; --delay: 0.9s"></div>
+                <div class="bar" style="--height: 45%; --opacity: 0.8; --delay: 1s"></div>
+                <div class="bar" style="--height: 63%; --opacity: 0.95; --delay: 1.1s"></div>
+                <div class="bar" style="--height: 32%; --opacity: 0.7; --delay: 1.2s"></div>
+                <div class="bar" style="--height: 48%; --opacity: 0.85; --delay: 1.3s"></div>
+                <div class="bar" style="--height: 58%; --opacity: 0.9; --delay: 1.4s"></div>
+                <div class="bar" style="--height: 40%; --opacity: 0.75; --delay: 1.5s"></div>
+                <div class="bar" style="--height: 46%; --opacity: 0.8; --delay: 1.6s"></div>
+                <div class="bar" style="--height: 66%; --opacity: 1; --delay: 1.7s"></div>
+                <div class="bar" style="--height: 36%; --opacity: 0.75; --delay: 1.8s"></div>
+                <div class="bar" style="--height: 54%; --opacity: 0.9; --delay: 1.9s"></div>
+                <div class="bar" style="--height: 40%; --opacity: 0.8; --delay: 2s"></div>
+                <div class="bar" style="--height: 60%; --opacity: 0.95; --delay: 2.1s"></div>
+                <div class="bar" style="--height: 33%; --opacity: 0.7; --delay: 2.2s"></div>
+                <div class="bar" style="--height: 50%; --opacity: 0.85; --delay: 2.3s"></div>
+                <div class="bar" style="--height: 64%; --opacity: 0.95; --delay: 2.4s"></div>
+                <div class="bar" style="--height: 42%; --opacity: 0.8; --delay: 2.5s"></div>
+                <div class="bar" style="--height: 56%; --opacity: 0.9; --delay: 2.6s"></div>
+                <div class="bar" style="--height: 38%; --opacity: 0.75; --delay: 2.7s"></div>
+                <div class="bar" style="--height: 48%; --opacity: 0.85; --delay: 2.8s"></div>
+                <div class="bar" style="--height: 67%; --opacity: 1; --delay: 2.9s"></div>
+                <div class="bar" style="--height: 40%; --opacity: 0.8; --delay: 3s"></div>
+                <div class="bar" style="--height: 58%; --opacity: 0.9; --delay: 3.1s"></div>
+                <div class="bar" style="--height: 32%; --opacity: 0.7; --delay: 3.2s"></div>
+                <div class="bar" style="--height: 52%; --opacity: 0.85; --delay: 3.3s"></div>
+                <div class="bar" style="--height: 65%; --opacity: 0.95; --delay: 3.4s"></div>
+                <div class="bar" style="--height: 36%; --opacity: 0.75; --delay: 3.5s"></div>
+                <div class="bar" style="--height: 54%; --opacity: 0.9; --delay: 3.6s"></div>
+                <div class="bar" style="--height: 45%; --opacity: 0.8; --delay: 3.7s"></div>
+                <div class="bar" style="--height: 62%; --opacity: 0.95; --delay: 3.8s"></div>
+                <div class="bar" style="--height: 34%; --opacity: 0.7; --delay: 3.9s"></div>
+              </div>
+              <!-- Duplicate for seamless loop -->
+              <div class="waveform-bars-group">
+                <div class="bar" style="--height: 30%; --opacity: 0.7; --delay: 0s"></div>
+                <div class="bar" style="--height: 50%; --opacity: 0.9; --delay: 0.1s"></div>
+                <div class="bar" style="--height: 62%; --opacity: 1; --delay: 0.2s"></div>
+                <div class="bar" style="--height: 42%; --opacity: 0.8; --delay: 0.3s"></div>
+                <div class="bar" style="--height: 65%; --opacity: 1; --delay: 0.4s"></div>
+                <div class="bar" style="--height: 38%; --opacity: 0.75; --delay: 0.5s"></div>
+                <div class="bar" style="--height: 52%; --opacity: 0.85; --delay: 0.6s"></div>
+                <div class="bar" style="--height: 68%; --opacity: 1; --delay: 0.7s"></div>
+                <div class="bar" style="--height: 34%; --opacity: 0.7; --delay: 0.8s"></div>
+                <div class="bar" style="--height: 56%; --opacity: 0.9; --delay: 0.9s"></div>
+                <div class="bar" style="--height: 45%; --opacity: 0.8; --delay: 1s"></div>
+                <div class="bar" style="--height: 63%; --opacity: 0.95; --delay: 1.1s"></div>
+                <div class="bar" style="--height: 32%; --opacity: 0.7; --delay: 1.2s"></div>
+                <div class="bar" style="--height: 48%; --opacity: 0.85; --delay: 1.3s"></div>
+                <div class="bar" style="--height: 58%; --opacity: 0.9; --delay: 1.4s"></div>
+                <div class="bar" style="--height: 40%; --opacity: 0.75; --delay: 1.5s"></div>
+                <div class="bar" style="--height: 46%; --opacity: 0.8; --delay: 1.6s"></div>
+                <div class="bar" style="--height: 66%; --opacity: 1; --delay: 1.7s"></div>
+                <div class="bar" style="--height: 36%; --opacity: 0.75; --delay: 1.8s"></div>
+                <div class="bar" style="--height: 54%; --opacity: 0.9; --delay: 1.9s"></div>
+                <div class="bar" style="--height: 40%; --opacity: 0.8; --delay: 2s"></div>
+                <div class="bar" style="--height: 60%; --opacity: 0.95; --delay: 2.1s"></div>
+                <div class="bar" style="--height: 33%; --opacity: 0.7; --delay: 2.2s"></div>
+                <div class="bar" style="--height: 50%; --opacity: 0.85; --delay: 2.3s"></div>
+                <div class="bar" style="--height: 64%; --opacity: 0.95; --delay: 2.4s"></div>
+                <div class="bar" style="--height: 42%; --opacity: 0.8; --delay: 2.5s"></div>
+                <div class="bar" style="--height: 56%; --opacity: 0.9; --delay: 2.6s"></div>
+                <div class="bar" style="--height: 38%; --opacity: 0.75; --delay: 2.7s"></div>
+                <div class="bar" style="--height: 48%; --opacity: 0.85; --delay: 2.8s"></div>
+                <div class="bar" style="--height: 67%; --opacity: 1; --delay: 2.9s"></div>
+                <div class="bar" style="--height: 40%; --opacity: 0.8; --delay: 3s"></div>
+                <div class="bar" style="--height: 58%; --opacity: 0.9; --delay: 3.1s"></div>
+                <div class="bar" style="--height: 32%; --opacity: 0.7; --delay: 3.2s"></div>
+                <div class="bar" style="--height: 52%; --opacity: 0.85; --delay: 3.3s"></div>
+                <div class="bar" style="--height: 65%; --opacity: 0.95; --delay: 3.4s"></div>
+                <div class="bar" style="--height: 36%; --opacity: 0.75; --delay: 3.5s"></div>
+                <div class="bar" style="--height: 54%; --opacity: 0.9; --delay: 3.6s"></div>
+                <div class="bar" style="--height: 45%; --opacity: 0.8; --delay: 3.7s"></div>
+                <div class="bar" style="--height: 62%; --opacity: 0.95; --delay: 3.8s"></div>
+                <div class="bar" style="--height: 34%; --opacity: 0.7; --delay: 3.9s"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Center: Vertical divider -->
+          <div class="vertical-divider"></div>
+          
+          <!-- Right side: Scrolling transcription text -->
+          <div class="transcription-section">
+            <div class="transcription-scroll">
+              <span class="transcription-text">patient is a 58-year-old female presenting with acute exacerbation of chronic obstructive pulmonary disease&nbsp;&nbsp;•&nbsp;&nbsp;vital signs: temperature 101.2 Fahrenheit, respiratory rate 24, oxygen saturation 88% on room air&nbsp;&nbsp;•&nbsp;&nbsp;cardiac exam reveals tachycardia at 112 beats per minute. Lung auscultation shows bilateral wheezing and diminished breath sounds at the bases&nbsp;&nbsp;•&nbsp;&nbsp;chest X-ray demonstrates hyperinflation consistent with COPD&nbsp;&nbsp;•&nbsp;&nbsp;assessment: acute exacerbation COPD with pneumonia&nbsp;&nbsp;•&nbsp;&nbsp;plan: admit to telemetry, start IV methylprednisolone 125 milligrams every 6 hours, nebulized albuterol and ipratropium every 4 hours, and broad-spectrum antibiotics including azithromycin 500 milligrams daily and amoxicillin-clavulanate 875 milligrams twice daily. NPO status, strict I's and O's&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="transcription-text">patient is a 58-year-old female presenting with acute exacerbation of chronic obstructive pulmonary disease&nbsp;&nbsp;•&nbsp;&nbsp;vital signs: temperature 101.2 Fahrenheit, respiratory rate 24, oxygen saturation 88% on room air&nbsp;&nbsp;•&nbsp;&nbsp;cardiac exam reveals tachycardia at 112 beats per minute. Lung auscultation shows bilateral wheezing and diminished breath sounds at the bases&nbsp;&nbsp;•&nbsp;&nbsp;chest X-ray demonstrates hyperinflation consistent with COPD&nbsp;&nbsp;•&nbsp;&nbsp;assessment: acute exacerbation COPD with pneumonia&nbsp;&nbsp;•&nbsp;&nbsp;plan: admit to telemetry, start IV methylprednisolone 125 milligrams every 6 hours, nebulized albuterol and ipratropium every 4 hours, and broad-spectrum antibiotics including azithromycin 500 milligrams daily and amoxicillin-clavulanate 875 milligrams twice daily. NPO status, strict I's and O's&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bottom: Single Row with Icons (below waveform) -->
+        <div class="tagline-row">
+          <span class="tagline-pill pill-1">
+            <svg class="lightning-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.5 1L3 9H8L7.5 15L13 7H8L8.5 1Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            250+ WPM
+          </span>
+          <span class="tagline-pill pill-2">
+            <svg class="lock-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="7" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M5 7V5C5 3.34315 6.34315 2 8 2C9.65685 2 11 3.34315 11 5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Private & Offline
+          </span>
+          <span class="tagline-pill pill-3">
+            <svg class="accuracy-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="3.5" cy="13" r="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="12.5" cy="13" r="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M3.5 11.5 C3.5 9 3.5 6 8 6 C12.5 6 12.5 9 12.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <circle cx="8" cy="3.5" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <line x1="8" y1="5.5" x2="8" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Medical-Grade Accuracy
+          </span>
+        </div>
+      </div>
+    </div>
+
+        <!-- COMMENTED OUT: Grammar Correction Animation (saved for later use) -->
+        <!--
+        <div class="grammar-correction-demo">
+          <div class="correction-text-area">
+            {sentenceTimings.map((timing) => (
+              <div class={`sentence sentence-${timing.index}`}>
+                {timing.words.map((word, wordIndex) => {
+                  const delay = wordIndex * WORD_DELAY;
+                  const isError = wordIndex === timing.errorIndex;
+                  const isPunctAfter = timing.hasPunctuation === wordIndex;
+                  
+                  return (
+                    <>
+                      <span 
+                        class={`word ${isError ? 'error-word' : ''}`}
+                        style={`--delay: ${delay}s`}
+                      >
+                        {word}
+                      </span>
+                      {isError && (
+                        <span 
+                          class={`word correction ${timing.isPunctuation ? 'punctuation' : ''}`}
+                          style={`--delay: ${delay}s`}
+                        >
+                          <strong>{timing.correction}</strong>
+                        </span>
+                      )}
+                      {isPunctAfter && (
+                        <span 
+                          class="word correction punctuation"
+                          style={`--delay: ${(wordIndex + 1) * WORD_DELAY}s`}
+                        >
+                          <strong>:</strong>
+                        </span>
+                      )}
+                    </>
+                  );
+                })}
+        </div>
+            ))}
+          </div>
+          
+          {sentenceTimings.map((timing) => (
+            <div class={`correction-label label-${timing.index}`}>✓ {timing.label}</div>
+          ))}
+      </div>
+        -->
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========== HERO SECTION ========== */
+  .hero {
+    padding: var(--space-xl) 0 var(--space-4xl);
+    background: linear-gradient(
+      180deg,
+      #FAFAFA 0%,
+      #FCFCFC 50%,
+      #FAFAFA 100%
+    );
+    position: relative;
+    overflow: hidden;
+    min-height: 85vh;
+    display: flex;
+    align-items: flex-start;
+    padding-top: var(--space-2xl);
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .hero-content {
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-badge .badge {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .hero-title {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-xl);
+    color: var(--color-text-primary);
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .hero-cta .btn-large {
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .hero-note {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-2xl) 0;
+  }
+
+  /* Hero Visual Area */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  .voice-to-text-demo {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: 0;
+  }
+
+  .waveform-transcription-demo {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+  }
+
+  /* Left side: Waveform section */
+  .waveform-section {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .waveform-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, #FAFAFA 0%, rgba(250, 250, 250, 0) 100%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .waveform-scroll {
+    display: flex;
+    gap: 3px;
+    animation: scroll-right 8s linear infinite;
+    will-change: transform;
+  }
+
+  .waveform-bars-group {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    height: 50px;
+    flex-shrink: 0;
+    min-width: calc(50% - 0.5px);
+  }
+
+  .waveform-bars-group .bar {
+    width: 5px;
+    background: var(--color-gray-400);
+    border-radius: 2.5px;
+    height: var(--height);
+    flex-shrink: 0;
+    animation: bar-pulse 1.2s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes bar-pulse {
+    0%, 100% {
+      height: 20%;
+      opacity: 0.4;
+    }
+    50% {
+      height: var(--height);
+      opacity: var(--opacity, 1);
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(calc(-50% - 0.5px));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Center: Vertical divider */
+  .vertical-divider {
+    width: 1px;
+    height: 60px;
+    align-self: center;
+    background: var(--color-gray-400);
+    z-index: 2;
+  }
+
+  /* Right side: Transcription section */
+  .transcription-section {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .transcription-section::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, #FAFAFA 0%, rgba(250, 250, 250, 0) 100%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .transcription-scroll {
+    display: inline-flex;
+    gap: 0;
+    animation: scroll-text-seamless 35s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scroll-text-seamless {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .transcription-text {
+    font-size: 22px;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+    font-weight: 600;
+    display: inline-block;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-right: 40px;
+  }
+
+  /* Tagline Rows */
+  .tagline-row {
+    text-align: center;
+    position: relative;
+    min-height: 40px;
+    width: 100%;
+  }
+
+  .tagline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: var(--color-gray-200);
+    color: var(--color-text-primary);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    white-space: nowrap;
+  }
+
+  /* Cycling animations */
+  .pill-1 {
+    animation: pill-cycle-1 9s ease-in-out infinite;
+  }
+
+  .pill-2 {
+    animation: pill-cycle-2 9s ease-in-out infinite;
+  }
+
+  .pill-3 {
+    animation: pill-cycle-3 9s ease-in-out infinite;
+  }
+
+  .lightning-icon, .lock-icon, .accuracy-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  @keyframes pill-cycle-1 {
+    0% {
+      transform: translateX(-50%) translateX(-50px);
+      opacity: 0;
+    }
+    8% {
+      transform: translateX(-50%) translateX(0);
+      opacity: 1;
+    }
+    25% {
+      transform: translateX(-50%) translateX(0);
+      opacity: 1;
+    }
+    33% {
+      transform: translateX(-50%) translateX(50px);
+      opacity: 0;
+    }
+    33.1%, 100% {
+      transform: translateX(-50%) translateX(-50px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pill-cycle-2 {
+    0%, 33% {
+      transform: translateX(-50%) translateX(-50px);
+      opacity: 0;
+    }
+    41% {
+      transform: translateX(-50%) translateX(0);
+      opacity: 1;
+    }
+    58% {
+      transform: translateX(-50%) translateX(0);
+      opacity: 1;
+    }
+    66% {
+      transform: translateX(-50%) translateX(50px);
+      opacity: 0;
+    }
+    66.1%, 100% {
+      transform: translateX(-50%) translateX(-50px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pill-cycle-3 {
+    0%, 66% {
+      transform: translateX(-50%) translateX(-50px);
+      opacity: 0;
+    }
+    74% {
+      transform: translateX(-50%) translateX(0);
+      opacity: 1;
+    }
+    92% {
+      transform: translateX(-50%) translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%) translateX(50px);
+      opacity: 0;
+    }
+  }
+
+  /* ========== GRAMMAR CORRECTION ANIMATION ========== */
+  .grammar-correction-demo {
+    margin-top: 40px;
+    position: relative;
+    min-height: 100px;
+  }
+
+  @keyframes demo-loop {
+    0%, 100% {
+      opacity: 1;
+    }
+  }
+
+  .correction-text-area {
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+    position: relative;
+    min-height: 50px;
+  }
+
+  /* All sentences stack on top of each other */
+  .sentence {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    visibility: hidden;
+  }
+
+  /* Words appear one by one */
+  .word {
+    display: inline-block;
+    opacity: 0;
+    margin-right: 0.15em;
+  }
+
+  /* Dynamic keyframes injected below */
+
+
+  /* Error words - strike through (keep visible) */
+  .error-word {
+    position: relative;
+    display: inline-block;
+    color: var(--color-text-primary);
+  }
+
+  .error-word::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2.5px;
+    background: #000000;
+    border-radius: 2px;
+    transform-origin: right center;
+    transform: translateY(-50%) scaleX(0);
+  }
+
+
+  /* Correction appears after strikethrough */
+  .correction {
+    color: rgb(22, 163, 74);
+    opacity: 0;
+    margin-left: 0;
+    margin-right: 0.3em;
+    display: inline-block;
+  }
+
+  /* Punctuation corrections sit tight to previous word */
+  .correction.punctuation {
+    margin-left: -0.3em;
+    margin-right: 0;
+  }
+
+  .correction strong {
+    font-weight: 700;
+  }
+
+
+
+  /* Dynamic sentence animations injected below */
+
+
+  /* Dynamic visibility windows injected below */
+
+  /* Correction labels - synced with sentences */
+  .correction-label {
+    position: absolute;
+    left: 0;
+    bottom: -45px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: rgb(22, 163, 74);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+  }
+
+  /* Dynamic label animations injected below */
+
+  /* Dynamic label flash keyframes injected below */
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 968px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+    }
+
+    .hero-visual {
+      order: 2;
+    }
+
+    .hero-title {
+      font-size: 40px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+    }
+
+    .waveform-transcription-demo {
+      height: 120px;
+    }
+
+    .transcription-text {
+      font-size: 20px;
+    }
+
+    .waveform-bars-group {
+      height: 40px;
+    }
+
+    .waveform-bars-group .bar {
+      width: 4px;
+    }
+
+    .vertical-divider {
+      height: 50px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 36px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+    }
+
+    .hero-cta .btn {
+      width: 100%;
+    }
+
+    .waveform-transcription-demo {
+      height: 100px;
+    }
+
+    .transcription-text {
+      font-size: 19px;
+    }
+
+    .waveform-bars-group {
+      height: 35px;
+    }
+
+    .waveform-bars-group .bar {
+      width: 4px;
+    }
+
+    .vertical-divider {
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 28px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+    }
+
+    .waveform-transcription-demo {
+      height: 80px;
+    }
+
+    .transcription-text {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .waveform-bars-group {
+      height: 30px;
+    }
+
+    .waveform-bars-group .bar {
+      width: 3px;
+    }
+
+    .waveform-scroll {
+      gap: 2px;
+    }
+    
+    .waveform-bars-group {
+      gap: 2px;
+    }
+
+    .vertical-divider {
+      height: 30px;
+    }
+  }
+</style>
+
+<!-- Dynamic Grammar Correction Animation Styles -->
+<style is:inline set:html={`
+  .grammar-correction-demo {
+    animation: demo-loop ${totalDuration}s linear infinite;
+  }
+
+  ${sentenceAnimationsCSS}
+
+  ${keyframesCSS}
+
+  ${visibilityWindowsCSS}
+
+  ${labelAnimationsCSS}
+
+  ${labelKeyframesCSS}
+`}>
+</style>
+

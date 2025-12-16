@@ -1,0 +1,443 @@
+---
+// Keyboard Mockup - Step 1 visual for "How It Works"
+---
+
+<div class="keyboard-mockup">
+  <div class="keyboard-layout">
+    <!-- Top row: Shift (rectangle) + Z -->
+    <div class="keyboard-row">
+      <div class="key key-context key-shift">shift</div>
+      <div class="key key-context key-z">Z</div>
+    </div>
+    
+    <!-- Bottom row: Fn + Ctrl + Option -->
+    <div class="keyboard-row">
+      <div class="key key-fn">
+        Fn
+        <!-- Comic book action lines (bottom left corner) -->
+        <div class="action-lines">
+          <div class="action-line line-1"></div>
+          <div class="action-line line-2"></div>
+          <div class="action-line line-3"></div>
+        </div>
+      </div>
+      <div class="key key-context key-ctrl">ctrl</div>
+      <div class="key key-context key-option">⌥</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .keyboard-mockup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .keyboard-layout {
+    position: relative;
+    width: 240px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .keyboard-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* Context keys (de-emphasized, can overflow) */
+  .key-context {
+    background: var(--color-gray-100);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-gray-300);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: lowercase;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05),
+                0 2px 0 var(--color-gray-200);
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* All keys same height */
+  .key-shift,
+  .key-z,
+  .key-fn,
+  .key-ctrl,
+  .key-option {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  /* Top row: Shift (rectangle) + Z (square) */
+  .key-shift {
+    min-width: 100px;
+    padding: 0 24px;
+  }
+
+  .key-z {
+    min-width: 52px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Bottom row: Fn + Ctrl + Option (all same width) */
+  .key-fn {
+    background: var(--color-gray-900);
+    color: #FFFFFF;
+    border: 2px solid var(--color-gray-900);
+    border-radius: 7px;
+    min-width: 75px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15),
+                0 4px 0 var(--color-gray-800);
+    cursor: pointer;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    animation: key-press 2.5s ease-in-out infinite;
+    z-index: 2;
+    position: relative;
+  }
+
+  .key-ctrl {
+    min-width: 75px;
+  }
+
+  .key-option {
+    min-width: 75px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  @keyframes key-press {
+    0%, 82%, 100% {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15),
+                  0 4px 0 var(--color-gray-800);
+    }
+    86%, 94% {
+      transform: translateY(2px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15),
+                  0 2px 0 var(--color-gray-800);
+    }
+  }
+
+  /* Comic book action lines (top corners only) */
+  .action-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .action-line {
+    position: absolute;
+    background: var(--color-gray-900);
+    opacity: 0;
+    border-radius: 1px;
+    width: 2px;
+  }
+
+  /* Bottom left corner - Line 1 (most angled, pointing down-left) */
+  .action-line.line-1 {
+    bottom: -4px;
+    left: 3px;
+    height: 7px;
+    transform-origin: bottom left;
+    transform: rotate(-135deg);
+    animation: action-burst-1 2.5s ease-in-out infinite;
+  }
+
+  /* Bottom left corner - Line 2 (middle angle) */
+  .action-line.line-2 {
+    bottom: -1px;
+    left: -1px;
+    height: 8px;
+    transform-origin: bottom left;
+    transform: rotate(-120deg);
+    animation: action-burst-2 2.5s ease-in-out infinite;
+  }
+
+  /* Bottom left corner - Line 3 (least angled, pointing more left) */
+  .action-line.line-3 {
+    bottom: 3px;
+    left: -4px;
+    height: 8px;
+    transform-origin: bottom left;
+    transform: rotate(-105deg);
+    animation: action-burst-3 2.5s ease-in-out infinite;
+  }
+
+  @keyframes action-burst-1 {
+    0%, 82%, 100% {
+      opacity: 0;
+      height: 7px;
+      transform: rotate(-135deg);
+    }
+    86% {
+      opacity: 0.85;
+      height: 8px;
+      transform: rotate(-138deg);
+    }
+    94% {
+      opacity: 0;
+      height: 9px;
+      transform: rotate(-140deg);
+    }
+  }
+
+  @keyframes action-burst-2 {
+    0%, 82%, 100% {
+      opacity: 0;
+      height: 8px;
+      transform: rotate(-120deg);
+    }
+    86% {
+      opacity: 0.9;
+      height: 9px;
+      transform: rotate(-123deg);
+    }
+    94% {
+      opacity: 0;
+      height: 10px;
+      transform: rotate(-125deg);
+    }
+  }
+
+  @keyframes action-burst-3 {
+    0%, 82%, 100% {
+      opacity: 0;
+      height: 8px;
+      transform: rotate(-105deg);
+    }
+    86% {
+      opacity: 0.8;
+      height: 9px;
+      transform: rotate(-108deg);
+    }
+    94% {
+      opacity: 0;
+      height: 10px;
+      transform: rotate(-110deg);
+    }
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .keyboard-layout {
+      width: 200px;
+      height: 120px;
+    }
+
+    .key-context {
+      font-size: 11px;
+    }
+
+    .key-shift,
+    .key-z,
+    .key-fn,
+    .key-ctrl,
+    .key-option {
+      height: 44px;
+      padding: 0 16px;
+    }
+
+    .key-shift {
+      min-width: 85px;
+      padding: 0 20px;
+    }
+
+    .key-z {
+      min-width: 44px;
+      font-size: 13px;
+    }
+
+    .key-fn {
+      font-size: 18px;
+      min-width: 65px;
+    }
+
+    .key-ctrl {
+      min-width: 65px;
+    }
+
+    .key-option {
+      min-width: 65px;
+      font-size: 16px;
+    }
+
+    @keyframes action-burst-1 {
+      0%, 82%, 100% {
+        opacity: 0;
+        height: 6px;
+        transform: rotate(-135deg);
+      }
+      86% {
+        opacity: 0.85;
+        height: 7px;
+        transform: rotate(-138deg);
+      }
+      94% {
+        opacity: 0;
+        height: 8px;
+        transform: rotate(-140deg);
+      }
+    }
+
+    @keyframes action-burst-2 {
+      0%, 82%, 100% {
+        opacity: 0;
+        height: 7px;
+        transform: rotate(-120deg);
+      }
+      86% {
+        opacity: 0.9;
+        height: 8px;
+        transform: rotate(-123deg);
+      }
+      94% {
+        opacity: 0;
+        height: 9px;
+        transform: rotate(-125deg);
+      }
+    }
+
+    @keyframes action-burst-3 {
+      0%, 82%, 100% {
+        opacity: 0;
+        height: 7px;
+        transform: rotate(-105deg);
+      }
+      86% {
+        opacity: 0.8;
+        height: 8px;
+        transform: rotate(-108deg);
+      }
+      94% {
+        opacity: 0;
+        height: 9px;
+        transform: rotate(-110deg);
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .keyboard-layout {
+      width: 170px;
+      height: 100px;
+    }
+
+    .key-context {
+      font-size: 10px;
+    }
+
+    .key-shift,
+    .key-z,
+    .key-fn,
+    .key-ctrl,
+    .key-option {
+      height: 38px;
+      padding: 0 14px;
+    }
+
+    .key-shift {
+      min-width: 70px;
+      padding: 0 18px;
+    }
+
+    .key-z {
+      min-width: 38px;
+      font-size: 12px;
+    }
+
+    .key-fn {
+      font-size: 16px;
+      min-width: 58px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15),
+                  0 3px 0 var(--color-gray-800);
+    }
+
+    .key-ctrl {
+      min-width: 58px;
+    }
+
+    .key-option {
+      min-width: 58px;
+      font-size: 14px;
+    }
+
+    @keyframes action-burst-1 {
+      0%, 82%, 100% {
+        opacity: 0;
+        height: 5px;
+        transform: rotate(-135deg);
+      }
+      86% {
+        opacity: 0.85;
+        height: 6px;
+        transform: rotate(-138deg);
+      }
+      94% {
+        opacity: 0;
+        height: 7px;
+        transform: rotate(-140deg);
+      }
+    }
+
+    @keyframes action-burst-2 {
+      0%, 82%, 100% {
+        opacity: 0;
+        height: 6px;
+        transform: rotate(-120deg);
+      }
+      86% {
+        opacity: 0.9;
+        height: 7px;
+        transform: rotate(-123deg);
+      }
+      94% {
+        opacity: 0;
+        height: 8px;
+        transform: rotate(-125deg);
+      }
+    }
+
+    @keyframes action-burst-3 {
+      0%, 82%, 100% {
+        opacity: 0;
+        height: 6px;
+        transform: rotate(-105deg);
+      }
+      86% {
+        opacity: 0.8;
+        height: 7px;
+        transform: rotate(-108deg);
+      }
+      94% {
+        opacity: 0;
+        height: 8px;
+        transform: rotate(-110deg);
+      }
+    }
+  }
+</style>
+

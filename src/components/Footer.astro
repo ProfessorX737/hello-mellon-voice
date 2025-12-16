@@ -1,0 +1,173 @@
+---
+// Footer Component
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="/mellon-mac-toolbar-icon.png" alt="Mellon" class="logo-icon" width="28" height="28" />
+          <span class="logo-text">Mellon</span>
+        </div>
+        <p class="footer-tagline">One-time purchase. Forever access.</p>
+        <p class="footer-description">Privacy-first voice dictation for macOS.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#download">Download</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="mailto:support@mellonvoice.com">Contact</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://twitter.com/mellonvoice" target="_blank" rel="noopener">Twitter</a></li>
+            <li><a href="https://github.com/mellonvoice" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://producthunt.com" target="_blank" rel="noopener">Product Hunt</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} Mellon. All rights reserved.</p>
+      <p class="footer-note">Built with care for privacy-conscious users.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-gray-50);
+    border-top: 1px solid var(--color-gray-200);
+    padding: var(--space-4xl) 0 var(--space-xl);
+    margin-top: var(--space-4xl);
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--space-4xl);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .footer-brand {
+    max-width: 350px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+
+  .footer-tagline {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-description {
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .footer-column h4 {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-column ul {
+    list-style: none;
+  }
+
+  .footer-column li {
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-column a {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-normal);
+  }
+
+  .footer-column a:hover {
+    color: var(--color-text-primary);
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .footer-bottom p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-xs);
+  }
+
+  .footer-note {
+    font-size: var(--font-size-xs);
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .footer-links {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-brand {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

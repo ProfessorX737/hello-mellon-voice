@@ -1,0 +1,166 @@
+---
+import KeyboardMockup from '../ui/KeyboardMockup.astro';
+import WaveformMockup from '../ui/WaveformMockup.astro';
+import EditorMockup from '../ui/EditorMockup.astro';
+---
+
+<!-- How It Works Section (3 Steps) -->
+<section class="how-it-works-section" id="how-it-works" data-fade-in>
+  <div class="container">
+    <h2 class="section-title text-center">How Mellon Works</h2>
+    <p class="section-subtitle text-center">
+      Three simple steps to effortless dictation
+    </p>
+
+    <div class="steps-grid">
+      <!-- Step 1: Press Hotkey -->
+      <div class="step-card">
+        <div class="step-visual">
+          <div class="step-header">
+            <div class="step-number">1</div>
+            <h3>Press a hotkey</h3>
+          </div>
+          <div class="step-mockup">
+            <KeyboardMockup />
+          </div>
+          <div class="step-content">
+            <p>Activate Mellon anywhere with your custom shortcut.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Speak Naturally -->
+      <div class="step-card">
+        <div class="step-visual">
+          <div class="step-header">
+            <div class="step-number">2</div>
+            <h3>Speak naturally</h3>
+          </div>
+          <div class="step-mockup">
+            <WaveformMockup />
+          </div>
+          <div class="step-content">
+            <p>Just talk. Mellon captures your words accurately.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Perfect Text Appears -->
+      <div class="step-card">
+        <div class="step-visual">
+          <div class="step-header">
+            <div class="step-number">3</div>
+            <h3>Perfect text appears</h3>
+          </div>
+          <div class="step-mockup">
+            <EditorMockup />
+          </div>
+          <div class="step-content">
+            <p>Formatted text appears instantly, perfectly polished.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========== HOW IT WORKS SECTION ========== */
+  .how-it-works-section {
+    background-color: #FFFFFF;
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+    margin-top: var(--space-4xl);
+  }
+
+  .step-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-visual {
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+
+  .step-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+
+  .step-number {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .step-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .step-mockup {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  /* Step Content */
+  .step-content {
+    text-align: center;
+    padding-top: var(--space-xs);
+  }
+
+  .step-content p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 968px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .step-visual {
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .step-header h3 {
+      font-size: 17px;
+    }
+
+    .step-content p {
+      font-size: 13px;
+    }
+  }
+</style>
+

@@ -1,0 +1,145 @@
+---
+// Comparison Section
+---
+
+<section class="comparison-section" id="comparison" data-fade-in>
+  <div class="container">
+    <h2 class="section-title text-center">Why Mellon?</h2>
+    <p class="section-subtitle text-center">
+      See how we compare to other voice dictation apps
+    </p>
+    
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Willow</th>
+            <th>Wispr</th>
+            <th>VoiceInk</th>
+            <th class="melon-column">Mellon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>One-time Purchase</strong></td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td class="melon-column"><strong>✅</strong></td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>No Subscription</strong></td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td class="melon-column"><strong>✅</strong></td>
+          </tr>
+          <tr>
+            <td>Privacy-First</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td class="melon-column">✅</td>
+          </tr>
+          <tr>
+            <td>macOS Native</td>
+            <td>Partial</td>
+            <td>❌</td>
+            <td>Partial</td>
+            <td class="melon-column">✅</td>
+          </tr>
+          <tr>
+            <td>Works with Any App</td>
+            <td>Limited</td>
+            <td>Limited</td>
+            <td>Limited</td>
+            <td class="melon-column">✅</td>
+          </tr>
+          <tr>
+            <td>Design Quality</td>
+            <td>Sterile</td>
+            <td>Playful</td>
+            <td>Plain</td>
+            <td class="melon-column">Warm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========== COMPARISON SECTION ========== */
+  .comparison-section {
+    background-color: #FFFFFF;
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    margin-top: var(--space-3xl);
+  }
+
+  .comparison-table {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--space-lg);
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .comparison-table th {
+    background-color: var(--color-gray-50);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .comparison-table td {
+    color: var(--color-text-primary);
+  }
+
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+  }
+
+  .melon-column {
+    background-color: var(--color-gray-50);
+    font-weight: 600;
+  }
+
+  .highlight-row {
+    background-color: var(--color-bg-primary);
+  }
+
+  .highlight-row td {
+    font-weight: 600;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .comparison-table {
+      font-size: var(--font-size-sm);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--space-sm);
+    }
+  }
+</style>
+

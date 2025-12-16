@@ -1,0 +1,132 @@
+---
+interface Props {
+  apps: Array<{ name: string; icon: string }>;
+}
+
+const { apps } = Astro.props;
+---
+
+<!-- App Compatibility Section -->
+<section class="apps-section" id="apps" data-fade-in>
+  <div class="container">
+    <h2 class="section-title text-center">Works with every app you love</h2>
+    <p class="section-subtitle text-center">
+      System-wide dictation. Works in any text field. No copy-pasting needed.
+    </p>
+    
+    <div class="apps-grid">
+      {apps.map((app, index) => (
+        <div class="app-icon" style={`--icon-index: ${index}`}>
+          <div class="app-icon-placeholder">
+            <span class="app-initial">{app.name.substring(0, 1)}</span>
+          </div>
+          <div class="app-name">{app.name}</div>
+        </div>
+      ))}
+    </div>
+    
+    <p class="apps-note text-center text-muted">
+      Works with hundreds of apps out of the box
+    </p>
+  </div>
+</section>
+
+<style>
+  /* ========== APP COMPATIBILITY SECTION ========== */
+  .apps-section {
+    background-color: var(--color-bg-primary);
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-3xl) 0;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    background-color: var(--color-bg-elevated);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-subtle);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    animation: icon-float-in 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: calc(var(--icon-index) * 50ms);
+  }
+
+  .app-icon:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--color-gray-300);
+  }
+
+  .app-icon:hover .app-name {
+    color: var(--color-text-primary);
+  }
+
+  .app-icon-placeholder {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: var(--color-gray-100);
+    border: 1px solid var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-initial {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .app-name {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    text-align: center;
+    transition: all var(--transition-normal);
+  }
+
+  .apps-note {
+    margin-top: var(--space-2xl);
+    font-size: 14px;
+  }
+
+  @keyframes icon-float-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .apps-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .apps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+

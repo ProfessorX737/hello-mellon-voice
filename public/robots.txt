@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mellonvoice.com/sitemap-index.xml
+

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import TypingSpeedSection from '../components/sections/TypingSpeedSection.astro';
+import HowItWorksSection from '../components/sections/HowItWorksSection.astro';
+import ProfessionalsSection from '../components/sections/ProfessionalsSection.astro';
+import AppsSection from '../components/sections/AppsSection.astro';
+import FeaturesSection from '../components/sections/FeaturesSection.astro';
+import ComparisonSection from '../components/sections/ComparisonSection.astro';
+import PricingSection from '../components/sections/PricingSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import CTASection from '../components/sections/CTASection.astro';
+import { apps } from '../data/apps';
+---
+
+<BaseLayout 
+  title="Mellon - Privacy-First Voice Dictation for macOS"
+  description="One-time purchase. Forever access. Local voice dictation that respects your privacy. Works with every app you love."
+>
+  <HeroSection apps={apps} />
+  <TypingSpeedSection />
+  <HowItWorksSection />
+  <ProfessionalsSection />
+  <AppsSection apps={apps} />
+  <FeaturesSection />
+  <ComparisonSection />
+  <PricingSection />
+  <FAQSection />
+  <CTASection />
+</BaseLayout>

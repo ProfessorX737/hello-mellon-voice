@@ -1,0 +1,130 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { 
+  title = 'Mellon - Privacy-First Voice Dictation for macOS',
+  description = 'One-time purchase. Forever access. Local voice dictation that respects your privacy. Works with every app you love.',
+  image = '/og-image.png'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Mellon" />
+    <meta name="keywords" content="voice dictation, macOS, privacy, speech to text, local processing, one-time purchase" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    
+    <!-- Scroll animations and typewriter effect -->
+    <script>
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Typewriter effect for hero section
+      function typeWriter() {
+        const element = document.getElementById('hero-typing-text');
+        if (!element) return;
+
+        const texts = [
+          'Your words, your machine',
+          'Private voice dictation',
+          'Works with every app',
+          'One-time purchase. Forever.'
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+          const currentText = texts[textIndex];
+          
+          if (!isDeleting && charIndex <= currentText.length) {
+            element.textContent = currentText.substring(0, charIndex);
+            charIndex++;
+            setTimeout(type, 80);
+          } else if (isDeleting && charIndex >= 0) {
+            element.textContent = currentText.substring(0, charIndex);
+            charIndex--;
+            setTimeout(type, 40);
+          } else if (!isDeleting && charIndex > currentText.length) {
+            isDeleting = true;
+            setTimeout(type, 2000); // Pause before deleting
+          } else if (isDeleting && charIndex < 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(type, 500); // Pause before next text
+          }
+        }
+
+        type();
+      }
+
+      // Initialize on load
+      document.addEventListener('DOMContentLoaded', () => {
+        const elements = document.querySelectorAll('[data-fade-in]');
+        elements.forEach(el => observer.observe(el));
+        
+        // Start typewriter effect
+        typeWriter();
+      });
+    </script>
+  </body>
+</html>
+

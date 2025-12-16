@@ -1,0 +1,77 @@
+---
+// Privacy Features Section
+---
+
+<section class="features-section" id="features" data-fade-in>
+  <div class="container">
+    <h2 class="section-title text-center">Your data stays private</h2>
+    <p class="section-subtitle text-center">
+      Privacy-first design means your words never leave your Mac.
+    </p>
+    
+    <div class="features-grid">
+      <div class="feature-card card">
+        <div class="feature-icon">🔒</div>
+        <h3>No Cloud Sync</h3>
+        <p>Everything happens locally on your Mac. Zero data collection. Complete privacy.</p>
+      </div>
+      
+      <div class="feature-card card">
+        <div class="feature-icon">✈️</div>
+        <h3>Works Offline</h3>
+        <p>No internet required. Your dictation works anywhere, anytime, without connectivity.</p>
+      </div>
+      
+      <div class="feature-card card">
+        <div class="feature-icon">⚙️</div>
+        <h3>Fully Configurable</h3>
+        <p>Customize shortcuts, languages, and behavior. Built for everyone, from students to professionals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========== FEATURES SECTION ========== */
+  .features-section {
+    background-color: var(--color-bg-primary);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-3xl);
+  }
+
+  .feature-card {
+    text-align: center;
+    padding: var(--space-2xl);
+  }
+
+  .feature-icon {
+    font-size: 48px;
+    margin-bottom: var(--space-lg);
+    opacity: 0.9;
+  }
+
+  .feature-card h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 20px;
+  }
+
+  .feature-card p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

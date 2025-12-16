@@ -1,0 +1,188 @@
+---
+// Pricing Section
+---
+
+<section class="pricing-section" id="pricing" data-fade-in>
+  <div class="container">
+    <h2 class="section-title text-center">One-time purchase. Forever access.</h2>
+    <p class="section-subtitle text-center">
+      Buy once. Own it outright. Use it on your terms.
+    </p>
+    
+    <div class="pricing-grid">
+      <!-- Single Device -->
+      <div class="pricing-card card">
+        <h3>Single Device</h3>
+        <div class="price">$19</div>
+        <p class="price-description">Best for individual use</p>
+        
+        <ul class="pricing-features">
+          <li>✅ Use on 1 Mac</li>
+          <li>✅ Lifetime access</li>
+          <li>✅ 1 year free updates</li>
+          <li>✅ Offline access</li>
+          <li>✅ No account needed</li>
+        </ul>
+        
+        <a href="https://gumroad.com/l/mellon-single" class="btn btn-primary" target="_blank" rel="noopener">
+          Buy Now
+        </a>
+        <p class="cta-note">License key via email</p>
+      </div>
+
+      <!-- Duo Device (Featured) -->
+      <div class="pricing-card card featured">
+        <div class="featured-badge">
+          <span class="badge">BEST VALUE</span>
+        </div>
+        <h3>Duo Device</h3>
+        <div class="price">$34</div>
+        <p class="price-description">Best for families</p>
+        
+        <ul class="pricing-features">
+          <li>✅ Use on 2 Macs</li>
+          <li>✅ Lifetime access</li>
+          <li>✅ 3 years free updates</li>
+          <li>✅ Offline access</li>
+          <li>✅ No account needed</li>
+        </ul>
+        
+        <a href="https://gumroad.com/l/mellon-duo" class="btn btn-primary" target="_blank" rel="noopener">
+          Buy Now
+        </a>
+        <p class="cta-note">License key via email</p>
+      </div>
+
+      <!-- Triple Device -->
+      <div class="pricing-card card">
+        <h3>Triple Device</h3>
+        <div class="price">$49</div>
+        <p class="price-description">Best for power users</p>
+        
+        <ul class="pricing-features">
+          <li>✅ Use on 3 Macs</li>
+          <li>✅ Lifetime access</li>
+          <li>✅ 5 years free updates</li>
+          <li>✅ Offline access</li>
+          <li>✅ No account needed</li>
+        </ul>
+        
+        <a href="https://gumroad.com/l/mellon-triple" class="btn btn-primary" target="_blank" rel="noopener">
+          Buy Now
+        </a>
+        <p class="cta-note">License key via email</p>
+      </div>
+    </div>
+    
+    <p class="pricing-note text-center text-muted">
+      30-day money-back guarantee • No hidden fees • Pay once, own forever
+    </p>
+  </div>
+</section>
+
+<style>
+  /* ========== PRICING SECTION ========== */
+  .pricing-section {
+    background-color: var(--color-bg-primary);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-2xl);
+    margin: var(--space-3xl) 0;
+    align-items: start;
+  }
+
+  .pricing-card {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .pricing-card.featured {
+    border-color: var(--color-text-primary);
+    border-width: 2px;
+    transform: scale(1.03);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .pricing-card.featured:hover {
+    transform: scale(1.03) translateY(-4px);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .pricing-card h3 {
+    font-size: 20px;
+    color: var(--color-text-primary);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
+    font-weight: 600;
+  }
+
+  .price {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .price-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+  }
+
+  .pricing-features {
+    list-style: none;
+    text-align: left;
+    margin: var(--space-lg) 0;
+    flex-grow: 1;
+  }
+
+  .pricing-features li {
+    padding: var(--space-sm) 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+  }
+
+  .pricing-card .btn {
+    margin-top: var(--space-lg);
+    width: 100%;
+  }
+
+  .cta-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+  }
+
+  .pricing-note {
+    margin-top: var(--space-2xl);
+    font-size: var(--font-size-sm);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-card.featured {
+      transform: scale(1);
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-8px);
+    }
+  }
+</style>
+

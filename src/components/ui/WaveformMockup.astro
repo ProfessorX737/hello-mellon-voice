@@ -1,0 +1,146 @@
+---
+// Waveform Mockup - Step 2 visual for "How It Works"
+---
+
+<div class="waveform-mockup">
+  <div class="waveform-icon">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+      <line x1="12" y1="19" x2="12" y2="23"/>
+      <line x1="8" y1="23" x2="16" y2="23"/>
+    </svg>
+  </div>
+  <div class="waveform-bars">
+    <div class="bar bar-1" style="--delay: 0s; --height: 35%"></div>
+    <div class="bar bar-2" style="--delay: 0.08s; --height: 55%"></div>
+    <div class="bar bar-3" style="--delay: 0.15s; --height: 82%"></div>
+    <div class="bar bar-4" style="--delay: 0.23s; --height: 48%"></div>
+    <div class="bar bar-5" style="--delay: 0.32s; --height: 70%"></div>
+    <div class="bar bar-6" style="--delay: 0.41s; --height: 38%"></div>
+    <div class="bar bar-7" style="--delay: 0.49s; --height: 62%"></div>
+    <div class="bar bar-8" style="--delay: 0.58s; --height: 88%"></div>
+    <div class="bar bar-9" style="--delay: 0.67s; --height: 52%"></div>
+    <div class="bar bar-10" style="--delay: 0.75s; --height: 68%"></div>
+  </div>
+</div>
+
+<style>
+  .waveform-mockup {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-md);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .waveform-icon {
+    color: var(--color-text-primary);
+    flex-shrink: 0;
+  }
+
+  .waveform-bars {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    height: 70px;
+  }
+
+  .bar {
+    width: 7px;
+    background: var(--color-gray-400);
+    border-radius: 3.5px;
+    height: var(--height);
+    animation-delay: var(--delay);
+  }
+
+  /* Irregular animations for natural speech patterns */
+  .bar-1 { animation: bar-pulse-1 1.8s ease-in-out infinite; }
+  .bar-2 { animation: bar-pulse-2 1.5s ease-in-out infinite; }
+  .bar-3 { animation: bar-pulse-3 2.1s ease-in-out infinite; }
+  .bar-4 { animation: bar-pulse-4 1.7s ease-in-out infinite; }
+  .bar-5 { animation: bar-pulse-5 1.9s ease-in-out infinite; }
+  .bar-6 { animation: bar-pulse-6 1.6s ease-in-out infinite; }
+  .bar-7 { animation: bar-pulse-7 2.0s ease-in-out infinite; }
+  .bar-8 { animation: bar-pulse-8 1.4s ease-in-out infinite; }
+  .bar-9 { animation: bar-pulse-9 1.75s ease-in-out infinite; }
+  .bar-10 { animation: bar-pulse-10 1.85s ease-in-out infinite; }
+
+  @keyframes bar-pulse-1 {
+    0%, 100% { height: 25%; opacity: 0.4; }
+    40% { height: 35%; opacity: 0.6; }
+    70% { height: 60%; opacity: 0.9; }
+  }
+
+  @keyframes bar-pulse-2 {
+    0%, 100% { height: 35%; opacity: 0.5; }
+    35% { height: 55%; opacity: 0.75; }
+    65% { height: 85%; opacity: 1; }
+  }
+
+  @keyframes bar-pulse-3 {
+    0%, 100% { height: 45%; opacity: 0.5; }
+    50% { height: 82%; opacity: 1; }
+    75% { height: 68%; opacity: 0.85; }
+  }
+
+  @keyframes bar-pulse-4 {
+    0%, 100% { height: 28%; opacity: 0.4; }
+    45% { height: 48%; opacity: 0.7; }
+    80% { height: 70%; opacity: 0.95; }
+  }
+
+  @keyframes bar-pulse-5 {
+    0%, 100% { height: 38%; opacity: 0.45; }
+    55% { height: 70%; opacity: 0.9; }
+    85% { height: 52%; opacity: 0.7; }
+  }
+
+  @keyframes bar-pulse-6 {
+    0%, 100% { height: 22%; opacity: 0.4; }
+    42% { height: 38%; opacity: 0.6; }
+    68% { height: 58%; opacity: 0.85; }
+  }
+
+  @keyframes bar-pulse-7 {
+    0%, 100% { height: 32%; opacity: 0.45; }
+    48% { height: 62%; opacity: 0.8; }
+    72% { height: 78%; opacity: 1; }
+  }
+
+  @keyframes bar-pulse-8 {
+    0%, 100% { height: 48%; opacity: 0.5; }
+    38% { height: 88%; opacity: 1; }
+    62% { height: 72%; opacity: 0.9; }
+  }
+
+  @keyframes bar-pulse-9 {
+    0%, 100% { height: 30%; opacity: 0.45; }
+    52% { height: 52%; opacity: 0.75; }
+    78% { height: 65%; opacity: 0.9; }
+  }
+
+  @keyframes bar-pulse-10 {
+    0%, 100% { height: 40%; opacity: 0.5; }
+    46% { height: 68%; opacity: 0.85; }
+    74% { height: 80%; opacity: 1; }
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .waveform-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .waveform-bars {
+      height: 56px;
+    }
+
+    .bar {
+      width: 6px;
+    }
+  }
+</style>
+
