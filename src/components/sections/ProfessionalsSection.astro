@@ -4,11 +4,9 @@
 
 <section class="professionals-section" id="professionals" data-fade-in>
   <div class="container">
-    <h2 class="section-title text-center">Dictionaries</h2>
+    <h2 class="section-title text-center">Accuracy that learns your language</h2>
     <p class="section-subtitle text-center">
-      Extend recognition accuracy with custom and pre-built dictionaries.
-    </p>
-
+Standard AI fails on technical jargon. Mellon thrives on it. Extend your recognition with pre-built and custom vocabulary.
     <!-- Custom Dictionary Demo (Full Width) - NOW FIRST! -->
     <div class="custom-dictionary-demo">
       <div class="demo-left">
@@ -26,13 +24,13 @@
         <!-- Dictionary Terms Display with Fade -->
         <div class="dictionary-terms-wrapper">
           <div class="dictionary-terms">
-            <span class="dict-term">Aeron</span>
+            <span class="dict-term">Subpoena</span>
             <span class="dict-term">Mellon</span>
-            <span class="dict-term">Smyth</span>
+            <span class="dict-term">npm run</span>
             <span class="dict-term">Kaylynn</span>
             <span class="dict-term">Rivendell</span>
-            <span class="dict-term">Westeros</span>
-            <span class="dict-term">Daenerys</span>
+            <span class="dict-term">git push</span>
+            <span class="dict-term">Obsidian</span>
             <span class="dict-term">Silmarillion</span>
             <span class="dict-term">Targaryen</span>
             <span class="dict-term">Gandalf</span>
@@ -41,7 +39,7 @@
             <span class="dict-term">Mordor</span>
             <span class="dict-term">Isildur</span>
             <span class="dict-term">Aragorn</span>
-            <span class="dict-term">Gimli</span>
+            <span class="dict-term">TypeScript</span>
             <span class="dict-term">Legolas</span>
             <span class="dict-term">Arwen</span>
             <span class="dict-term">Eowyn</span>
@@ -60,11 +58,19 @@
           <div class="dictionary-fade"></div>
         </div>
 
-        <div class="efficiency-note">
-          <svg class="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span>Instant recognition with no slowdown</span>
+        <div class="efficiency-notes">
+          <div class="efficiency-note">
+            <svg class="check-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Instant recognition with no slowdown</span>
+          </div>
+          <div class="efficiency-note">
+            <svg class="check-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>If you can say it, Mellon can write it</span>
+          </div>
         </div>
       </div>
 
@@ -120,6 +126,12 @@
               <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Zero performance impact
+          </li>
+                    <li>
+            <svg class="bullet-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Perfect for Practitioners who can't afford a typo
           </li>
         </ul>
       </div>
@@ -303,12 +315,12 @@
     color: var(--color-text-muted);
   }
 
-  .module-features li:last-child {
+  .module-features li:nth-last-child(-n+2) {
     color: var(--color-text-primary);
     font-weight: 500;
   }
 
-  .module-features li:last-child .bullet-icon {
+  .module-features li:nth-last-child(-n+2) .bullet-icon {
     color: var(--color-text-primary);
   }
 
@@ -426,6 +438,30 @@
   .search-placeholder {
     font-size: 14px;
     color: var(--color-text-muted);
+  }
+
+  /* Efficiency Notes */
+  .efficiency-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .efficiency-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .efficiency-note .check-icon {
+    flex-shrink: 0;
+    color: #34c759;
+  }
+
+  .efficiency-note span {
+    line-height: 1.3;
   }
 
   /* Dictionary Terms Wrapper with Fade */

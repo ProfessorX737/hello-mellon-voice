@@ -16,9 +16,24 @@
       </div>
       
       <div class="trust-signals">
-        <div class="trust-item">✅ 30-day money-back guarantee</div>
-        <div class="trust-item">✅ No hidden fees</div>
-        <div class="trust-item">✅ Privacy-first design</div>
+        <div class="trust-item">
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>30-day money-back guarantee</span>
+        </div>
+        <div class="trust-item">
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>No hidden fees</span>
+        </div>
+        <div class="trust-item">
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8L6.5 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Privacy-first design</span>
+        </div>
       </div>
     </div>
   </div>
@@ -68,9 +83,17 @@
   }
 
   .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 14px;
     color: var(--color-text-secondary);
     font-weight: 500;
+  }
+
+  .check-icon {
+    flex-shrink: 0;
+    color: #34c759;
   }
 
   /* ========== RESPONSIVE ========== */
@@ -85,4 +108,3 @@
     }
   }
 </style>
-
