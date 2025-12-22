@@ -10,7 +10,7 @@
     </div>
 
     <div class="typing-comparison-demo">
-      <!-- Left side: Manual typing -->
+      <!-- Left side: Manual typing with typos -->
       <div class="comparison-box manual-typing">
         <div class="comparison-header">
           <svg class="header-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,16 +31,12 @@
           Manual typing
         </div>
         <div class="comparison-content">
-          <div class="text-lines">
-            <div class="text-line line-1"></div>
-            <div class="text-line line-2"></div>
-            <div class="text-line line-3"></div>
-            <div class="text-line line-4"></div>
-            <div class="text-line line-5"></div>
-            <div class="text-line line-6"></div>
+          <div class="typed-text-container">
+            <span class="typed-text"></span>
+            <span class="cursor">|</span>
           </div>
         </div>
-        <div class="comparison-footer">45 words per minute</div>
+        <div class="comparison-footer">Average Professional Typer: <span class="wpm-count">71</span> WPM <span class="typo-note">(with 2 typos)</span></div>
       </div>
       
       <!-- Right side: Dictating using Mellon -->
@@ -68,25 +64,314 @@
               <div class="mini-bar" style="--height: 75%"></div>
             </div>
           </div>
-          <!-- Text lines appear after recording -->
-          <div class="text-lines">
-            <div class="text-line line-1"></div>
-            <div class="text-line line-2"></div>
-            <div class="text-line line-3"></div>
-            <div class="text-line line-4"></div>
-            <div class="text-line line-5"></div>
-            <div class="text-line line-6"></div>
-            <div class="text-line line-7"></div>
-            <div class="text-line line-8"></div>
-            <div class="text-line line-9"></div>
-            <div class="text-line line-10"></div>
-          </div>
+          <!-- Streaming text controlled by JavaScript -->
+          <div class="streaming-text-container" id="streaming-text"></div>
         </div>
-        <div class="comparison-footer">250+ words per minute</div>
+        <div class="comparison-footer">Mellon Voice: <span class="wpm-count mellon-wpm">150</span> WPM <span class="accuracy-note">(Flawless Accuracy)</span></div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Synchronized animation controller
+  (function() {
+    // Shared state for synchronization
+    let manualDone = false;
+    let dictationDone = false;
+    let isRunning = false;
+    
+    // DOM elements
+    let typedText, streamingContainer, recordingPill;
+    
+    // Manual typing sequence
+    const typoSequence = [
+      { text: "W", delay: 90 },
+      { text: "We", delay: 80 },
+      { text: "We ", delay: 70 },
+      { text: "We n", delay: 85 },
+      { text: "We ne", delay: 75 },
+      { text: "We nee", delay: 80 },
+      { text: "We need", delay: 85 },
+      { text: "We need ", delay: 70 },
+      { text: "We need t", delay: 80 },
+      { text: "We need to", delay: 85 },
+      { text: "We need to ", delay: 70 },
+      { text: "We need to s", delay: 90 },
+      { text: "We need to sy", delay: 85 },
+      { text: "We need to syn", delay: 80 },
+      { text: "We need to sync", delay: 85 },
+      { text: "We need to synch", delay: 90 },
+      { text: "We need to synchr", delay: 85 },
+      { text: "We need to synchro", delay: 80 },
+      { text: "We need to synchron", delay: 85 },
+      { text: "We need to synchroni", delay: 90 },
+      { text: "We need to synchroniz", delay: 85 },
+      { text: "We need to synchronize", delay: 80 },
+      { text: "We need to synchronize ", delay: 70 },
+      { text: "We need to synchronize o", delay: 85 },
+      { text: "We need to synchronize ou", delay: 80 },
+      { text: "We need to synchronize our", delay: 85 },
+      { text: "We need to synchronize our ", delay: 70 },
+      { text: "We need to synchronize our T", delay: 90 },
+      { text: "We need to synchronize our Th", delay: 85 },
+      { text: "We need to synchronize our Thp", delay: 90 },
+      { text: "We need to synchronize our Thpe", delay: 85 },
+      { text: "We need to synchronize our ThpeS", delay: 90 },
+      { text: "We need to synchronize our ThpeSc", delay: 85 },
+      { text: "We need to synchronize our ThpeScr", delay: 90 },
+      { text: "We need to synchronize our ThpeScri", delay: 100 },
+      { text: "We need to synchronize our ThpeScrip", delay: 110 },
+      { text: "We need to synchronize our ThpeScrip", delay: 400 },
+      { text: "We need to synchronize our ThpeScri", delay: 60 },
+      { text: "We need to synchronize our ThpeScr", delay: 55 },
+      { text: "We need to synchronize our ThpeSc", delay: 55 },
+      { text: "We need to synchronize our ThpeS", delay: 55 },
+      { text: "We need to synchronize our Thpe", delay: 55 },
+      { text: "We need to synchronize our Th", delay: 55 },
+      { text: "We need to synchronize our T", delay: 55 },
+      { text: "We need to synchronize our Ty", delay: 55 },
+      { text: "We need to synchronize our Ty", delay: 85 },
+      { text: "We need to synchronize our Typ", delay: 80 },
+      { text: "We need to synchronize our Type", delay: 85 },
+      { text: "We need to synchronize our TypeS", delay: 90 },
+      { text: "We need to synchronize our TypeSc", delay: 85 },
+      { text: "We need to synchronize our TypeScr", delay: 90 },
+      { text: "We need to synchronize our TypeScri", delay: 85 },
+      { text: "We need to synchronize our TypeScrip", delay: 90 },
+      { text: "We need to synchronize our TypeScript", delay: 85 },
+      { text: "We need to synchronize our TypeScript ", delay: 70 },
+      { text: "We need to synchronize our TypeScript h", delay: 85 },
+      { text: "We need to synchronize our TypeScript ho", delay: 80 },
+      { text: "We need to synchronize our TypeScript hoo", delay: 85 },
+      { text: "We need to synchronize our TypeScript hook", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks w", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks wi", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks wit", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with t", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with th", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the K", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Ku", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kub", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kube", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kuber", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubern", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kuberne", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernet", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernete", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes c", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cl", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes clu", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes clus", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes clust", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluste", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster a", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster an", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and e", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and en", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ens", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensu", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensur", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure t", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure th", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the P", delay: 95 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Po", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Pos", delay: 95 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Post", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Postg", delay: 95 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Postgr", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Postgre", delay: 95 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Postgres", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Postgres", delay: 350 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the Postgre", delay: 55 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreS", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQ", delay: 95 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL d", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL da", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL dat", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL data", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL datab", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL databa", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL databas", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database i", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is a", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is as", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asy", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asyn", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is async", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynch", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchr", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchro", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchron", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchrono", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronou", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronous", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronousl", delay: 90 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously b", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously ba", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously bac", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously back", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backe", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed u", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up b", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by ", delay: 70 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by F", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by Fr", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by Fri", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by Frid", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by Frida", delay: 85 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by Friday", delay: 80 },
+      { text: "We need to synchronize our TypeScript hooks with the Kubernetes cluster and ensure the PostgreSQL database is asynchronously backed up by Friday.", delay: 100 },
+    ];
+    
+    // Dictation words
+    const words = [
+      { text: 'We', tech: false },
+      { text: 'need', tech: false },
+      { text: 'to', tech: false },
+      { text: 'synchronize', tech: false },
+      { text: 'our', tech: false },
+      { text: 'TypeScript', tech: true },
+      { text: 'hooks', tech: false },
+      { text: 'with', tech: false },
+      { text: 'the', tech: false },
+      { text: 'Kubernetes', tech: true },
+      { text: 'cluster', tech: false },
+      { text: 'and', tech: false },
+      { text: 'ensure', tech: false },
+      { text: 'the', tech: false },
+      { text: 'PostgreSQL', tech: true },
+      { text: 'database', tech: false },
+      { text: 'is', tech: false },
+      { text: 'asynchronously', tech: true },
+      { text: 'backed', tech: false },
+      { text: 'up', tech: false },
+      { text: 'by', tech: false },
+      { text: 'Friday.', tech: false },
+    ];
+    
+    let manualIndex = 0;
+    let dictationIndex = 0;
+    
+    // Check if both are done, then restart both together
+    function checkAndRestart() {
+      if (manualDone && dictationDone) {
+        // Both done - wait 2 seconds then restart both
+        setTimeout(() => {
+          // Clear both
+          if (typedText) typedText.textContent = '';
+          if (streamingContainer) streamingContainer.innerHTML = '';
+          
+          // Reset state
+          manualDone = false;
+          dictationDone = false;
+          manualIndex = 0;
+          dictationIndex = 0;
+          
+          // Show recording pill
+          if (recordingPill) recordingPill.style.opacity = '1';
+          
+          // Restart both together
+          runManualTyping();
+          runDictation();
+        }, 2000);
+      }
+    }
+    
+    // Manual typing animation
+    function runManualTyping() {
+      if (manualIndex < typoSequence.length) {
+        typedText.textContent = typoSequence[manualIndex].text;
+        manualIndex++;
+        setTimeout(runManualTyping, typoSequence[manualIndex - 1].delay);
+      } else {
+        // Done - mark complete and check
+        manualDone = true;
+        checkAndRestart();
+      }
+    }
+    
+    // Dictation streaming animation
+    function runDictation() {
+      if (dictationIndex < words.length) {
+        const span = document.createElement('span');
+        span.textContent = words[dictationIndex].text;
+        span.className = 'streaming-word visible' + (words[dictationIndex].tech ? ' tech-term' : '');
+        streamingContainer.appendChild(span);
+        dictationIndex++;
+        setTimeout(runDictation, 220);
+      } else {
+        // Done - hide recording pill, mark complete and check
+        if (recordingPill) recordingPill.style.opacity = '0';
+        dictationDone = true;
+        checkAndRestart();
+      }
+    }
+    
+    // Initialize and start both animations together
+    function init() {
+      typedText = document.querySelector('.typed-text');
+      streamingContainer = document.getElementById('streaming-text');
+      recordingPill = document.querySelector('.recording-pill');
+      
+      if (!typedText || !streamingContainer) return;
+      if (isRunning) return; // Prevent double init
+      isRunning = true;
+      
+      // Reset state
+      manualDone = false;
+      dictationDone = false;
+      manualIndex = 0;
+      dictationIndex = 0;
+      
+      // Clear any existing content
+      typedText.textContent = '';
+      streamingContainer.innerHTML = '';
+      
+      // Start both together after small delay
+      setTimeout(() => {
+        runManualTyping();
+        runDictation();
+      }, 500);
+    }
+    
+    // Start on page load
+    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('astro:page-load', () => {
+      isRunning = false;
+      init();
+    });
+  })();
+</script>
 
 <style>
   /* ========== TYPING SPEED SECTION ========== */
@@ -123,8 +408,8 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
-    max-width: 900px;
+    gap: var(--space-xl);
+    max-width: 1100px;
     margin: 0 auto;
     align-items: stretch;
   }
@@ -170,170 +455,97 @@
   }
 
   .comparison-content {
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     min-height: 220px;
     display: flex;
     flex-direction: column;
     position: relative;
     flex: 1;
+    background: #FAFAFA;
   }
 
   .comparison-footer {
     padding: var(--space-md) var(--space-lg);
     border-top: 1px solid var(--color-gray-300);
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
     color: var(--color-text-secondary);
     text-align: center;
-    min-height: 44px;
+    min-height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
-  /* Text lines */
-  .text-lines {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .wpm-count {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text-primary);
   }
 
-  .text-line {
-    height: 8px;
-    background: var(--color-gray-300);
-    border-radius: 4px;
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left;
+  .mellon-wpm {
+    color: #34c759;
   }
 
-  /* 
-   * SYNCHRONIZED ANIMATION CYCLE: 14 seconds total
-   * - Manual typing: lines appear slowly from 0-11s
-   * - Dictation: waveform 0-3s, then fast text 3-6s
-   * - Both hold until 12s, then fade out and reset
-   */
-
-  /* Manual typing animation - slow, looping */
-  .manual-typing .text-line.line-1 {
-    animation: manual-line-1 14s ease-out infinite;
-    width: 85%;
+  .typo-note {
+    color: #ef4444;
+    font-weight: 500;
+    font-size: 13px;
   }
 
-  .manual-typing .text-line.line-2 {
-    animation: manual-line-2 14s ease-out infinite;
-    width: 92%;
+  .accuracy-note {
+    color: #34c759;
+    font-weight: 600;
+    font-size: 13px;
   }
 
-  .manual-typing .text-line.line-3 {
-    animation: manual-line-3 14s ease-out infinite;
-    width: 78%;
+  /* Manual typing animation */
+  .typed-text-container {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    min-height: 100px;
+    flex: 1;
+    /* Add top spacing to align with Mellon side (which has recording pill above text) */
+    padding-top: 40px;
   }
 
-  .manual-typing .text-line.line-4 {
-    animation: manual-line-4 14s ease-out infinite;
-    width: 88%;
+  .typed-text {
+    display: inline;
   }
 
-  .manual-typing .text-line.line-5 {
-    animation: manual-line-5 14s ease-out infinite;
-    width: 82%;
+  .cursor {
+    display: inline;
+    animation: blink 0.7s step-end infinite;
+    color: var(--color-text-primary);
+    font-weight: 300;
   }
 
-  .manual-typing .text-line.line-6 {
-    animation: manual-line-6 14s ease-out infinite;
-    width: 45%;
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
   }
 
-  /* Manual typing keyframes - each line starts at different point in the 14s cycle */
-  /* Line 1: starts at 0%, grows 0-14% (0-2s) */
-  @keyframes manual-line-1 {
-    0% { opacity: 0; transform: scaleX(0); }
-    1% { opacity: 1; }
-    14% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  /* Line 2: starts at 14%, grows 14-28% (2-4s) */
-  @keyframes manual-line-2 {
-    0%, 14% { opacity: 0; transform: scaleX(0); }
-    15% { opacity: 1; }
-    28% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  /* Line 3: starts at 28%, grows 28-42% (4-6s) */
-  @keyframes manual-line-3 {
-    0%, 28% { opacity: 0; transform: scaleX(0); }
-    29% { opacity: 1; }
-    42% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  /* Line 4: starts at 42%, grows 42-56% (6-8s) */
-  @keyframes manual-line-4 {
-    0%, 42% { opacity: 0; transform: scaleX(0); }
-    43% { opacity: 1; }
-    56% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  /* Line 5: starts at 56%, grows 56-70% (8-10s) */
-  @keyframes manual-line-5 {
-    0%, 56% { opacity: 0; transform: scaleX(0); }
-    57% { opacity: 1; }
-    70% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  /* Line 6: starts at 70%, grows 70-85% (10-12s) */
-  @keyframes manual-line-6 {
-    0%, 70% { opacity: 0; transform: scaleX(0); }
-    71% { opacity: 1; }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  /* Recording pill with waveform - positioned absolutely, centered */
+  /* Recording pill with waveform - Dynamic Island style */
   .recording-pill {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0, 0, 0, 0.03);
-    border: 1px solid var(--color-gray-300);
-    padding: 8px 16px;
+    background: #1a1a1a;
+    border: none;
+    padding: 6px 14px;
     border-radius: 100px;
-    position: absolute;
-    top: var(--space-lg);
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    animation: recording-fade 14s ease-in-out infinite;
-    z-index: 10;
-  }
-
-  @keyframes recording-fade {
-    0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-    3% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    18% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    22% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-    100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    margin-bottom: var(--space-md);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.3s ease-out;
   }
 
   .mic-icon {
     width: 12px;
     height: 12px;
-    color: var(--color-text-secondary);
+    color: #FF9500;
     flex-shrink: 0;
   }
 
@@ -341,178 +553,65 @@
     display: flex;
     align-items: center;
     gap: 2px;
-    height: 20px;
+    height: 16px;
   }
 
   .mini-bar {
     width: 3px;
-    background: var(--color-gray-400);
+    background: #FF9500;
     border-radius: 2px;
     height: var(--height);
-    animation: mini-bar-pulse 0.8s ease-in-out infinite;
+    animation: mini-bar-pulse 0.6s ease-in-out infinite;
   }
 
-  .mini-bar:nth-child(1) { animation-delay: 0s; --opacity: 0.7; }
-  .mini-bar:nth-child(2) { animation-delay: 0.1s; --opacity: 0.9; }
-  .mini-bar:nth-child(3) { animation-delay: 0.2s; --opacity: 1; }
-  .mini-bar:nth-child(4) { animation-delay: 0.3s; --opacity: 0.8; }
-  .mini-bar:nth-child(5) { animation-delay: 0.4s; --opacity: 0.75; }
-  .mini-bar:nth-child(6) { animation-delay: 0.5s; --opacity: 0.85; }
-  .mini-bar:nth-child(7) { animation-delay: 0.6s; --opacity: 1; }
-  .mini-bar:nth-child(8) { animation-delay: 0.7s; --opacity: 0.9; }
+  .mini-bar:nth-child(1) { animation-delay: 0s; }
+  .mini-bar:nth-child(2) { animation-delay: 0.08s; }
+  .mini-bar:nth-child(3) { animation-delay: 0.16s; }
+  .mini-bar:nth-child(4) { animation-delay: 0.24s; }
+  .mini-bar:nth-child(5) { animation-delay: 0.32s; }
+  .mini-bar:nth-child(6) { animation-delay: 0.4s; }
+  .mini-bar:nth-child(7) { animation-delay: 0.48s; }
+  .mini-bar:nth-child(8) { animation-delay: 0.56s; }
 
   @keyframes mini-bar-pulse {
     0%, 100% { 
-      height: 30%; 
-      opacity: 0.4;
+      height: 25%; 
+      opacity: 0.5;
     }
     50% { 
       height: var(--height);
-      opacity: var(--opacity, 1);
+      opacity: 1;
     }
   }
 
-  /* Dictation text lines - appear fast after recording, looping */
-  .dictation .text-line.line-1 {
-    animation: dictation-line-1 14s ease-out infinite;
-    width: 88%;
+  /* Streaming text - JS controlled */
+  .streaming-text-container {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em;
+    align-content: flex-start;
+    flex: 1;
   }
 
-  .dictation .text-line.line-2 {
-    animation: dictation-line-2 14s ease-out infinite;
-    width: 95%;
+  .streaming-word {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
   }
 
-  .dictation .text-line.line-3 {
-    animation: dictation-line-3 14s ease-out infinite;
-    width: 92%;
+  .streaming-word.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .dictation .text-line.line-4 {
-    animation: dictation-line-4 14s ease-out infinite;
-    width: 87%;
-  }
-
-  .dictation .text-line.line-5 {
-    animation: dictation-line-5 14s ease-out infinite;
-    width: 94%;
-  }
-
-  .dictation .text-line.line-6 {
-    animation: dictation-line-6 14s ease-out infinite;
-    width: 89%;
-  }
-
-  .dictation .text-line.line-7 {
-    animation: dictation-line-7 14s ease-out infinite;
-    width: 93%;
-  }
-
-  .dictation .text-line.line-8 {
-    animation: dictation-line-8 14s ease-out infinite;
-    width: 85%;
-  }
-
-  .dictation .text-line.line-9 {
-    animation: dictation-line-9 14s ease-out infinite;
-    width: 91%;
-  }
-
-  .dictation .text-line.line-10 {
-    animation: dictation-line-10 14s ease-out infinite;
-    width: 60%;
-  }
-
-  /* Dictation keyframes - lines appear rapidly after recording (starting at 22%) */
-  /* Each line takes ~2% of cycle to grow (fast!) */
-  @keyframes dictation-line-1 {
-    0%, 22% { opacity: 0; transform: scaleX(0); }
-    23% { opacity: 1; }
-    25% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-2 {
-    0%, 24% { opacity: 0; transform: scaleX(0); }
-    25% { opacity: 1; }
-    27% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-3 {
-    0%, 26% { opacity: 0; transform: scaleX(0); }
-    27% { opacity: 1; }
-    29% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-4 {
-    0%, 28% { opacity: 0; transform: scaleX(0); }
-    29% { opacity: 1; }
-    31% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-5 {
-    0%, 30% { opacity: 0; transform: scaleX(0); }
-    31% { opacity: 1; }
-    33% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-6 {
-    0%, 32% { opacity: 0; transform: scaleX(0); }
-    33% { opacity: 1; }
-    35% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-7 {
-    0%, 34% { opacity: 0; transform: scaleX(0); }
-    35% { opacity: 1; }
-    37% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-8 {
-    0%, 36% { opacity: 0; transform: scaleX(0); }
-    37% { opacity: 1; }
-    39% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-9 {
-    0%, 38% { opacity: 0; transform: scaleX(0); }
-    39% { opacity: 1; }
-    41% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
-  }
-
-  @keyframes dictation-line-10 {
-    0%, 40% { opacity: 0; transform: scaleX(0); }
-    41% { opacity: 1; }
-    43% { opacity: 1; transform: scaleX(1); }
-    85% { opacity: 1; transform: scaleX(1); }
-    92% { opacity: 0; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
+  .tech-term {
+    font-weight: 600;
+    color: #1a1a1a;
   }
 
   /* ========== RESPONSIVE ========== */
@@ -527,12 +626,11 @@
 
     .typing-comparison-demo {
       grid-template-columns: 1fr;
-      gap: var(--space-md);
+      gap: var(--space-lg);
     }
 
     .comparison-content {
-      min-height: 200px;
-      padding: var(--space-lg);
+      min-height: 180px;
     }
 
     .comparison-header,
@@ -554,12 +652,13 @@
       font-size: 15px;
     }
 
-    .typing-comparison-demo {
-      grid-template-columns: 1fr;
+    .typed-text-container,
+    .streaming-text-container {
+      font-size: 15px;
     }
 
     .comparison-content {
-      min-height: 180px;
+      min-height: 160px;
       padding: var(--space-md);
     }
 
@@ -569,12 +668,12 @@
     }
 
     .comparison-footer {
-      font-size: 12px;
+      font-size: 13px;
       padding: 10px var(--space-md);
     }
 
-    .text-line {
-      height: 7px;
+    .wpm-count {
+      font-size: 18px;
     }
   }
 
@@ -591,12 +690,13 @@
       font-size: 14px;
     }
 
-    .typing-comparison-demo {
-      gap: var(--space-sm);
+    .typed-text-container,
+    .streaming-text-container {
+      font-size: 14px;
     }
 
     .comparison-content {
-      min-height: 160px;
+      min-height: 140px;
       padding: var(--space-sm);
     }
 
@@ -606,19 +706,23 @@
     }
 
     .comparison-footer {
-      font-size: 11px;
+      font-size: 12px;
       padding: 8px var(--space-sm);
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .text-line {
-      height: 6px;
-      gap: 8px;
+    .wpm-count {
+      font-size: 16px;
+    }
+
+    .typo-note,
+    .accuracy-note {
+      font-size: 11px;
     }
 
     .recording-pill {
-      padding: 6px 12px;
-      font-size: 12px;
-      top: var(--space-md);
+      padding: 4px 10px;
     }
 
     .mini-bar {

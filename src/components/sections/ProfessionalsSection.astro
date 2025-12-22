@@ -4,9 +4,10 @@
 
 <section class="professionals-section" id="professionals" data-fade-in>
   <div class="container">
-    <h2 class="section-title text-center">Accuracy that learns your language</h2>
+    <h2 class="section-title text-center">Precision Accuracy for Every Industry</h2>
     <p class="section-subtitle text-center">
 Standard AI fails on technical jargon. Mellon thrives on it. Extend your recognition with pre-built and custom vocabulary.
+    </p>
     <!-- Custom Dictionary Demo (Full Width) - NOW FIRST! -->
     <div class="custom-dictionary-demo">
       <div class="demo-left">
@@ -24,36 +25,26 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
         <!-- Dictionary Terms Display with Fade -->
         <div class="dictionary-terms-wrapper">
           <div class="dictionary-terms">
-            <span class="dict-term">Subpoena</span>
-            <span class="dict-term">Mellon</span>
-            <span class="dict-term">npm run</span>
-            <span class="dict-term">Kaylynn</span>
-            <span class="dict-term">Rivendell</span>
-            <span class="dict-term">git push</span>
-            <span class="dict-term">Obsidian</span>
-            <span class="dict-term">Silmarillion</span>
-            <span class="dict-term">Targaryen</span>
-            <span class="dict-term">Gandalf</span>
-            <span class="dict-term">Elrond</span>
-            <span class="dict-term">Galadriel</span>
-            <span class="dict-term">Mordor</span>
-            <span class="dict-term">Isildur</span>
-            <span class="dict-term">Aragorn</span>
+            <span class="dict-term">Meibomian</span>
+            <span class="dict-term">Kubernetes</span>
             <span class="dict-term">TypeScript</span>
-            <span class="dict-term">Legolas</span>
-            <span class="dict-term">Arwen</span>
-            <span class="dict-term">Eowyn</span>
-            <span class="dict-term">Theoden</span>
-            <span class="dict-term">Rohan</span>
-            <span class="dict-term">Gondor</span>
-            <span class="dict-term">Tyrion</span>
-            <span class="dict-term">Cersei</span>
-            <span class="dict-term">Jaime</span>
-            <span class="dict-term">Brienne</span>
-            <span class="dict-term">Sansa</span>
-            <span class="dict-term">Arya</span>
-            <span class="dict-term">Joffrey</span>
-            <span class="dict-term">Rhaenyra</span>
+            <span class="dict-term">git commit</span>
+            <span class="dict-term">Subpoena</span>
+            <span class="dict-term">Affidavit</span>
+            <span class="dict-term">Cursor</span>
+            <span class="dict-term">Obsidian</span>
+            <span class="dict-term">Mellon</span>
+            <span class="dict-term">PostgreSQL</span>
+            <span class="dict-term">Webpack</span>
+            <span class="dict-term">Blepharitis</span>
+            <span class="dict-term">npm install</span>
+            <span class="dict-term">Deposition</span>
+            <span class="dict-term">API Gateway</span>
+            <span class="dict-term">Keratoconus</span>
+            <span class="dict-term">Docker</span>
+            <span class="dict-term">Habeas Corpus</span>
+            <span class="dict-term">React Native</span>
+            <span class="dict-term">Glaucoma</span>
           </div>
           <div class="dictionary-fade"></div>
         </div>
@@ -152,20 +143,7 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     <div class="professions-container">
       <!-- Medical Professionals Row -->
       <div class="professions-row">
-        <div class="professions-scroll medical-scroll">
-          <!-- First group -->
-          <div class="professions-group">
-            <span class="profession-pill pill-featured">Medical Professionals</span>
-            <span class="profession-pill">General Practitioners</span>
-            <span class="profession-pill">Cardiologists</span>
-            <span class="profession-pill">Surgeons</span>
-            <span class="profession-pill">Psychiatrists</span>
-            <span class="profession-pill">Orthopedists</span>
-            <span class="profession-pill">Physiotherapists</span>
-            <span class="profession-pill">Nurses</span>
-            <span class="profession-pill">Dentists</span>
-          </div>
-          <!-- Duplicate for seamless loop -->
+        <div class="professions-scroll" data-direction="left" data-speed="40">
           <div class="professions-group">
             <span class="profession-pill pill-featured">Medical Professionals</span>
             <span class="profession-pill">General Practitioners</span>
@@ -180,34 +158,61 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
         </div>
       </div>
 
-      <!-- Beyond Medicine Row -->
+      <!-- Tech & Creative Row -->
       <div class="professions-row">
-        <div class="professions-scroll beyond-scroll">
-          <!-- First group -->
+        <div class="professions-scroll" data-direction="right" data-speed="35">
           <div class="professions-group">
-            <span class="profession-pill pill-featured">Authors and Writers</span>
+            <span class="profession-pill pill-featured">Tech & Creative</span>
+            <span class="profession-pill">Developers</span>
+            <span class="profession-pill">Lawyers</span>
+            <span class="profession-pill">Authors</span>
             <span class="profession-pill">Journalists</span>
             <span class="profession-pill">Academics</span>
             <span class="profession-pill">Researchers</span>
-            <span class="profession-pill">Developers</span>
-            <span class="profession-pill">Lawyers</span>
-            <span class="profession-pill">Content Creators</span>
-            <span class="profession-pill">Podcasters</span>
-          </div>
-          <!-- Duplicate for seamless loop -->
-          <div class="professions-group">
-            <span class="profession-pill pill-featured">Authors and Writers</span>
-            <span class="profession-pill">Journalists</span>
-            <span class="profession-pill">Academics</span>
-            <span class="profession-pill">Researchers</span>
-            <span class="profession-pill">Developers</span>
-            <span class="profession-pill">Lawyers</span>
             <span class="profession-pill">Content Creators</span>
             <span class="profession-pill">Podcasters</span>
           </div>
         </div>
       </div>
     </div>
+    
+    <script>
+      // Seamless infinite marquee using JavaScript
+      function initMarquees() {
+        document.querySelectorAll('.professions-scroll').forEach(scroll => {
+          const group = scroll.querySelector('.professions-group');
+          if (!group || scroll.dataset.initialized) return;
+          
+          scroll.dataset.initialized = 'true';
+          
+          // Clone the group multiple times to ensure seamless loop
+          const clone1 = group.cloneNode(true);
+          const clone2 = group.cloneNode(true);
+          const clone3 = group.cloneNode(true);
+          scroll.appendChild(clone1);
+          scroll.appendChild(clone2);
+          scroll.appendChild(clone3);
+          
+          const direction = scroll.dataset.direction || 'left';
+          const speed = parseFloat(scroll.dataset.speed) || 40;
+          
+          // Calculate the width of one group
+          const groupWidth = group.offsetWidth;
+          const gap = 16; // var(--space-md) = 16px
+          const scrollDistance = groupWidth + gap;
+          
+          // Set up the animation using CSS custom properties
+          scroll.style.setProperty('--scroll-distance', `-${scrollDistance}px`);
+          scroll.style.setProperty('--scroll-duration', `${speed}s`);
+          
+          // Add the appropriate animation class
+          scroll.classList.add(direction === 'left' ? 'marquee-left' : 'marquee-right');
+        });
+      }
+      
+      document.addEventListener('DOMContentLoaded', initMarquees);
+      document.addEventListener('astro:page-load', initMarquees);
+    </script>
   </div>
 </section>
 
@@ -655,18 +660,34 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
 
   .professions-scroll {
     display: flex;
-    gap: var(--space-md);
     will-change: transform;
   }
 
-  /* Medical professionals scroll - left to right */
-  .medical-scroll {
-    animation: scroll-left 30s linear infinite;
+  /* JS-powered seamless marquee animations */
+  .marquee-left {
+    animation: marquee-scroll var(--scroll-duration, 40s) linear infinite;
   }
 
-  /* Beyond medicine scroll - right to left (faster) */
-  .beyond-scroll {
-    animation: scroll-right 25s linear infinite;
+  .marquee-right {
+    animation: marquee-scroll-reverse var(--scroll-duration, 35s) linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(var(--scroll-distance, -50%));
+    }
+  }
+
+  @keyframes marquee-scroll-reverse {
+    0% {
+      transform: translateX(var(--scroll-distance, -50%));
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 
   .professions-group {
@@ -674,6 +695,7 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     gap: var(--space-md);
     flex-shrink: 0;
     align-items: center;
+    margin-right: var(--space-md);
   }
 
   .profession-pill {
@@ -701,25 +723,6 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     color: #ffffff;
     font-weight: 600;
     border-color: var(--color-gray-900);
-  }
-
-  /* Scroll Animations */
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes scroll-right {
-    0% {
-      transform: translateX(-50%);
-    }
-    100% {
-      transform: translateX(0);
-    }
   }
 
   /* ========== RESPONSIVE ========== */
