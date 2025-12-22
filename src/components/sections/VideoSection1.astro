@@ -1,0 +1,140 @@
+---
+// Product Demo Video Section - Clean Premium Design
+import ProductVideo from '../ProductVideo.astro';
+---
+
+<section class="video-section" id="demo">
+  <div class="container">
+    <!-- Glassmorphism Header -->
+    <div class="video-header glass-card">
+      <span class="feature-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+        Context-Aware Dictation
+      </span>
+      <h2 class="section-title text-center">Accurate AI dictation that understands your on-screen text</h2>
+      <p class="section-subtitle text-center">
+        Most dictation tools are deaf to your screen. They guess so you have to fix. Mellon is the best context-aware <strong> offline assistant </strong> that reads your workspace to spell names and jargon right the first time. Just pure flow.
+      </p>
+    </div>
+    
+    <!-- Video with Subtle Blue Glow -->
+    <div class="video-wrapper">
+      <ProductVideo 
+        srcWebm="/videos/demo.webm"
+        srcMp4="/videos/demo.mp4"
+        poster="/videos/poster.webp"
+        alt="Mellon AI dictation demo showing voice-to-text in action"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-section {
+    background-color: var(--color-bg-primary);
+    padding: var(--space-4xl) 0;
+  }
+
+  /* Glassmorphism Header */
+  .video-header.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-3xl);
+    margin-bottom: var(--space-3xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    box-shadow: 
+      0 4px 24px rgba(0, 0, 0, 0.06),
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .section-title {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-subtitle {
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .feature-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #2563eb;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.15) 100%);
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-bottom: var(--space-lg);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+  }
+
+  .feature-badge svg {
+    color: #2563eb;
+  }
+
+  /* Video Wrapper with Subtle Blue Glow */
+  .video-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .video-wrapper :global(.video-container) {
+    box-shadow: 
+      0 0 60px rgba(37, 99, 235, 0.12),
+      0 0 100px rgba(59, 130, 246, 0.08),
+      0 25px 50px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .video-header.glass-card {
+      padding: var(--space-xl) var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-title {
+      font-size: 28px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 24px;
+    }
+
+    .section-subtitle {
+      font-size: 15px;
+    }
+
+    .feature-badge {
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+  }
+</style>

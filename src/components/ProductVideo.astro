@@ -1,0 +1,78 @@
+---
+interface Props {
+  srcWebm?: string;
+  srcMp4: string;
+  poster?: string;
+  alt?: string;
+}
+
+const { srcWebm, srcMp4, poster, alt = "Product demo video" } = Astro.props;
+---
+
+<div class="video-container">
+  <video
+    class="product-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster={poster}
+    aria-label={alt}
+  >
+    {srcWebm && <source src={srcWebm} type="video/webm" />}
+    <source src={srcMp4} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<style>
+  .video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    /* Premium glass-like border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Soft shadow for premium feel */
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Subtle background while loading */
+    background-color: var(--color-gray-900);
+  }
+
+  .product-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; /* Anchor to top, crop from bottom if needed */
+    display: block;
+  }
+
+  /* Optional: Add a subtle shine effect on hover */
+  .video-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .video-container {
+      border-radius: var(--radius-lg);
+    }
+  }
+</style>
+
