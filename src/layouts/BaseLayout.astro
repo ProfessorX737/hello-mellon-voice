@@ -58,73 +58,77 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </main>
     <Footer />
     
-    <!-- Scroll animations and typewriter effect -->
+    <!-- Global Scroll Animations -->
     <script>
-      // Intersection Observer for fade-in animations
+      // Intersection Observer for scroll animations
       const observerOptions = {
         root: null,
-        rootMargin: '0px',
+        rootMargin: '0px 0px -50px 0px',
         threshold: 0.1
       };
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
+            const delay = entry.target.dataset.delay || 0;
+            setTimeout(() => {
+              entry.target.classList.add('animate-visible');
+            }, parseInt(delay));
             observer.unobserve(entry.target);
           }
         });
       }, observerOptions);
 
-      // Typewriter effect for hero section
-      function typeWriter() {
-        const element = document.getElementById('hero-typing-text');
-        if (!element) return;
+      // Observe all elements with data-animate attribute
+      document.querySelectorAll('[data-animate]').forEach(el => {
+        observer.observe(el);
+      });
 
-        const texts = [
-          'works like a charm',
-          'Private voice dictation',
-          'Works with every app',
-          'One-time purchase. Forever.'
-        ];
-        
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function type() {
-          const currentText = texts[textIndex];
-          
-          if (!isDeleting && charIndex <= currentText.length) {
-            element.textContent = currentText.substring(0, charIndex);
-            charIndex++;
-            setTimeout(type, 80);
-          } else if (isDeleting && charIndex >= 0) {
-            element.textContent = currentText.substring(0, charIndex);
-            charIndex--;
-            setTimeout(type, 40);
-          } else if (!isDeleting && charIndex > currentText.length) {
-            isDeleting = true;
-            setTimeout(type, 2000); // Pause before deleting
-          } else if (isDeleting && charIndex < 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-            setTimeout(type, 500); // Pause before next text
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
           }
+        });
+      });
+
+      // Parallax effect for gradient orbs
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.gradient-orb, .mesh-blob, .orb-1, .orb-2, .orb-3');
+            orbs.forEach((orb, index) => {
+              const speed = 0.5 + (index * 0.1);
+              orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+            ticking = false;
+          });
+          ticking = true;
         }
+      });
 
-        type();
-      }
-
-      // Initialize on load
-      document.addEventListener('DOMContentLoaded', () => {
-        const elements = document.querySelectorAll('[data-fade-in]');
-        elements.forEach(el => observer.observe(el));
-        
-        // Start typewriter effect
-        typeWriter();
+      // Mouse move effect for interactive elements
+      document.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.feature-card, .pricing-card, .step-card');
+        cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          }
+        });
       });
     </script>
   </body>
 </html>
-

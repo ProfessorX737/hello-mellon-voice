@@ -4,59 +4,151 @@ import WaveformMockup from '../ui/WaveformMockup.astro';
 import EditorMockup from '../ui/EditorMockup.astro';
 ---
 
-<!-- How It Works Section (3 Steps) -->
-<section class="how-it-works-section" id="how-it-works" data-fade-in>
-  <div class="container">
-    <h2 class="section-title text-center">From Typing to Talking in Seconds</h2>
-    <p class="section-subtitle text-center">
-      Simple Setup. No Cloud or Internet accounts. Just Instant Productivity. 
-    </p>
+<!-- How It Works Section - Mobbin-inspired Design -->
+<section class="how-it-works-section" id="how-it-works">
+  <!-- Background Elements -->
+  <div class="section-bg">
+    <div class="gradient-blob blob-1"></div>
+    <div class="gradient-blob blob-2"></div>
+  </div>
 
-    <div class="steps-grid">
-      <!-- Step 1: Press Hotkey -->
-      <div class="step-card">
-        <div class="step-visual">
-          <div class="step-header">
-            <div class="step-number">1</div>
-            <h3>Trigger Anywhere</h3>
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-badge">How It Works</span>
+      <h2 class="section-title">From Typing to Talking<br/>in Seconds</h2>
+      <p class="section-subtitle">
+        Simple Setup. No Cloud or Internet accounts. Just Instant Productivity.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="steps-container">
+      <!-- Connection Line -->
+      <div class="connection-line" data-animate="scale-in">
+        <div class="line-progress"></div>
+      </div>
+
+      <div class="steps-grid" data-stagger>
+        <!-- Step 1: Press Hotkey -->
+        <div class="step-card" data-animate="fade-up">
+          <div class="step-number-wrapper">
+            <span class="step-number">01</span>
+            <div class="step-pulse"></div>
           </div>
-          <div class="step-mockup">
-            <KeyboardMockup />
+          <div class="step-visual">
+            <div class="step-mockup-wrapper">
+              <KeyboardMockup />
+            </div>
+            <div class="step-glow"></div>
           </div>
           <div class="step-content">
+            <h3>Trigger Anywhere</h3>
             <p>Tap your custom hotkey in any app: Cursor, Slack, or Outlook. Mellon is ready to listen instantly.</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Step 2: Speak Naturally -->
-      <div class="step-card">
-        <div class="step-visual">
-          <div class="step-header">
-            <div class="step-number">2</div>
-            <h3>Speak naturally</h3>
+          <div class="step-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </div>
-          <div class="step-mockup">
-            <WaveformMockup />
+        </div>
+
+        <!-- Step 2: Speak Naturally -->
+        <div class="step-card" data-animate="fade-up">
+          <div class="step-number-wrapper">
+            <span class="step-number">02</span>
+            <div class="step-pulse"></div>
+          </div>
+          <div class="step-visual">
+            <div class="step-mockup-wrapper">
+              <WaveformMockup />
+            </div>
+            <div class="step-glow step-glow-alt"></div>
           </div>
           <div class="step-content">
+            <h3>Speak Naturally</h3>
             <p>Just chat. Processed 100% on-device. Your data never leaves your Mac.</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Step 3: Perfect Text Appears -->
-      <div class="step-card">
-        <div class="step-visual">
-          <div class="step-header">
-            <div class="step-number">3</div>
-            <h3>Near Instant Execution</h3>
+          <div class="step-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </div>
-          <div class="step-mockup">
-            <EditorMockup />
+        </div>
+
+        <!-- Step 3: Perfect Text Appears -->
+        <div class="step-card" data-animate="fade-up">
+          <div class="step-number-wrapper">
+            <span class="step-number">03</span>
+            <div class="step-pulse"></div>
+          </div>
+          <div class="step-visual">
+            <div class="step-mockup-wrapper">
+              <EditorMockup />
+            </div>
+            <div class="step-glow step-glow-alt2"></div>
           </div>
           <div class="step-content">
-            <p>Text appears exactly where you need it, perfectly formatted. </p>
+            <h3>Near Instant Execution</h3>
+            <p>Text appears exactly where you need it, perfectly formatted.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- App Integrations -->
+    <div class="integrations-section" data-animate="fade-up">
+      <p class="integrations-label">Works seamlessly with</p>
+      <div class="integrations-marquee">
+        <div class="marquee-track">
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Chrome
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Slack
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            Telegram
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            Notion
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-4H8v-2h2V9h2v2h2v2h-2v4z"/></svg>
+            Cursor
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Outlook
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Chrome
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Slack
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            Telegram
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            Notion
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-4H8v-2h2V9h2v2h2v2h-2v4z"/></svg>
+            Cursor
+          </div>
+          <div class="integration-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Outlook
           </div>
         </div>
       </div>
@@ -67,100 +159,380 @@ import EditorMockup from '../ui/EditorMockup.astro';
 <style>
   /* ========== HOW IT WORKS SECTION ========== */
   .how-it-works-section {
-    background-color: #FFFFFF;
-    border-top: 1px solid var(--color-gray-200);
+    background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Background Elements */
+  .section-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+  }
+
+  .blob-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.5) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+  }
+
+  .blob-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
+    bottom: -100px;
+    right: -100px;
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--space-4xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    margin-bottom: var(--space-lg);
+  }
+
+  .section-title {
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Steps Container */
+  .steps-container {
+    position: relative;
+    margin-bottom: var(--space-4xl);
+  }
+
+  /* Connection Line */
+  .connection-line {
+    position: absolute;
+    top: 100px;
+    left: 16.66%;
+    right: 16.66%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    z-index: 0;
+  }
+
+  .line-progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+    animation: line-progress 3s ease-out forwards;
+  }
+
+  @keyframes line-progress {
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Steps Grid */
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-2xl);
-    margin-top: var(--space-4xl);
+    position: relative;
+    z-index: 1;
   }
 
   .step-card {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .step-visual {
-    background: var(--color-gray-50);
-    border: 1px solid var(--color-gray-200);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl) var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    overflow: hidden;
-    aspect-ratio: 1;
-  }
-
-  .step-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
     text-align: center;
+    position: relative;
+  }
+
+  .step-number-wrapper {
+    position: relative;
+    display: inline-flex;
+    margin-bottom: var(--space-xl);
   }
 
   .step-number {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-  }
-
-  .step-header h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin: 0;
-  }
-
-  .step-mockup {
-    flex: 1;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 0;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    background: var(--color-bg-secondary);
+    transition: all var(--transition-normal);
+  }
+
+  .step-card:hover .step-number {
+    border-color: #6366f1;
+    color: #6366f1;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .step-pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid #6366f1;
+    opacity: 0;
+    animation: step-pulse 2s ease-out infinite;
+  }
+
+  @keyframes step-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  /* Step Visual */
+  .step-visual {
+    position: relative;
+    margin-bottom: var(--space-xl);
+    display: flex;
+    justify-content: center;
+  }
+
+  .step-mockup-wrapper {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    position: relative;
+    z-index: 1;
+    transition: all var(--transition-slow);
+  }
+
+  .step-card:hover .step-mockup-wrapper {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .step-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+  }
+
+  .step-glow-alt {
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+  }
+
+  .step-glow-alt2 {
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%);
+  }
+
+  .step-card:hover .step-glow {
+    opacity: 1;
   }
 
   /* Step Content */
-  .step-content {
-    text-align: center;
-    padding-top: var(--space-xs);
+  .step-content h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-primary);
   }
 
   .step-content p {
-    font-size: 14px;
+    font-size: var(--font-size-base);
     color: var(--color-text-secondary);
-    line-height: 1.5;
     margin: 0;
+    line-height: 1.7;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Step Arrow */
+  .step-arrow {
+    position: absolute;
+    top: 120px;
+    right: -30px;
+    color: var(--color-text-muted);
+    opacity: 0.3;
+    animation: arrow-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes arrow-pulse {
+    0%, 100% {
+      transform: translateX(0);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateX(5px);
+      opacity: 0.6;
+    }
+  }
+
+  .step-card:last-child .step-arrow {
+    display: none;
+  }
+
+  /* Integrations Section */
+  .integrations-section {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .integrations-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-lg);
+  }
+
+  .integrations-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: var(--space-xl);
+    animation: marquee 30s linear infinite;
+  }
+
+  .integration-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    transition: all var(--transition-normal);
+  }
+
+  .integration-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .integration-item svg {
+    opacity: 0.7;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   /* ========== RESPONSIVE ========== */
   @media (max-width: 968px) {
+    .connection-line {
+      display: none;
+    }
+
     .steps-grid {
       grid-template-columns: 1fr;
       gap: var(--space-3xl);
     }
+
+    .step-arrow {
+      display: none;
+    }
+
+    .step-card {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   @media (max-width: 480px) {
-    .step-visual {
-      padding: var(--space-lg) var(--space-md);
+    .step-mockup-wrapper {
+      padding: var(--space-lg);
     }
 
-    .step-header h3 {
-      font-size: 17px;
-    }
-
-    .step-content p {
-      font-size: 13px;
+    .integration-item {
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--font-size-sm);
     }
   }
 </style>
 
+<script>
+  // Scroll animation observer
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => {
+          entry.target.classList.add('animate-visible');
+        }, parseInt(delay));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('#how-it-works [data-animate]').forEach(el => {
+    observer.observe(el);
+  });
+</script>

@@ -1,105 +1,259 @@
 ---
-// Footer Component
+// Footer Component - Mobbin-inspired Modern Design
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer">
+  <!-- Background Effects -->
+  <div class="footer-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+  </div>
+
   <div class="container">
+    <!-- Main Footer Content -->
     <div class="footer-content">
+      <!-- Brand Column -->
       <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="/mellon-mac-toolbar-icon.png" alt="Mellon" class="logo-icon" width="28" height="28" />
+        <a href="/" class="footer-logo">
+          <div class="logo-icon-wrapper">
+            <img src="/mellon-mac-toolbar-icon.png" alt="Mellon" class="logo-icon" width="32" height="32" />
+            <div class="logo-glow"></div>
+          </div>
           <span class="logo-text">Mellon</span>
-        </div>
+        </a>
         <p class="footer-tagline">One-time purchase. Forever access.</p>
-        <p class="footer-description">Privacy-first voice dictation for macOS.</p>
+        <p class="footer-description">Privacy-first voice dictation for macOS. Your words, your Mac, your control.</p>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+          <a href="https://twitter.com/mellonvoice" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/mellonvoice" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://producthunt.com" target="_blank" rel="noopener" class="social-link" aria-label="Product Hunt">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13.604 8.4h-3.405V12h3.405c.995 0 1.801-.806 1.801-1.801s-.806-1.799-1.801-1.799zM12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm1.604 14.4h-3.405V18H7.801V6h5.803c2.319 0 4.2 1.881 4.2 4.2s-1.881 4.2-4.2 4.2z"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
+      <!-- Links Columns -->
       <div class="footer-links">
         <div class="footer-column">
           <h4>Product</h4>
           <ul>
             <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#download">Download</a></li>
           </ul>
         </div>
 
         <div class="footer-column">
-          <h4>Support</h4>
+          <h4>Resources</h4>
           <ul>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="mailto:support@mellonvoice.com">Contact</a></li>
-            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/docs">Documentation</a></li>
+            <li><a href="/changelog">Changelog</a></li>
+            <li><a href="/roadmap">Roadmap</a></li>
           </ul>
         </div>
 
         <div class="footer-column">
-          <h4>Connect</h4>
+          <h4>Company</h4>
           <ul>
-            <li><a href="https://twitter.com/mellonvoice" target="_blank" rel="noopener">Twitter</a></li>
-            <li><a href="https://github.com/mellonvoice" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://producthunt.com" target="_blank" rel="noopener">Product Hunt</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="mailto:support@mellonvoice.com">Contact</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
     </div>
 
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+      <div class="newsletter-content">
+        <div class="newsletter-text">
+          <h3>Stay updated</h3>
+          <p>Get the latest news and updates about Mellon.</p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+          <input 
+            type="email" 
+            placeholder="Enter your email" 
+            class="newsletter-input"
+            required
+          />
+          <button type="submit" class="btn btn-primary newsletter-btn">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
-      <p>&copy; {currentYear} Mellon. All rights reserved.</p>
+      <div class="footer-bottom-content">
+        <p class="copyright">&copy; {currentYear} Mellon. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="/terms">Terms of Service</a>
+          <span class="divider">•</span>
+          <a href="/privacy">Privacy Policy</a>
+          <span class="divider">•</span>
+          <a href="/cookies">Cookies</a>
+        </div>
+      </div>
       <p class="footer-note">Built with care for privacy-conscious users.</p>
     </div>
   </div>
 </footer>
 
 <style>
+  /* ========== FOOTER ========== */
   .footer {
-    background-color: var(--color-gray-50);
-    border-top: 1px solid var(--color-gray-200);
-    padding: var(--space-4xl) 0 var(--space-xl);
-    margin-top: var(--space-4xl);
+    position: relative;
+    background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    padding: var(--space-5xl) 0 var(--space-xl);
+    overflow: hidden;
   }
 
+  /* Background Effects */
+  .footer-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+  }
+
+  .orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.5) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+  }
+
+  .orb-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
+    bottom: 100px;
+    left: -100px;
+  }
+
+  /* Footer Content */
   .footer-content {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1.5fr 2fr;
     gap: var(--space-4xl);
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-4xl);
+    position: relative;
+    z-index: 1;
   }
 
+  /* Brand Column */
   .footer-brand {
-    max-width: 350px;
+    max-width: 320px;
   }
 
   .footer-logo {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
+    text-decoration: none;
+  }
+
+  .logo-icon-wrapper {
+    position: relative;
   }
 
   .logo-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
     object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-glow {
+    position: absolute;
+    inset: -4px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.5) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    border-radius: 8px;
+  }
+
+  .footer-logo:hover .logo-glow {
+    opacity: 1;
+  }
+
+  .logo-text {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
   }
 
   .footer-tagline {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--color-text-primary);
     margin-bottom: var(--space-sm);
   }
 
   .footer-description {
+    font-size: var(--font-size-base);
     color: var(--color-text-secondary);
-    margin-bottom: 0;
+    margin-bottom: var(--space-xl);
+    line-height: 1.7;
   }
 
+  /* Social Links */
+  .social-links {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-normal);
+  }
+
+  .social-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-text-primary);
+    transform: translateY(-2px);
+  }
+
+  /* Links Columns */
   .footer-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -110,9 +264,9 @@ const currentYear = new Date().getFullYear();
     font-size: var(--font-size-sm);
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     color: var(--color-text-primary);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
   }
 
   .footer-column ul {
@@ -124,50 +278,185 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-column a {
+    font-size: var(--font-size-base);
     color: var(--color-text-secondary);
-    font-size: var(--font-size-sm);
-    transition: color var(--transition-normal);
+    transition: all var(--transition-normal);
+    display: inline-block;
   }
 
   .footer-column a:hover {
     color: var(--color-text-primary);
+    transform: translateX(4px);
   }
 
-  .footer-bottom {
-    text-align: center;
-    padding-top: var(--space-xl);
-    border-top: 1px solid var(--color-gray-200);
+  /* Newsletter Section */
+  .newsletter-section {
+    padding: var(--space-2xl);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-2xl);
+    margin-bottom: var(--space-3xl);
+    position: relative;
+    z-index: 1;
   }
 
-  .footer-bottom p {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
+  .newsletter-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+  }
+
+  .newsletter-text h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
     margin-bottom: var(--space-xs);
+    color: var(--color-text-primary);
+  }
+
+  .newsletter-text p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+  }
+
+  .newsletter-input {
+    width: 280px;
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    transition: all var(--transition-normal);
+  }
+
+  .newsletter-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+
+  .newsletter-btn {
+    padding: var(--space-md) var(--space-xl);
+    white-space: nowrap;
+  }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .footer-bottom-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .copyright {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .footer-bottom-links a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    transition: color var(--transition-normal);
+  }
+
+  .footer-bottom-links a:hover {
+    color: var(--color-text-primary);
+  }
+
+  .divider {
+    color: var(--color-text-muted);
   }
 
   .footer-note {
+    text-align: center;
     font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin: 0;
+    opacity: 0.7;
   }
 
-  @media (max-width: 768px) {
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 968px) {
     .footer-content {
       grid-template-columns: 1fr;
-      gap: var(--space-2xl);
-    }
-
-    .footer-links {
-      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3xl);
     }
 
     .footer-brand {
       max-width: 100%;
+      text-align: center;
+    }
+
+    .footer-logo {
+      justify-content: center;
+    }
+
+    .social-links {
+      justify-content: center;
+    }
+
+    .newsletter-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .newsletter-form {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .newsletter-input {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-links {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-bottom-content {
+      flex-direction: column;
+      text-align: center;
     }
   }
 
   @media (max-width: 480px) {
     .footer-links {
       grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .footer-column a:hover {
+      transform: none;
     }
   }
 </style>
-

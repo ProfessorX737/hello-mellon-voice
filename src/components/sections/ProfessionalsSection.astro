@@ -222,7 +222,7 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
   /* ========== PROFESSIONALS SECTION ========== */
   .professionals-section {
     background-color: var(--color-bg-primary);
-    border-top: 1px solid var(--color-gray-200);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .section-title {
@@ -357,7 +357,7 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     position: relative;
     width: 48px;
     height: 28px;
-    background-color: var(--color-gray-300);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -426,15 +426,15 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-md) var(--space-lg);
-    background-color: var(--color-gray-50);
-    border: 1.5px solid var(--color-gray-300);
+    background-color: var(--color-bg-tertiary);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-md);
     transition: all var(--transition-normal);
   }
 
   .search-bar-mockup:hover {
-    border-color: var(--color-gray-400);
-    background-color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--color-bg-secondary);
   }
 
   .search-icon {
@@ -484,9 +484,9 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     flex-wrap: wrap;
     gap: var(--space-sm);
     padding: var(--space-lg);
-    background-color: var(--color-gray-50);
+    background-color: var(--color-bg-tertiary);
     border-radius: var(--radius-md);
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   /* Fade Overlay at Bottom */
@@ -497,8 +497,8 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     right: 0;
     height: 60px;
     background: linear-gradient(to bottom, 
-      rgba(250, 250, 250, 0) 0%, 
-      rgba(250, 250, 250, 0.8) 50%,
+      rgba(10, 10, 10, 0) 0%, 
+      rgba(10, 10, 10, 0.8) 50%,
       var(--color-bg-primary) 100%
     );
     pointer-events: none;
@@ -508,9 +508,9 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     display: inline-flex;
     align-items: center;
     padding: 6px var(--space-md);
-    background-color: #ffffff;
+    background-color: var(--color-bg-secondary);
     color: var(--color-text-primary);
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
     font-size: 13px;
     font-weight: 500;
@@ -519,11 +519,11 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
   }
 
   .dict-term:hover {
-    border-color: var(--color-gray-400);
+    border-color: rgba(255, 255, 255, 0.2);
     box-shadow: var(--shadow-subtle);
   }
 
-  /* Right Side: Example - Elevated Card with Parchment Theme */
+  /* Right Side: Example - Elevated Card with Dark Theme */
   .demo-right {
     display: flex;
     align-items: center;
@@ -531,15 +531,15 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
   }
 
   .correction-example-card {
-    /* Subtle warm parchment background */
-    background: linear-gradient(135deg, #fefefd 0%, #fcfcfa 100%);
+    /* Dark card background */
+    background: var(--color-bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--space-3xl);
-    /* Subtle warm border */
-    border: 1px solid rgba(var(--color-brown-600-rgb), 0.12);
+    /* Subtle border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.04),
-      0 8px 16px rgba(0, 0, 0, 0.03);
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      0 8px 16px rgba(0, 0, 0, 0.15);
     width: 100%;
     max-width: 500px;
     transition: all var(--transition-normal);
@@ -547,16 +547,16 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
 
   .correction-example-card:hover {
     box-shadow: 
-      0 4px 8px rgba(0, 0, 0, 0.06),
-      0 12px 24px rgba(0, 0, 0, 0.04);
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      0 12px 24px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
   }
 
   .example-text {
     font-size: 18px;
     line-height: 1.8;
-    /* Slightly warmer text */
-    color: #2a2826;
+    /* Light text on dark background */
+    color: var(--color-text-primary);
     font-weight: 400;
     text-align: left;
   }
@@ -652,12 +652,12 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
 
   .professions-row::before {
     left: 0;
-    background: linear-gradient(to right, var(--color-bg-primary) 0%, rgba(250, 250, 250, 0) 100%);
+    background: linear-gradient(to right, var(--color-bg-primary) 0%, rgba(10, 10, 10, 0) 100%);
   }
 
   .professions-row::after {
     right: 0;
-    background: linear-gradient(to left, var(--color-bg-primary) 0%, rgba(250, 250, 250, 0) 100%);
+    background: linear-gradient(to left, var(--color-bg-primary) 0%, rgba(10, 10, 10, 0) 100%);
   }
 
   .professions-scroll {
@@ -708,9 +708,9 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
     font-size: 14px;
     font-weight: 500;
     white-space: nowrap;
-    background-color: var(--color-bg-elevated);
+    background-color: var(--color-bg-secondary);
     color: var(--color-text-primary);
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all var(--transition-normal);
   }
 
@@ -721,10 +721,10 @@ Standard AI fails on technical jargon. Mellon thrives on it. Extend your recogni
 
   /* Featured pills (category headers) */
   .pill-featured {
-    background-color: var(--color-gray-900);
-    color: #ffffff;
+    background-color: var(--color-accent);
+    color: #000000;
     font-weight: 600;
-    border-color: var(--color-gray-900);
+    border-color: var(--color-accent);
   }
 
   /* ========== RESPONSIVE ========== */
