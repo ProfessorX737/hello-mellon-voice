@@ -1,0 +1,317 @@
+---
+// Founders Section - The Origin Story
+---
+
+<section class="founders-section" id="founders">
+  <div class="container">
+    <!-- Origin Story Header -->
+    <div class="story-header">
+      <h2 class="story-title">Built out of necessity.</h2>
+      <p class="story-text">
+         When Daniel, a practicing optometrist, couldn’t type patient notes while holding his newborn, he teamed up with his brother Xavier, a privacy-focused software engineer, to build the dictation tool they wished existed.
+      </p>
+    </div>
+
+    <!-- Founders Grid -->
+    <div class="founders-grid">
+      <!-- Founder 1 -->
+      <div class="founder-card">
+        <div class="founder-photo-wrapper">
+          <img 
+            src="public/pics/daniel-poon-profile-pic.svg" 
+            alt="Daniel - Co-founder & Optometrist"
+            class="founder-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="founder-info">
+          <h3 class="founder-name">Daniel</h3>
+          <p class="founder-title">Co-founder & Optometrist</p>
+          <p class="founder-bio">
+            Needed to document “blepharitis” and "meibomian glands" without fighting autocorrect. Now he uses it for more than just patient reports. Emails, prompting, and coding are now part of his everyday mellon workflow.
+        </div>
+      </div>
+
+      <!-- Founder 2 -->
+      <div class="founder-card">
+        <div class="founder-photo-wrapper">
+          <img 
+            src="/images/founder-2.webp" 
+            alt="Xavier - Co-founder & Software Engineer"
+            class="founder-photo"
+            loading="lazy"
+          />
+        </div>
+        <div class="founder-info">
+          <h3 class="founder-name">Xavier</h3>
+          <p class="founder-title">Co-founder & Software Engineer</p>
+          <p class="founder-bio">
+            A software engineer obsessed with building accessible tools that hopefully change your life. 
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Signal -->
+    <div class="trust-signal">
+      <div class="australia-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        <span>Trusted by physicians, developers, and writers worldwide.</span>
+      </div>
+      <div class="guarantee-block">
+        <p class="guarantee-text">
+          "We use Mellon every single day. If it doesn't transform how you work, we'll make it right."
+        </p>
+        <div class="signatures">
+          <span class="signature">— Daniel & Xavier</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Import a serif font for the story feel */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap');
+
+  .founders-section {
+    background-color: var(--color-bg-primary);
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  /* Story Header */
+  .story-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto var(--space-3xl) auto;
+  }
+
+  .story-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-lg);
+  }
+
+  .story-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Founders Grid */
+  .founders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+    max-width: 900px;
+    margin: 0 auto var(--space-3xl) auto;
+  }
+
+  /* Founder Card */
+  .founder-card {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+  }
+
+  .founder-card:hover {
+    border-color: var(--color-gray-300);
+    box-shadow: 
+      0 0 40px rgba(37, 99, 235, 0.06),
+      0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  
+  }
+
+  /* Founder Photo */
+  .founder-photo-wrapper {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--color-gray-100);
+  }
+
+  .founder-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform var(--transition-slow);
+  }
+
+  .founder-card:hover .founder-photo {
+    transform: scale(1.03);
+  }
+
+  /* Founder Info */
+  .founder-info {
+    padding: var(--space-xl);
+  }
+
+  .founder-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-xs) 0;
+    letter-spacing: -0.01em;
+  }
+
+  .founder-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2563eb;
+    margin: 0 0 var(--space-md) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .founder-bio {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Trust Signal */
+  .trust-signal {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .australia-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--color-gray-100);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-xl);
+  }
+
+  .australia-badge svg {
+    color: var(--color-text-secondary);
+  }
+
+  .australia-badge span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: 0.02em;
+  }
+
+  .guarantee-block {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .guarantee-text {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .signatures {
+    display: flex;
+    justify-content: center;
+  }
+
+  .signature {
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 24px;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .story-title {
+      font-size: 36px;
+    }
+
+    .story-text {
+      font-size: 16px;
+    }
+
+    .founders-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      gap: var(--space-xl);
+    }
+
+    .founder-info {
+      padding: var(--space-lg);
+    }
+
+    .founder-name {
+      font-size: 20px;
+    }
+
+    .guarantee-text {
+      font-size: 18px;
+    }
+
+    .signature {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .story-title {
+      font-size: 28px;
+    }
+
+    .story-text {
+      font-size: 15px;
+    }
+
+    .founder-photo-wrapper {
+      aspect-ratio: 1 / 1;
+    }
+
+    .founder-name {
+      font-size: 18px;
+    }
+
+    .founder-title {
+      font-size: 12px;
+    }
+
+    .founder-bio {
+      font-size: 14px;
+    }
+
+    .australia-badge {
+      padding: 8px 16px;
+    }
+
+    .australia-badge span {
+      font-size: 12px;
+    }
+
+    .guarantee-text {
+      font-size: 16px;
+    }
+
+    .signature {
+      font-size: 20px;
+    }
+  }
+</style>
+
+
