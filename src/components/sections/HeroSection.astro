@@ -272,74 +272,119 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     
     <div class="hero-visual" data-animate="fade-scale" data-delay="200">
       <div class="demo-card">
-        <!-- Animated Waveform -->
-        <div class="waveform-container">
-          <div class="waveform-header">
-            <div class="waveform-dots">
-              <span></span>
-              <span></span>
-              <span></span>
+        <!-- Flowing Text Demo - Writing at the Speed of Thought -->
+        <div class="flowing-text-container">
+          <div class="flowing-content">
+            <div class="flowing-waveform-mini">
+              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="mini-waveform-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.8"/>
+                    <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#ec4899" stop-opacity="1"/>
+                  </linearGradient>
+                </defs>
+                <rect class="wave-bar-mini" x="2" y="15" width="4" height="10" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="9" y="8" width="4" height="24" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="16" y="4" width="4" height="32" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="23" y="12" width="4" height="16" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="30" y="6" width="4" height="28" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="37" y="14" width="4" height="12" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="44" y="10" width="4" height="20" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="51" y="5" width="4" height="30" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="58" y="16" width="4" height="8" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="65" y="11" width="4" height="18" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="72" y="7" width="4" height="26" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="79" y="13" width="4" height="14" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="86" y="9" width="4" height="22" rx="2" fill="url(#mini-waveform-gradient)"/>
+                <rect class="wave-bar-mini" x="93" y="15" width="4" height="10" rx="2" fill="url(#mini-waveform-gradient)"/>
+              </svg>
             </div>
-            <span class="waveform-status">Listening...</span>
+            <div class="flowing-track">
+              <div class="flowing-text-wrapper">
+                <span class="flowing-text">Patient is a 58-year-old female presenting with acute exacerbation of COPD. Vital signs show temperature 101.2°F, heart rate 98, blood pressure 142/88. Assessment reveals acute bronchospasm with decreased breath sounds bilaterally. Plan to start IV methylprednisolone 125 mg and albuterol nebulizer every 4 hours. Monitor oxygen saturation and consider admission if no improvement within 24 hours.</span>
+                <span class="flowing-text" aria-hidden="true">Patient is a 58-year-old female presenting with acute exacerbation of COPD. Vital signs show temperature 101.2°F, heart rate 98, blood pressure 142/88. Assessment reveals acute bronchospasm with decreased breath sounds bilaterally. Plan to start IV methylprednisolone 125 mg and albuterol nebulizer every 4 hours. Monitor oxygen saturation and consider admission if no improvement within 24 hours.</span>
+              </div>
+            </div>
+            <div class="flowing-gradient-left"></div>
+            <div class="flowing-gradient-right"></div>
           </div>
           
-          <div class="waveform-display">
-            <div class="waveform-bars">
-              {Array.from({ length: 40 }).map((_, i) => (
-                <div 
-                  class="wave-bar" 
-                  style={`--height: ${20 + Math.random() * 60}%; --delay: ${i * 0.05}s`}
-                />
-              ))}
-            </div>
-          </div>
-          
-          <div class="transcription-preview">
-            <span class="transcription-text">Patient is a 58-year-old female presenting with acute exacerbation of COPD...</span>
-            <span class="cursor">|</span>
-          </div>
-        </div>
-        
-        <!-- Feature Pills -->
-        <div class="feature-pills">
-          <div class="pill pill-1">
-            <svg class="pill-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8.5 1L3 9H8L7.5 15L13 7H8L8.5 1Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="flowing-speed-indicator">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
             </svg>
-            250+ WPM
-          </div>
-          <div class="pill pill-2">
-            <svg class="pill-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <rect x="3" y="7" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <path d="M5 7V5C5 3.34315 6.34315 2 8 2C9.65685 2 11 3.34315 11 5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            Private & Offline
-          </div>
-          <div class="pill pill-3">
-            <svg class="pill-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <path d="M8 4V8L11 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            Medical-Grade
+            <span>Writing at the speed of thought</span>
+            <span class="speed-badge">250+ WPM</span>
           </div>
         </div>
       </div>
       
-      <!-- Floating Elements -->
-      <div class="floating-element fe-1">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      <!-- Floating Elements - Positioned outside the demo card -->
+      <!-- Brain icon - symbolizes thought -->
+      <div class="floating-element fe-brain">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+          <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
         </svg>
       </div>
-      <div class="floating-element fe-2">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      
+      <!-- Lightning bolt - symbolizes speed -->
+      <div class="floating-element fe-lightning">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <div class="floating-element fe-3">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+      
+      <!-- Shield icon - symbolizes security -->
+      <div class="floating-element fe-shield">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="m9 12 2 2 4-4"/>
         </svg>
+      </div>
+      
+      <!-- Light bulb - symbolizes ideas/thought -->
+      <div class="floating-element fe-bulb">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2 1.5-3.5A6 6 0 0 0 6 8c0 1 .5 2 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
+          <path d="M9 18h6"/>
+          <path d="M10 22h4"/>
+          <path d="M12 2v1"/>
+          <path d="M4.2 4.2l.7.7"/>
+          <path d="M19.1 4.2l-.7.7"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Animated Feature Badge - Below the hero section -->
+  <div class="feature-marquee-container">
+    <div class="feature-marquee">
+      <div class="feature-badge-container">
+        <div class="feature-badge-wrapper">
+          <div class="feature-badge-item badge-item-1">
+            <svg class="badge-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="badge-text">250+ WPM</span>
+          </div>
+          <div class="feature-badge-item badge-item-2">
+            <svg class="badge-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span class="badge-text">100% Private</span>
+          </div>
+          <div class="feature-badge-item badge-item-3">
+            <svg class="badge-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+              <line x1="2" y1="2" x2="22" y2="22"/>
+            </svg>
+            <span class="badge-text">Works Offline</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -357,10 +402,11 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
   .hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding: var(--space-4xl) 0;
+    padding: var(--space-4xl) 0 0;
   }
 
   /* Animated Background */
@@ -440,6 +486,10 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     align-items: center;
     position: relative;
     z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
   }
 
   /* Hero Content */
@@ -624,148 +674,171 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     position: relative;
   }
 
-  .waveform-container {
+  /* Flowing Text Container - Writing at the Speed of Thought */
+  .flowing-text-container {
     background: rgba(0, 0, 0, 0.3);
     border-radius: var(--radius-xl);
     padding: var(--space-lg);
-    margin-bottom: var(--space-lg);
-  }
-
-  .waveform-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--space-md);
-  }
-
-  .waveform-dots {
-    display: flex;
-    gap: 6px;
-  }
-
-  .waveform-dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-gray-700);
-  }
-
-  .waveform-dots span:nth-child(1) { background: #ff5f57; }
-  .waveform-dots span:nth-child(2) { background: #febc2e; }
-  .waveform-dots span:nth-child(3) { background: #28c840; }
-
-  .waveform-status {
-    font-size: 12px;
-    color: var(--color-text-muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .waveform-status::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    background: #10b981;
-    border-radius: 50%;
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  .waveform-display {
-    height: 80px;
-    display: flex;
-    align-items: center;
     overflow: hidden;
-    margin-bottom: var(--space-md);
   }
 
-  .waveform-bars {
+
+
+  .flowing-content {
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
-    gap: 3px;
+  }
+
+  .flowing-track {
     width: 100%;
-    justify-content: center;
+    overflow: hidden;
+    position: relative;
   }
 
-  .wave-bar {
-    width: 4px;
-    height: var(--height, 50%);
-    background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
-    border-radius: 2px;
-    animation: wave-bar 1.2s ease-in-out infinite;
-    animation-delay: var(--delay, 0s);
+  .flowing-text-wrapper {
+    display: flex;
+    width: max-content;
+    animation: flow-text-left 20s linear infinite;
   }
 
-  @keyframes wave-bar {
+  .flowing-text {
+    font-size: 18px;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    white-space: nowrap;
+    padding-right: 4rem;
+    font-family: var(--font-mono, 'SF Mono', Monaco, monospace);
+    letter-spacing: -0.02em;
+  }
+
+  @keyframes flow-text-left {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .flowing-waveform-mini {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 140px;
+    height: 100%;
+    z-index: 3;
+    background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.4) 85%, transparent 100%);
+    padding: 10px 30px 10px 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .flowing-waveform-mini svg {
+    width: 100%;
+    height: 60px;
+  }
+
+  .wave-bar-mini {
+    animation: wave-bar-dance 0.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .wave-bar-mini:nth-child(1) { animation-delay: 0s; }
+  .wave-bar-mini:nth-child(2) { animation-delay: 0.05s; }
+  .wave-bar-mini:nth-child(3) { animation-delay: 0.1s; }
+  .wave-bar-mini:nth-child(4) { animation-delay: 0.15s; }
+  .wave-bar-mini:nth-child(5) { animation-delay: 0.2s; }
+  .wave-bar-mini:nth-child(6) { animation-delay: 0.25s; }
+  .wave-bar-mini:nth-child(7) { animation-delay: 0.3s; }
+  .wave-bar-mini:nth-child(8) { animation-delay: 0.35s; }
+  .wave-bar-mini:nth-child(9) { animation-delay: 0.4s; }
+  .wave-bar-mini:nth-child(10) { animation-delay: 0.45s; }
+  .wave-bar-mini:nth-child(11) { animation-delay: 0.5s; }
+  .wave-bar-mini:nth-child(12) { animation-delay: 0.55s; }
+
+  @keyframes wave-bar-dance {
     0%, 100% {
-      transform: scaleY(0.3);
-      opacity: 0.5;
+      transform: scaleY(0.6);
+      opacity: 0.6;
     }
     50% {
-      transform: scaleY(1);
+      transform: scaleY(1.2);
       opacity: 1;
     }
   }
 
-  .transcription-preview {
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
+  .flowing-gradient-left,
+  .flowing-gradient-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .flowing-gradient-left {
+    left: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+  }
+
+  .flowing-gradient-right {
+    right: 0;
+    background: linear-gradient(270deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+  }
+
+  .flowing-speed-indicator {
     display: flex;
     align-items: center;
-    gap: 2px;
-  }
-
-  .transcription-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .cursor {
-    color: #6366f1;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-  /* Feature Pills */
-  .feature-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
     justify-content: center;
-  }
-
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: 10px 18px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-pill);
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 13px;
-    font-weight: 500;
     color: var(--color-text-secondary);
-    transition: all var(--transition-normal);
   }
 
-  .pill:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-  }
-
-  .pill-icon {
+  .flowing-speed-indicator svg {
     color: #6366f1;
+    animation: spin-slow 8s linear infinite;
   }
 
-  /* Floating Elements */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .speed-badge {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* Legacy styles - keeping for reference */
+  .waveform-container,
+  .waveform-header,
+  .waveform-dots,
+  .waveform-status,
+  .waveform-display,
+  .waveform-bars,
+  .wave-bar,
+  .transcription-preview,
+  .transcription-text,
+  .cursor {
+    display: none;
+  }
+
+  /* Floating Elements - Positioned outside demo card with safe spacing */
   .floating-element {
     position: absolute;
     width: 48px;
@@ -779,24 +852,206 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     color: var(--color-text-secondary);
     backdrop-filter: blur(10px);
     animation: float 6s ease-in-out infinite;
+    z-index: 10;
   }
 
-  .fe-1 {
-    top: 10%;
-    right: -5%;
+  /* Brain icon - top left, well outside card */
+  .fe-brain {
+    top: -60px;
+    left: -80px;
+    animation-delay: 0s;
+    color: #8b5cf6;
+  }
+
+  /* Lightning bolt - top right, well outside card */
+  .fe-lightning {
+    top: -40px;
+    right: -70px;
+    animation-delay: -1.5s;
+    color: #f59e0b;
+  }
+
+  /* Shield icon - bottom right, well outside card */
+  .fe-shield {
+    bottom: -50px;
+    right: -60px;
+    animation-delay: -3s;
+    color: #10b981;
+  }
+
+  /* Light bulb - bottom left, well outside card */
+  .fe-bulb {
+    bottom: -70px;
+    left: -50px;
+    animation-delay: -4.5s;
+    color: #ec4899;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(-1deg);
+    }
+    75% {
+      transform: translateY(-15px) rotate(1deg);
+    }
+  }
+
+  /* Feature Badge - Below hero section */
+  .feature-marquee-container {
+    position: relative;
+    width: 100%;
+    margin-top: var(--space-4xl);
+    padding: var(--space-xl) 0;
+    z-index: 1;
+  }
+
+  .feature-marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: var(--space-xl) 0;
+  }
+
+  .feature-badge-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+  }
+
+  .feature-badge-wrapper {
+    position: relative;
+    width: 280px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .feature-badge-item {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(236, 72, 153, 0.15) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-xl);
+    white-space: nowrap;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    animation: badge-cycle 6s ease-in-out infinite;
+  }
+
+  .badge-item-1 {
     animation-delay: 0s;
   }
 
-  .fe-2 {
-    bottom: 20%;
-    right: -10%;
-    animation-delay: -2s;
+  .badge-item-2 {
+    animation-delay: 2s;
   }
 
-  .fe-3 {
-    top: 40%;
-    left: -8%;
-    animation-delay: -4s;
+  .badge-item-3 {
+    animation-delay: 4s;
+  }
+
+  @keyframes badge-cycle {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+      filter: blur(4px);
+    }
+    8% {
+      opacity: 1;
+      transform: scale(1.05) translateY(-5px);
+      filter: blur(0);
+    }
+    15% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
+    }
+    32% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
+    }
+    40% {
+      opacity: 0;
+      transform: scale(0.9) translateY(-10px);
+      filter: blur(4px);
+    }
+    95% {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+      filter: blur(4px);
+    }
+  }
+
+  .badge-icon {
+    color: #6366f1;
+    animation: icon-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes icon-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+
+  .badge-text {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .marquee-fade-left,
+  .marquee-fade-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .marquee-fade-left {
+    left: 0;
+    background: linear-gradient(90deg, var(--color-bg-primary, #0a0a0f) 0%, transparent 100%);
+  }
+
+  .marquee-fade-right {
+    right: 0;
+    background: linear-gradient(270deg, var(--color-bg-primary, #0a0a0f) 0%, transparent 100%);
   }
 
   /* Scroll Indicator */
@@ -824,6 +1079,17 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     background: rgba(255, 255, 255, 0.4);
     border-radius: 2px;
     animation: scroll-indicator 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-indicator {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(8px);
+      opacity: 0.5;
+    }
   }
 
   /* ========== RESPONSIVE ========== */
@@ -859,24 +1125,24 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     .floating-element {
       display: none;
     }
+
+    .feature-marquee-container {
+      margin-top: var(--space-2xl);
+    }
   }
 
   @media (max-width: 768px) {
     .hero {
-      padding: var(--space-3xl) 0;
+      padding: var(--space-3xl) 0 0;
     }
 
     .demo-card {
       max-width: 100%;
     }
 
-    .feature-pills {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .pill {
-      justify-content: center;
+    .marquee-fade-left,
+    .marquee-fade-right {
+      width: 80px;
     }
   }
 
@@ -887,6 +1153,19 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
 
     .hero-cta .btn {
       width: 100%;
+    }
+
+    .feature-badge-wrapper {
+      width: 240px;
+      height: 70px;
+    }
+
+    .badge-text {
+      font-size: 20px;
+    }
+
+    .feature-badge-item {
+      padding: var(--space-sm) var(--space-lg);
     }
   }
 </style>
