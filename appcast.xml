@@ -4,11 +4,11 @@
         <title>mellon</title>
         <item>
             <title>1.0.0</title>
-            <pubDate>Sat, 14 Feb 2026 09:25:47 +1100</pubDate>
+            <pubDate>Sat, 14 Feb 2026 09:39:59 +1100</pubDate>
             <sparkle:version>1</sparkle:version>
             <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.0.0/mellon-1.0.0.zip" length="59625489" type="application/octet-stream" sparkle:edSignature="2YijI4sV4nPW7KkXLaAfVDnEZ6bvODCHil7b9NHtmgeToScNIpzDeRBE4BKTMPu27b3Ezljk9+BdaTnltSJhAA=="/>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.0.0/mellon-1.0.0.zip" length="59626567" type="application/octet-stream" sparkle:edSignature="lp7ROQuO4lplDHxI94nGz1dJx8TLUIJ5NZ6n26s2gK2jv+JfPtK6q/dTK/hZNm1xIbKBpRLKE5l70aMJPJ7xBQ=="/>
         </item>
     </channel>
 </rss>
