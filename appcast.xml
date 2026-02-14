@@ -3,6 +3,24 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.1.0</title>
+            <pubDate>Sat, 14 Feb 2026 23:14:00 +1100</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.1.0</h2>
+                <ul>
+                    <li><strong>Custom AI Prompts:</strong> Create and manage multiple enhancement prompts with new Prompts tab</li>
+                    <li><strong>AI Enhancement Submenu:</strong> Organized settings across Post-processing, Prompts, and Agent Mode tabs</li>
+                    <li><strong>Model Auto-Discovery:</strong> Fetch available models from all AI providers (OpenAI, Anthropic, Gemini, Groq, Custom)</li>
+                    <li><strong>Agent Mode Improvements:</strong> Better trigger detection, stricter output-only responses, toast notifications</li>
+                    <li><strong>UI Polish:</strong> Black toggle/tab colors, optional Custom API key, improved focus management</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.1.0/mellon-1.1.0.zip" length="58177804" type="application/octet-stream" sparkle:edSignature="F6Rhj6vW1ReUZPvlYTL5C4puMuGLE+hhyf/5sixzFjVnnnmYn9pSPb5jKPYHXlNK+7IRza0r0BTmvvALGAjDAA=="/>
+        </item>
+        <item>
             <title>1.0.0</title>
             <pubDate>Sat, 14 Feb 2026 09:39:59 +1100</pubDate>
             <sparkle:version>1</sparkle:version>
