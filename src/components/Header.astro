@@ -9,7 +9,7 @@
       <!-- Logo -->
       <a href="/" class="logo">
         <div class="logo-icon-wrapper">
-          <img src="/mellon-mac-toolbar-icon.png" alt="Mellon" class="logo-icon" width="28" height="28" />
+          <img src="/mellon-big-white-bg.svg" alt="Mellon" class="logo-icon" width="28" height="28" />
           <div class="logo-glow"></div>
         </div>
         <span class="logo-text">Mellon</span>
@@ -116,6 +116,8 @@
 
   .logo-icon-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
   }
 
   .logo-icon {
@@ -125,6 +127,7 @@
     object-fit: contain;
     position: relative;
     z-index: 1;
+    display: block;
   }
 
   .logo-glow {
@@ -147,6 +150,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    line-height: 1;
   }
 
   /* Navigation Links */

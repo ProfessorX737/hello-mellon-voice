@@ -1,73 +1,224 @@
 ---
-interface Props {
-  apps: Array<{ name: string; icon: string }>;
-}
+import { apps, type AppItem } from '../../data/apps';
 
-const { apps } = Astro.props;
-
-// Map icon keys to Simple Icons CDN URLs or custom SVGs
-const getIconUrl = (icon: string): string | null => {
-  const iconMap: Record<string, string> = {
-    notion: 'https://cdn.simpleicons.org/notion/000000',
-    slack: 'https://cdn.simpleicons.org/slack',
-    vscode: 'https://cdn.simpleicons.org/visualstudiocode/007ACC',
-    discord: 'https://cdn.simpleicons.org/discord/5865F2',
-    obsidian: 'https://cdn.simpleicons.org/obsidian/7C3AED',
-    linear: 'https://cdn.simpleicons.org/linear/5E6AD2',
-    github: 'https://cdn.simpleicons.org/github/181717',
-    figma: 'https://cdn.simpleicons.org/figma',
-    word: 'https://cdn.simpleicons.org/microsoftword/2B579A',
-    chrome: 'https://cdn.simpleicons.org/googlechrome',
-    safari: 'https://cdn.simpleicons.org/safari/006CFF',
-    gdocs: 'https://cdn.simpleicons.org/googledocs/4285F4',
-  };
-  return iconMap[icon] || null;
+// Helper function to get icon source
+// Priority: iconPath > iconUrl > built-in icon
+const getIconSource = (app: AppItem): { type: 'path' | 'url' | 'svg' | 'fallback'; value: string } => {
+  if (app.iconPath) {
+    return { type: 'path', value: app.iconPath };
+  }
+  if (app.iconUrl) {
+    return { type: 'url', value: app.iconUrl };
+  }
+  if (app.icon && appIcons[app.icon]) {
+    return { type: 'svg', value: appIcons[app.icon] };
+  }
+  return { type: 'fallback', value: app.name.substring(0, 1) };
 };
 
-// Apple/macOS app icons as inline SVGs
-const appleIcons: Record<string, string> = {
+// Built-in app icons - fallback SVGs with official brand colors
+const appIcons: Record<string, string> = {
+  // Notion - white N on white bg with black icon
+  notion: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#FFFFFF"/>
+    <path d="M37.5 25.8c2.8 2.1 3.9 2 9.2 1.5l40.2-2.4c1.3 0 .1-1.3-.3-1.4l-6.7-4.8c-2-.5-4.6.6-7.7.8L34.4 22c-2.2.2-2.6 1.2-1.8 2l4.9 1.8zm3 11.1v42.3c0 2.3 1.1 3.1 3.7 3l44.1-2.5c2.6-.2 2.9-1.6 2.9-3.4V34.4c0-1.7-.7-2.6-2.2-2.5l-46.2 2.7c-1.6.1-2.3 1-2.3 2.3zm43.5 4.1c.3 1.3 0 2.5-1.3 2.7l-2.1.4v31.2c-1.8 1-3.5 1.5-4.9 1.5-2.3 0-2.9-.7-4.6-2.9L55.8 49.3v23.4l4.4 1s0 2.5-3.4 2.5l-9.5.6c-.3-.6 0-2.1 1-2.4l2.7-.7V43.5l-3.7-.3c-.3-1.3.4-3.1 2.4-3.3l10.2-.6 16.7 25.5V43.2l-3.7-.4c-.3-1.5.8-2.6 2.2-2.7l9.4-.1z" fill="#000000"/>
+  </svg>`,
+  
+  // Slack - colorful logo
+  slack: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#FFFFFF"/>
+    <path d="M44.5 70.5a7.5 7.5 0 1 1-7.5-7.5h7.5v7.5zm3.75 0a7.5 7.5 0 1 1 15 0v18.75a7.5 7.5 0 1 1-15 0V70.5z" fill="#E01E5A"/>
+    <path d="M48.25 44.5a7.5 7.5 0 1 1 7.5-7.5v7.5h-7.5zm0 3.75a7.5 7.5 0 1 1 0 15H29.5a7.5 7.5 0 1 1 0-15h18.75z" fill="#36C5F0"/>
+    <path d="M74.25 48.25a7.5 7.5 0 1 1 7.5 7.5h-7.5v-7.5zm-3.75 0a7.5 7.5 0 1 1-15 0V29.5a7.5 7.5 0 1 1 15 0v18.75z" fill="#2EB67D"/>
+    <path d="M70.5 74.25a7.5 7.5 0 1 1-7.5 7.5v-7.5h7.5zm0-3.75a7.5 7.5 0 1 1 0-15h18.75a7.5 7.5 0 1 1 0 15H70.5z" fill="#ECB22E"/>
+  </svg>`,
+  
+  // VS Code - blue icon
+  vscode: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#007ACC"/>
+    <path d="M85 23v74l-25 13-40-31 10-8 25 19V35L30 54l-10-8 40-31 25 8z" fill="white"/>
+  </svg>`,
+  
+  // Apple Notes - yellow notepad
   notes: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="120" height="120" rx="26" fill="#FFCC02"/>
-    <rect x="24" y="30" width="72" height="60" rx="4" fill="white"/>
-    <rect x="32" y="42" width="40" height="4" rx="2" fill="#E5E5E5"/>
-    <rect x="32" y="52" width="56" height="4" rx="2" fill="#E5E5E5"/>
-    <rect x="32" y="62" width="48" height="4" rx="2" fill="#E5E5E5"/>
-    <rect x="32" y="72" width="52" height="4" rx="2" fill="#E5E5E5"/>
+    <defs>
+      <linearGradient id="notesGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#FFCC02"/>
+        <stop offset="100%" stop-color="#FF9500"/>
+      </linearGradient>
+    </defs>
+    <rect width="120" height="120" rx="26" fill="url(#notesGrad)"/>
+    <rect x="24" y="28" width="72" height="64" rx="8" fill="white"/>
+    <rect x="24" y="28" width="72" height="16" fill="#FFE066"/>
+    <rect x="34" y="52" width="40" height="4" rx="2" fill="#E5E5E5"/>
+    <rect x="34" y="62" width="52" height="4" rx="2" fill="#E5E5E5"/>
+    <rect x="34" y="72" width="44" height="4" rx="2" fill="#E5E5E5"/>
+    <rect x="34" y="82" width="48" height="4" rx="2" fill="#E5E5E5"/>
   </svg>`,
+  
+  // Discord - blurple
+  discord: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#5865F2"/>
+    <path d="M91.7 32.8a73.3 73.3 0 0 0-18.1-5.6 54.8 54.8 0 0 0-2.4 4.9 67.8 67.8 0 0 0-20.4 0 51.7 51.7 0 0 0-2.4-4.9 73.1 73.1 0 0 0-18.1 5.6A75.6 75.6 0 0 0 17.2 83c6.9 5.1 15 9.2 23.6 11.3a55.4 55.4 0 0 0 4.8-7.8 47.8 47.8 0 0 1-7.6-3.6l1.8-1.4a52.3 52.3 0 0 0 44.4 0c.6.5 1.2 1 1.8 1.4a47.6 47.6 0 0 1-7.6 3.6 55 55 0 0 0 4.8 7.8 72.8 72.8 0 0 0 23.6-11.3 75.3 75.3 0 0 0-15.1-50.2zM45.7 72.3c-4.3 0-7.9-4-7.9-8.8s3.5-8.8 7.9-8.8 8 4 7.9 8.8c0 4.9-3.5 8.8-7.9 8.8zm28.6 0c-4.3 0-7.9-4-7.9-8.8s3.5-8.8 7.9-8.8 8 4 7.9 8.8c0 4.9-3.5 8.8-7.9 8.8z" fill="white"/>
+  </svg>`,
+  
+  // Obsidian - purple gem
+  obsidian: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#7C3AED"/>
+    <path d="M60 20L90 50L75 100H45L30 50L60 20Z" fill="#A78BFA"/>
+    <path d="M60 20L30 50L45 100L60 60L60 20Z" fill="#8B5CF6"/>
+    <path d="M60 20L90 50L75 100L60 60L60 20Z" fill="#C4B5FD"/>
+  </svg>`,
+  
+  // Linear - blue
+  linear: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#5E6AD2"/>
+    <path d="M28 77.5L77.5 28c1.5-1.5 4-0.4 4 1.8v25.4c0 1-.4 2-1.2 2.7L43.2 95c-.7.7-1.7 1.2-2.7 1.2H15c-2.2 0-3.3-2.5-1.8-4L28 77.5z" fill="white"/>
+    <path d="M49 95l47-47c1.5-1.5 4-0.4 4 1.8v40.4c0 2.1-1.7 3.8-3.8 3.8H50.8c-2.2 0-3.3-2.5-1.8-4z" fill="white" fill-opacity="0.5"/>
+  </svg>`,
+  
+  // Apple Mail - blue envelope
   mail: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="120" height="120" rx="26" fill="#1E90FF"/>
-    <path d="M24 42L60 68L96 42" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="24" y="36" width="72" height="48" rx="4" stroke="white" stroke-width="5" fill="none"/>
+    <defs>
+      <linearGradient id="mailGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#1E90FF"/>
+        <stop offset="100%" stop-color="#0066CC"/>
+      </linearGradient>
+    </defs>
+    <rect width="120" height="120" rx="26" fill="url(#mailGrad)"/>
+    <rect x="20" y="34" width="80" height="52" rx="6" fill="white"/>
+    <path d="M20 40l40 28 40-28" stroke="#0066CC" stroke-width="3" fill="none"/>
   </svg>`,
+  
+  // Xcode - blue hammer
   xcode: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="120" height="120" rx="26" fill="#147EFB"/>
-    <path d="M40 40L60 60L80 40" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M40 80L60 60L80 80" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="60" cy="60" r="8" fill="white"/>
+    <defs>
+      <linearGradient id="xcodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#147EFB"/>
+        <stop offset="100%" stop-color="#0A5FCC"/>
+      </linearGradient>
+    </defs>
+    <rect width="120" height="120" rx="26" fill="url(#xcodeGrad)"/>
+    <path d="M38 38L60 60L82 38" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M38 82L60 60L82 82" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="60" cy="60" r="7" fill="white"/>
   </svg>`,
+  
+  // GitHub - white cat on dark
+  github: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#24292F"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M60 22c-21 0-38 17-38 38 0 16.8 10.9 31 26 36 1.9.4 2.6-.8 2.6-1.8v-6.3c-10.6 2.3-12.8-5.1-12.8-5.1-1.7-4.4-4.2-5.6-4.2-5.6-3.5-2.4.3-2.3.3-2.3 3.8.3 5.8 3.9 5.8 3.9 3.4 5.8 8.9 4.1 11.1 3.1.3-2.5 1.3-4.1 2.4-5.1-8.5-1-17.4-4.2-17.4-18.8 0-4.2 1.5-7.6 3.9-10.2-.4-1-1.7-4.9.4-10.1 0 0 3.2-1 10.4 3.9 3-.8 6.3-1.3 9.5-1.3s6.5.4 9.5 1.3c7.2-4.9 10.4-3.9 10.4-3.9 2.1 5.2.8 9.1.4 10.1 2.4 2.6 3.9 6 3.9 10.2 0 14.6-8.9 17.8-17.4 18.8 1.4 1.2 2.6 3.5 2.6 7.1v10.5c0 1 .7 2.2 2.6 1.8 15.1-5 26-19.2 26-36 0-21-17-38-38-38z" fill="white"/>
+  </svg>`,
+  
+  // Things 3 - blue checkmark
   things: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="120" height="120" rx="26" fill="#4A90D9"/>
-    <circle cx="60" cy="60" r="28" stroke="white" stroke-width="6" fill="none"/>
-    <path d="M48 60L56 68L72 52" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <defs>
+      <linearGradient id="thingsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#4A90D9"/>
+        <stop offset="100%" stop-color="#2E7DFF"/>
+      </linearGradient>
+    </defs>
+    <rect width="120" height="120" rx="26" fill="url(#thingsGrad)"/>
+    <circle cx="60" cy="60" r="28" stroke="white" stroke-width="5" fill="none"/>
+    <path d="M45 60L55 70L77 48" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`,
+  
+  // Messages - green bubble
   messages: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="120" height="120" rx="26" fill="#34C759"/>
-    <path d="M30 58C30 44 44 34 60 34C76 34 90 44 90 58C90 72 76 82 60 82C56 82 52 81.5 48.5 80.5L34 88L38 74C33 69 30 64 30 58Z" fill="white"/>
+    <defs>
+      <linearGradient id="messagesGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#5FD068"/>
+        <stop offset="100%" stop-color="#34C759"/>
+      </linearGradient>
+    </defs>
+    <rect width="120" height="120" rx="26" fill="url(#messagesGrad)"/>
+    <path d="M28 56c0-16 14-28 32-28s32 12 32 28-14 28-32 28c-4 0-8-.5-12-1.5L32 92l6-16c-6-5-10-12-10-20z" fill="white"/>
   </svg>`,
+  
+  // Terminal - black with green
   terminal: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="120" height="120" rx="26" fill="#1D1D1F"/>
-    <path d="M36 48L52 60L36 72" stroke="#34C759" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M56 72H84" stroke="#34C759" stroke-width="6" stroke-linecap="round"/>
+    <rect width="120" height="120" rx="26" fill="#1C1C1E"/>
+    <path d="M34 44L54 60L34 76" stroke="#30D158" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M58 76H86" stroke="#30D158" stroke-width="6" stroke-linecap="round"/>
+  </svg>`,
+  
+  // Chrome - colorful circle
+  chrome: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#FFFFFF"/>
+    <circle cx="60" cy="60" r="36" fill="#FFFFFF"/>
+    <path d="M60 24a36 36 0 0 1 31.2 18H60v18a18 18 0 0 1 0-36z" fill="#EA4335"/>
+    <path d="M91.2 42A36 36 0 0 1 60 96l15.6-27a18 18 0 0 0 15.6-27z" fill="#FBBC05"/>
+    <path d="M60 96a36 36 0 0 1-31.2-54l15.6 27a18 18 0 0 0 15.6 27z" fill="#34A853"/>
+    <path d="M28.8 42A36 36 0 0 1 60 24v18a18 18 0 0 0-15.6 27L28.8 42z" fill="#4285F4"/>
+    <circle cx="60" cy="60" r="14" fill="white" stroke="#4285F4" stroke-width="4"/>
+  </svg>`,
+  
+  // Safari - blue compass
+  safari: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="safariGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#5AC8FA"/>
+        <stop offset="100%" stop-color="#007AFF"/>
+      </linearGradient>
+    </defs>
+    <rect width="120" height="120" rx="26" fill="url(#safariGrad)"/>
+    <circle cx="60" cy="60" r="32" stroke="white" stroke-width="3" fill="none"/>
+    <path d="M60 32v8M60 80v8M32 60h8M80 60h8" stroke="white" stroke-width="2"/>
+    <path d="M42 78l14-14 4-22 22-4-14 14-4 22-22 4z" fill="white"/>
+    <path d="M56 64l4-22 22-4-14 14" fill="#FF3B30"/>
+  </svg>`,
+  
+  // Google Docs - blue doc
+  gdocs: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#FFFFFF"/>
+    <path d="M32 24h40l20 20v52a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8V32a8 8 0 0 1 8-8z" fill="#4285F4"/>
+    <path d="M72 24l20 20H80a8 8 0 0 1-8-8V24z" fill="#A1C2FA"/>
+    <rect x="44" y="56" width="32" height="4" rx="2" fill="white"/>
+    <rect x="44" y="66" width="24" height="4" rx="2" fill="white"/>
+    <rect x="44" y="76" width="28" height="4" rx="2" fill="white"/>
+  </svg>`,
+  
+  // Figma - colorful F
+  figma: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#1E1E1E"/>
+    <path d="M48 96a12 12 0 0 0 12-12V72H48a12 12 0 0 0 0 24z" fill="#0ACF83"/>
+    <path d="M36 60a12 12 0 0 1 12-12h12v24H48a12 12 0 0 1-12-12z" fill="#A259FF"/>
+    <path d="M36 36a12 12 0 0 1 12-12h12v24H48a12 12 0 0 1-12-12z" fill="#F24E1E"/>
+    <path d="M60 24h12a12 12 0 0 1 0 24H60V24z" fill="#FF7262"/>
+    <circle cx="72" cy="60" r="12" fill="#1ABCFE"/>
+  </svg>`,
+  
+  // Microsoft Word - blue W
+  word: `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="26" fill="#2B579A"/>
+    <path d="M30 30h60v60H30z" fill="#185ABD"/>
+    <path d="M36 42l8 36 8-28 8 28 8-36" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect x="72" y="38" width="14" height="4" rx="2" fill="white"/>
+    <rect x="72" y="48" width="14" height="4" rx="2" fill="white"/>
+    <rect x="72" y="58" width="14" height="4" rx="2" fill="white"/>
+    <rect x="72" y="68" width="14" height="4" rx="2" fill="white"/>
+    <rect x="72" y="78" width="14" height="4" rx="2" fill="white"/>
   </svg>`,
 };
 
-// Duplicate apps for seamless infinite scroll
-const duplicatedApps = [...apps, ...apps];
+// No longer need the getIconUrl function since we're using custom SVGs
+
+// Split apps into three rows
+// Split apps into three rows dynamically
+const appsPerRow = Math.ceil(apps.length / 3);
+const row1 = apps.slice(0, appsPerRow);
+const row2 = apps.slice(appsPerRow, appsPerRow * 2);
+const row3 = apps.slice(appsPerRow * 2);
+
+// Duplicate for seamless infinite scroll
+const duplicatedRow1 = [...row1, ...row1, ...row1];
+const duplicatedRow2 = [...row2, ...row2, ...row2];
+const duplicatedRow3 = [...row3, ...row3, ...row3];
 ---
 
 <!-- App Compatibility Section -->
 <section class="apps-section" id="apps" data-fade-in>
- <div class="container">
+  <div class="container">
     <h2 class="section-title text-center">Dictate Directly into Any App.</h2>
     <p class="section-subtitle text-center">
       Mellon lives in your menu bar and works in every text field on your Mac. 
@@ -75,36 +226,81 @@ const duplicatedApps = [...apps, ...apps];
     </p>
   </div>
   
-  <div class="carousel-container">
-    <div class="carousel-track">
-      {duplicatedApps.map((app) => {
-        const iconUrl = getIconUrl(app.icon);
-        const appleIcon = appleIcons[app.icon];
-        
-        return (
-          <div class="app-card">
-            <div class="app-icon-wrapper">
-              {appleIcon ? (
-                <div class="app-icon-svg" set:html={appleIcon} />
-              ) : iconUrl ? (
-                <img src={iconUrl} alt={app.name} class="app-icon-img" loading="lazy" />
+  <div class="apps-carousel">
+    <!-- Row 1: Right to Left -->
+    <div class="carousel-row row-1">
+      <div class="track track-rtl">
+        {duplicatedRow1.map((app) => {
+          const iconSource = getIconSource(app);
+          return (
+            <div class="app-item">
+              {iconSource.type === 'path' || iconSource.type === 'url' ? (
+                <img src={iconSource.value} alt={app.name} class="app-icon" loading="lazy" />
+              ) : iconSource.type === 'svg' ? (
+                <div class="app-icon" set:html={iconSource.value} />
               ) : (
                 <div class="app-icon-fallback">
-                  <span>{app.name.substring(0, 1)}</span>
+                  <span>{iconSource.value}</span>
                 </div>
               )}
+              <span class="app-label">{app.name}</span>
             </div>
-            <span class="app-name">{app.name}</span>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+    </div>
+    
+    <!-- Row 2: Left to Right -->
+    <div class="carousel-row row-2">
+      <div class="track track-ltr">
+        {duplicatedRow2.map((app) => {
+          const iconSource = getIconSource(app);
+          return (
+            <div class="app-item">
+              {iconSource.type === 'path' || iconSource.type === 'url' ? (
+                <img src={iconSource.value} alt={app.name} class="app-icon" loading="lazy" />
+              ) : iconSource.type === 'svg' ? (
+                <div class="app-icon" set:html={iconSource.value} />
+              ) : (
+                <div class="app-icon-fallback">
+                  <span>{iconSource.value}</span>
+                </div>
+              )}
+              <span class="app-label">{app.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+    
+    <!-- Row 3: Right to Left -->
+    <div class="carousel-row row-3">
+      <div class="track track-rtl">
+        {duplicatedRow3.map((app) => {
+          const iconSource = getIconSource(app);
+          return (
+            <div class="app-item">
+              {iconSource.type === 'path' || iconSource.type === 'url' ? (
+                <img src={iconSource.value} alt={app.name} class="app-icon" loading="lazy" />
+              ) : iconSource.type === 'svg' ? (
+                <div class="app-icon" set:html={iconSource.value} />
+              ) : (
+                <div class="app-icon-fallback">
+                  <span>{iconSource.value}</span>
+                </div>
+              )}
+              <span class="app-label">{app.name}</span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   </div>
   
   <div class="container">
-  <p class="hero-note text-center" style="margin-top: 2rem; opacity: 0.8;">
-    Perfect for Developers, Medical Professionals, Notes, Writers, Email Power Users.
-  </p>
+    <p class="hero-note text-center" style="margin-top: 2rem; opacity: 0.8;">
+      Perfect for Developers, Medical Professionals, Notes, Writers, Email Power Users.
+    </p>
   </div>
 </section>
 
@@ -114,99 +310,109 @@ const duplicatedApps = [...apps, ...apps];
     background-color: var(--color-bg-primary);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
+    padding: var(--space-3xl) 0;
   }
 
-  .carousel-container {
+  .apps-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: var(--space-3xl) 0;
+    overflow: hidden;
+  }
+
+  .carousel-row {
     position: relative;
     width: 100%;
-    margin: var(--space-3xl) 0;
+    overflow: hidden;
     mask-image: linear-gradient(
       to right,
       transparent,
-      black 5%,
-      black 95%,
+      black 8%,
+      black 92%,
       transparent
     );
     -webkit-mask-image: linear-gradient(
       to right,
       transparent,
-      black 5%,
-      black 95%,
+      black 8%,
+      black 92%,
       transparent
     );
   }
 
-  .carousel-track {
+  .track {
     display: flex;
-    gap: var(--space-lg);
-    animation: scroll 40s linear infinite;
+    align-items: center;
+    gap: 3rem;
     width: max-content;
+    will-change: transform;
   }
 
-  .carousel-track:hover {
+  /* Right to Left animation */
+  .track-rtl {
+    animation: scroll-rtl 50s linear infinite;
+  }
+
+  /* Left to Right animation */
+  .track-ltr {
+    animation: scroll-ltr 50s linear infinite;
+  }
+
+  .track:hover {
     animation-play-state: paused;
   }
 
-  @keyframes scroll {
+  @keyframes scroll-rtl {
+    0% {
+      transform: translateX(-33.333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scroll-ltr {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-33.333%);
     }
   }
 
-  .app-card {
+  /* App Item Styling - Horizontal Layout */
+  .app-item {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-lg);
-    background: var(--color-bg-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    min-width: 120px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 0.75rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
   }
 
-  .app-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.2);
+  .app-item:hover {
+    background: rgba(255, 255, 255, 0.05);
   }
 
-  .app-card:hover .app-name {
+  .app-item:hover .app-label {
     color: var(--color-text-primary);
   }
 
-  .app-icon-wrapper {
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .app-icon-svg {
+  .app-icon {
     width: 56px;
     height: 56px;
     border-radius: 12px;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .app-icon-svg :global(svg) {
+  .app-icon img {
     width: 100%;
     height: 100%;
-  }
-
-  .app-icon-img {
-    width: 48px;
-    height: 48px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
 
   .app-icon-fallback {
@@ -218,64 +424,83 @@ const duplicatedApps = [...apps, ...apps];
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   .app-icon-fallback span {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 600;
     color: var(--color-text-muted);
   }
 
-  .app-name {
-    font-size: 13px;
-    color: var(--color-text-secondary);
+  .app-label {
+    font-size: 1.375rem;
+    color: #FFFFFF;
     font-weight: 500;
-    text-align: center;
     white-space: nowrap;
-    transition: color var(--transition-normal);
+    transition: color 0.3s ease;
   }
 
-  .apps-note {
-    margin-top: var(--space-lg);
-    font-size: 14px;
+  /* Different speeds for visual variety */
+  .row-1 .track {
+    animation-duration: 45s;
+  }
+
+  .row-2 .track {
+    animation-duration: 55s;
+  }
+
+  .row-3 .track {
+    animation-duration: 50s;
   }
 
   /* ========== RESPONSIVE ========== */
   @media (max-width: 768px) {
-    .carousel-track {
-      gap: var(--space-md);
-      animation-duration: 30s;
+    .track {
+      gap: 1.5rem;
     }
 
-    .app-card {
-      min-width: 100px;
-      padding: var(--space-md);
+    .app-item {
+      padding: 0.375rem 0.75rem;
     }
 
-    .app-icon-wrapper,
-    .app-icon-svg,
+    .app-icon {
+      width: 36px;
+      height: 36px;
+    }
+
     .app-icon-fallback {
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
     }
 
-    .app-icon-img {
-      width: 40px;
-      height: 40px;
+    .app-label {
+      font-size: 1.125rem;
     }
 
-    .app-name {
-      font-size: 12px;
+    .track-rtl,
+    .track-ltr {
+      animation-duration: 35s;
     }
   }
 
   @media (max-width: 480px) {
-    .carousel-track {
-      animation-duration: 25s;
+    .apps-carousel {
+      gap: 1rem;
     }
 
-    .app-card {
-      min-width: 90px;
+    .app-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .app-icon-fallback {
+      width: 32px;
+      height: 32px;
+    }
+
+    .app-label {
+      font-size: 1rem;
     }
   }
 </style>

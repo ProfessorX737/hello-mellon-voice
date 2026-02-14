@@ -229,7 +229,7 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
       </div>
       
       <h1 class="hero-title" data-animate="fade-up" data-delay="100">
-        <span class="title-line">Don't type,</span>
+        <span class="title-line">Never Type Again:</span>
         <span class="title-line title-accent">
           <span class="gradient-text">just speak</span>
           <svg class="title-underline" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -246,7 +246,7 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
       </h1>  
       
       <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
-        The voice-to-text AI that turns speech into clear, polished writing in every app. 100% private, offline, and faster than typing.
+        The <span class="highlight-free"><strong>FREE</strong></span> voice-to-text AI that turns speech into clear, polished writing in every app. 100% private, offline, and faster than typing.
       </p>
       
       <div class="hero-cta" data-animate="fade-up" data-delay="300">
@@ -264,9 +264,11 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
           <div class="avatar avatar-2"></div>
           <div class="avatar avatar-3"></div>
           <div class="avatar avatar-4"></div>
-          <div class="avatar-more">+2k</div>
+    
+      <div class="avatar-more">+</div>
+        
         </div>
-        <p class="social-proof-text">Trusted by <strong>2,000+</strong> professionals</p>
+        <p class="social-proof-text">Trusted by <!-- <strong>2,000+ </strong> --> professionals worldwide </p>
       </div>
     </div>
     
@@ -359,8 +361,6 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
   </div>
   
   <!-- Animated Feature Badge - Below the hero section -->
-  <div class="feature-marquee-container">
-    <div class="feature-marquee">
       <div class="feature-badge-container">
         <div class="feature-badge-wrapper">
           <div class="feature-badge-item badge-item-1">
@@ -386,27 +386,17 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  
-  <!-- Scroll Indicator -->
-  <div class="scroll-indicator">
-    <div class="scroll-mouse">
-      <div class="scroll-wheel"></div>
-    </div>
-  </div>
-</section>
-
+ 
 <style>
   /* ========== HERO SECTION ========== */
   .hero {
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding: var(--space-4xl) 0 0;
+    padding: calc(var(--space-4xl) + 60px) 0 var(--space-3xl);
   }
 
   /* Animated Background */
@@ -564,6 +554,11 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     }
   }
 
+  .highlight-free {
+    color: #22c55e;
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+  }
+
   .hero-subtitle {
     font-size: clamp(18px, 2vw, 21px);
     color: var(--color-text-secondary);
@@ -703,11 +698,11 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
   .flowing-text-wrapper {
     display: flex;
     width: max-content;
-    animation: flow-text-left 20s linear infinite;
+    animation: flow-text-rtl 15s linear infinite;
   }
 
   .flowing-text {
-    font-size: 18px;
+    font-size: 16px;
     color: var(--color-text-primary);
     line-height: 1.5;
     white-space: nowrap;
@@ -716,12 +711,12 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     letter-spacing: -0.02em;
   }
 
-  @keyframes flow-text-left {
+  @keyframes flow-text-rtl {
     0% {
       transform: translateX(-50%);
     }
     100% {
-      transform: translateX(0);
+      transform: translateX(0%);
     }
   }
 
@@ -926,6 +921,7 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     justify-content: center;
     align-items: center;
     min-height: 80px;
+    margin-top: var(--space-2xl);
   }
 
   .feature-badge-wrapper {
@@ -1093,25 +1089,39 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
   }
 
   /* ========== RESPONSIVE ========== */
-  @media (max-width: 968px) {
+  /* Tablet and below */
+  @media screen and (max-width: 968px) {
+    .hero {
+      padding: 120px 0 40px;
+    }
+
     .hero-container {
-      grid-template-columns: 1fr;
-      gap: var(--space-3xl);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
       text-align: center;
+      padding: 0 20px;
     }
 
     .hero-content {
       max-width: 100%;
+      width: 100%;
       order: 1;
     }
 
     .hero-visual {
       order: 2;
+      width: 100%;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 8vw, 56px);
     }
 
     .hero-subtitle {
       margin-left: auto;
       margin-right: auto;
+      font-size: 16px;
     }
 
     .hero-cta {
@@ -1123,36 +1133,93 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     }
 
     .floating-element {
-      display: none;
+      display: none !important;
     }
 
-    .feature-marquee-container {
-      margin-top: var(--space-2xl);
+    .feature-badge-container {
+      margin-top: 24px;
     }
   }
 
-  @media (max-width: 768px) {
+  /* Small tablet / large phone */
+  @media screen and (max-width: 768px) {
     .hero {
-      padding: var(--space-3xl) 0 0;
+      padding: 100px 0 32px;
+    }
+
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .hero-content {
+      max-width: 100%;
+      width: 100%;
+      order: 1;
+      display: block;
+    }
+
+    .hero-visual {
+      order: 2;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 7vw, 44px);
+    }
+
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 15px;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .hero-social-proof {
+      justify-content: center;
     }
 
     .demo-card {
       max-width: 100%;
+      padding: 16px;
+    }
+
+    .flowing-text {
+      font-size: 12px;
+    }
+
+    .flowing-content {
+      height: 65px;
+    }
+
+    .flowing-waveform-mini {
+      width: 80px;
+      padding: 6px 12px 6px 8px;
+    }
+
+    .flowing-waveform-mini svg {
+      height: 45px;
     }
 
     .marquee-fade-left,
     .marquee-fade-right {
-      width: 80px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-cta {
-      flex-direction: column;
+      width: 50px;
     }
 
-    .hero-cta .btn {
-      width: 100%;
+    .floating-element {
+      display: none !important;
+    }
+
+    .feature-badge-container {
+      margin-top: 20px;
     }
 
     .feature-badge-wrapper {
@@ -1163,9 +1230,154 @@ const labelKeyframesCSS = sentenceTimings.map((timing) => {
     .badge-text {
       font-size: 20px;
     }
+  }
+
+  /* Phone */
+  @media screen and (max-width: 480px) {
+    .hero {
+      padding: 90px 0 24px;
+    }
+
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 100%;
+      width: 100%;
+      order: 1;
+      display: block;
+    }
+
+    .hero-visual {
+      order: 2;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-badge {
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .title-underline {
+      bottom: -4px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      margin-bottom: 16px;
+      gap: 8px;
+    }
+
+    .hero-cta .btn {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+
+    .hero-social-proof {
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .avatar,
+    .avatar-more {
+      width: 32px;
+      height: 32px;
+      font-size: 10px;
+    }
+
+    .social-proof-text {
+      font-size: 13px;
+    }
+
+    .demo-card {
+      padding: 12px;
+      max-width: 100%;
+    }
+
+    .flowing-text-container {
+      padding: 8px;
+    }
+
+    .flowing-content {
+      height: 55px;
+    }
+
+    .flowing-text {
+      font-size: 10px;
+      padding-right: 2rem;
+    }
+
+    .flowing-waveform-mini {
+      width: 60px;
+      padding: 4px 8px 4px 6px;
+    }
+
+    .flowing-waveform-mini svg {
+      height: 35px;
+    }
+
+    .flowing-speed-indicator {
+      font-size: 9px;
+      gap: 4px;
+      padding-top: 6px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .flowing-speed-indicator svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .flowing-speed-indicator > span:first-of-type {
+      display: none;
+    }
+
+    .speed-badge {
+      font-size: 9px;
+      padding: 2px 5px;
+    }
+
+    .feature-badge-wrapper {
+      width: 200px;
+      height: 60px;
+    }
+
+    .badge-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .badge-text {
+      font-size: 16px;
+    }
 
     .feature-badge-item {
-      padding: var(--space-sm) var(--space-lg);
+      padding: 8px 16px;
+      gap: 8px;
+    }
+
+    .feature-badge-container {
+      margin-top: 12px;
     }
   }
 </style>

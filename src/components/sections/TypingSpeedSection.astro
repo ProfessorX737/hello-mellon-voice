@@ -42,7 +42,7 @@
       <!-- Right side: Dictating using Mellon -->
       <div class="comparison-box dictation">
         <div class="comparison-header dictation-header">
-          <img src="/mellon-mac-toolbar-icon.png" alt="Mellon" class="header-icon mellon-icon" width="20" height="20" />
+          <img src="/mellon-big-whitebg.svg" alt="Mellon" class="header-icon mellon-icon" width="20" height="20" />
           Dictating using Mellon
         </div>
         <div class="comparison-content">
@@ -80,9 +80,13 @@
     let manualDone = false;
     let dictationDone = false;
     let isRunning = false;
+    let hasStarted = false;
     
     // DOM elements
     let typedText, streamingContainer, recordingPill;
+    
+    // Intersection Observer
+    let observer;
     
     // Manual typing sequence
     const typoSequence = [
@@ -337,15 +341,12 @@
       }
     }
     
-    // Initialize and start both animations together
-    function init() {
-      typedText = document.querySelector('.typed-text');
-      streamingContainer = document.getElementById('streaming-text');
-      recordingPill = document.querySelector('.recording-pill');
-      
+    // Start the animation
+    function startAnimation() {
       if (!typedText || !streamingContainer) return;
       if (isRunning) return; // Prevent double init
       isRunning = true;
+      hasStarted = true;
       
       // Reset state
       manualDone = false;
@@ -364,12 +365,55 @@
       }, 500);
     }
     
-    // Start on page load
+    // Initialize and set up Intersection Observer
+    function init() {
+      typedText = document.querySelector('.typed-text');
+      streamingContainer = document.getElementById('streaming-text');
+      recordingPill = document.querySelector('.recording-pill');
+      
+      if (!typedText || !streamingContainer) return;
+      
+      // Set up Intersection Observer to detect when section is visible
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStarted) {
+            // Section is now visible, start the animation
+            startAnimation();
+          }
+        });
+      }, {
+        root: null, // Use viewport
+        rootMargin: '0px',
+        threshold: 0.3 // Trigger when 30% of the section is visible
+      });
+      
+      // Observe the typing comparison demo container
+      const demoContainer = document.querySelector('.typing-comparison-demo');
+      if (demoContainer) {
+        observer.observe(demoContainer);
+      }
+    }
+    
+    // Cleanup function
+    function cleanup() {
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+      }
+    }
+    
+    // Start on page load - but animation will wait for intersection
     document.addEventListener('DOMContentLoaded', init);
     document.addEventListener('astro:page-load', () => {
+      // Reset state for astro page transitions
+      hasStarted = false;
       isRunning = false;
+      cleanup();
       init();
     });
+    
+    // Cleanup on page unload
+    document.addEventListener('astro:before-swap', cleanup);
   })();
 </script>
 
