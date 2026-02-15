@@ -42,7 +42,11 @@
       <!-- Right side: Dictating using Mellon -->
       <div class="comparison-box dictation">
         <div class="comparison-header dictation-header">
-          <img src="/mellon-big-whitebg.svg" alt="Mellon" class="header-icon mellon-icon" width="20" height="20" />
+          <svg class="header-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5.5" y="2" width="5" height="7" rx="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M3 7.5a4 4 0 0 0 8 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            <line x1="8" y1="11" x2="8" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
           Dictating using Mellon
         </div>
         <div class="comparison-content">
@@ -485,12 +489,6 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-  }
-
-  .mellon-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
   }
 
   .dictation-header {
