@@ -13,7 +13,7 @@
 
 export const config = {
   siteUrl: 'https://mellonvoice.com',
-  freeDownloadUrl: 'https://gumroad.com/l/mellon-duo',
+  freeDownloadUrl: 'https://github.com/ProfessorX737/hello-mellon-voice/releases/latest/download/mellon-1.1.1.zip',
   donateDownloadUrl: 'https://gumroad.com/l/mellon-donate', // Create pay-what-you-want product on Gumroad
   formspreeFormId: 'YOUR_FORMSPREE_FORM_ID', // From formspree.io
 };
