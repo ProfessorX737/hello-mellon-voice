@@ -34,8 +34,6 @@ import { config } from '../data/config';
           <a 
             href="https://www.paypal.com/donate/?hosted_button_id=8D8LYTB9K6HVU" 
             class="download-option option-donate" 
-            target="_blank" 
-            rel="noopener"
             data-option="donate"
             id="donate-btn"
           >
@@ -52,7 +50,7 @@ import { config } from '../data/config';
             rel="noopener"
             data-option="free"
           >
-            <span class="option-emoji">😐</span>
+            <span class="option-emoji">🥲</span>
             <span class="option-title">Download free</span>
             <span class="option-desc">No donation, no problem</span>
             <span class="option-cta">Just download →</span>
@@ -71,7 +69,7 @@ import { config } from '../data/config';
             />
           </div>
           <h2 class="post-donate-title">You're awesome!</h2>
-          <p class="post-donate-desc">Complete your donation in the PayPal tab, then grab your download below.</p>
+          <p class="post-donate-desc">Thank you for supporting Mellon! Grab your download below.</p>
           <a 
             href={config.freeDownloadUrl} 
             class="download-btn"
@@ -165,23 +163,44 @@ import { config } from '../data/config';
     if (happyGif) happyGif.src = happyGifs[0];
     if (sadGif) sadGif.src = sadGifs[0];
 
-    // Donate button: open PayPal, then show download
+    // Donate button: open PayPal popup, show thank-you when it closes
     const donateBtn = document.getElementById('donate-btn');
     const downloadChoice = document.getElementById('download-choice');
     const postDonate = document.getElementById('post-donate');
     const downloadNote = document.getElementById('download-note');
+    const PAYPAL_DONATE_URL = 'https://www.paypal.com/donate/?hosted_button_id=8D8LYTB9K6HVU';
 
-    donateBtn?.addEventListener('click', function() {
-      // Link opens PayPal in new tab (default behavior)
-      // Transition the page to show the download
+    function showPostDonateState() {
+      downloadChoice?.classList.add('fade-out');
       setTimeout(() => {
-        downloadChoice?.classList.add('fade-out');
-        setTimeout(() => {
-          downloadChoice!.style.display = 'none';
-          if (downloadNote) downloadNote.style.display = 'none';
-          postDonate?.classList.add('visible');
+        if (downloadChoice) downloadChoice.style.display = 'none';
+        if (downloadNote) downloadNote.style.display = 'none';
+        postDonate?.classList.add('visible');
+      }, 300);
+    }
+
+    donateBtn?.addEventListener('click', function(e) {
+      e.preventDefault();
+      const w = 500;
+      const h = 700;
+      const left = (screen.width - w) / 2;
+      const top = (screen.height - h) / 2;
+      const popup = window.open(
+        PAYPAL_DONATE_URL,
+        'PayPalDonate',
+        `width=${w},height=${h},top=${top},left=${left},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`
+      );
+
+      if (popup) {
+        const pollClose = setInterval(() => {
+          if (popup.closed) {
+            clearInterval(pollClose);
+            showPostDonateState();
+          }
         }, 300);
-      }, 200);
+      } else {
+        showPostDonateState();
+      }
     });
   })();
 </script>
