@@ -192,8 +192,8 @@ import { config } from '../data/config';
       e.preventDefault();
       const w = 500;
       const h = 700;
-      const left = (screen.width - w) / 2;
-      const top = (screen.height - h) / 2;
+      const left = window.screenX + Math.max(0, (window.outerWidth - w) / 2);
+      const top = window.screenY + Math.max(0, (window.outerHeight - h) / 2);
       const popup = window.open(
         PAYPAL_DONATE_URL,
         'PayPalDonate',
