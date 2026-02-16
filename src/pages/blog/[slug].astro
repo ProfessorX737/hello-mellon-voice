@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogPosts } from '../../data/blog';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout 
+  title={`${post.title} | Mellon Blog`}
+  description={post.description}
+>
+  <article class="post-section">
+    <div class="container">
+      <header class="post-header">
+        <a href="/blog" class="post-back">← Back to Blog</a>
+        <time class="post-date" datetime={post.date}>
+          {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        <h1 class="post-title">{post.title}</h1>
+      </header>
+
+      <div class="post-content" set:html={post.content} />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-section {
+    padding: var(--space-5xl) 0;
+    min-height: 60vh;
+  }
+
+  .post-header {
+    max-width: 720px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .post-back {
+    display: inline-block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-bottom: var(--space-md);
+    transition: color var(--transition-fast);
+  }
+
+  .post-back:hover {
+    color: var(--color-accent-primary);
+  }
+
+  .post-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+
+  .post-content {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+  }
+
+  .post-content :global(p) {
+    margin-bottom: var(--space-lg);
+  }
+
+  .post-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .post-content :global(a) {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+  }
+
+  .post-content :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-xl);
+  }
+
+  .post-content :global(li) {
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-content :global(h2) {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: var(--space-2xl) 0 var(--space-md);
+  }
+
+  .post-content :global(h3) {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: var(--space-xl) 0 var(--space-sm);
+  }
+
+  .post-content :global(.cta-block) {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.08) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    margin: var(--space-2xl) 0;
+  }
+
+  .post-content :global(.cta-block p) {
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+
+  .post-content :global(.cta-block a) {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+</style>

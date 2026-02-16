@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Our Roadmap | Mellon"
+  description="Mellon's roadmap: joining the Chronocat ecosystem for ADHD productivity, AI companions, and Mellon AI for B2B automation."
+>
+  <section class="roadmap-section">
+    <div class="container">
+      <h1 class="roadmap-title">Our Roadmap</h1>
+      <p class="roadmap-intro">
+        Mellon is part of a broader vision for productivity and AI. Here's where we're headed.
+      </p>
+
+      <div class="roadmap-content">
+        <div class="roadmap-card">
+          <h2>Chronocat Ecosystem</h2>
+          <p>
+            We're adding Mellon to our ecosystem of <a href="https://chronocat.app" target="_blank" rel="noopener">chronocat.app</a>—a productivity app designed for ADHD. Chronocat helps you stay focused and organized, and Mellon brings voice-first input to that experience.
+          </p>
+          <p>
+            Together, we're building an <strong>AI companion</strong> and <strong>personal assistant</strong> that will interact with your calendar, act as an ADHD coach, and help you achieve your goals. Think of it as a coach for personal productivity—always there to help you stay on track.
+          </p>
+        </div>
+
+        <div class="roadmap-card">
+          <h2>Mellon Projects</h2>
+          <p>
+            Mellon also joins our ecosystem of <strong>Mellon Projects</strong>. At the heart of this is <strong>Mellon AI</strong>—a B2B service for small to medium-sized businesses.
+          </p>
+          <p>
+            Mellon AI helps businesses set up AI automation, AI assistants, AI employees, AI SEO specialists, and AI marketing specialists. We bring enterprise-grade AI capabilities to teams that want to move fast without the complexity.
+          </p>
+        </div>
+
+        <div class="roadmap-summary">
+          <p>
+            <strong>In short:</strong> Mellon Voice is the consumer-facing voice dictation tool. Chronocat is the ADHD productivity app. Mellon AI is the B2B arm for business automation. Together, they form a cohesive ecosystem for getting more done—whether you're an individual or a business.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .roadmap-section {
+    padding: var(--space-5xl) 0;
+    min-height: 60vh;
+  }
+
+  .roadmap-title {
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+    text-align: center;
+  }
+
+  .roadmap-intro {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--space-4xl);
+    line-height: 1.6;
+  }
+
+  .roadmap-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .roadmap-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    transition: border-color var(--transition-normal);
+  }
+
+  .roadmap-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .roadmap-card h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .roadmap-card p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .roadmap-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .roadmap-card a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+  }
+
+  .roadmap-card a:hover {
+    border-bottom-color: var(--color-accent-primary);
+  }
+
+  .roadmap-summary {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+  }
+
+  .roadmap-summary p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .roadmap-section {
+      padding: var(--space-4xl) 0;
+    }
+
+    .roadmap-card {
+      padding: var(--space-xl);
+    }
+  }
+</style>

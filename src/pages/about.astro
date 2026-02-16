@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="About Us | Habitedge"
+  description="Habitedge Pty Ltd builds Mellon Voice, Mellon AI, Chronocat, and productivity tools for individuals and businesses."
+>
+  <section class="about-section">
+    <div class="container">
+      <h1 class="about-title">About Habitedge</h1>
+      <p class="about-tagline">Building tools that help people and businesses get more done.</p>
+
+      <div class="about-content">
+        <div class="about-block">
+          <h2>Who We Are</h2>
+          <p>
+            <strong>Habitedge Pty Ltd</strong> is an Australian company focused on productivity software and AI solutions. We build products that make work and life easier—whether you're an individual managing ADHD or a business looking to automate.
+          </p>
+        </div>
+
+        <div class="about-block">
+          <h2>Our Products</h2>
+          <ul class="product-list">
+            <li>
+              <strong>Mellon Voice</strong> — Free, privacy-first voice dictation for macOS. Speak instead of type, with everything processed locally on your Mac.
+            </li>
+            <li>
+              <strong>Chronocat</strong> — A productivity app designed for ADHD, helping you stay focused and organized. <a href="https://chronocat.app" target="_blank" rel="noopener">chronocat.app</a>
+            </li>
+            <li>
+              <strong>Mellon AI</strong> — B2B service for small to medium businesses. We set up AI automation, AI assistants, AI employees, AI SEO specialists, and AI marketing specialists.
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-block">
+          <h2>Our Vision</h2>
+          <p>
+            We believe in tools that respect your privacy, work offline when possible, and don't lock you into subscriptions. We're building an ecosystem of AI and productivity products that work together—from voice dictation to ADHD coaching to business automation.
+          </p>
+        </div>
+
+        <div class="about-block">
+          <h2>Contact</h2>
+          <p>
+            Get in touch at <a href="mailto:daniel@habitedge.app">daniel@habitedge.app</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-section {
+    padding: var(--space-5xl) 0;
+    min-height: 60vh;
+  }
+
+  .about-title {
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+    text-align: center;
+  }
+
+  .about-tagline {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-4xl);
+  }
+
+  .about-content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .about-block {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+  }
+
+  .about-block h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .about-block p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .about-block a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .about-block a:hover {
+    text-decoration: underline;
+  }
+
+  .product-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .product-list li {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    padding-left: var(--space-md);
+    border-left: 3px solid rgba(99, 102, 241, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .about-block {
+      padding: var(--space-xl);
+    }
+  }
+</style>
