@@ -15,7 +15,8 @@
                     <li>This prevents the AI from misinterpreting dictated text as instructions</li>
                 </ul>
             ]]></description>
-            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.1.1/mellon-1.1.1.zip" length="58263216" type="application/octet-stream" sparkle:edSignature="kpuAoa6rDZEwrjhY6MhSRAAKCmMlInU48iHFAztwbbr6bq6cu/o3+NC1PnCHOgC2x4lpVOm4kJEz6Ddq5j18Bg=="/>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.1.1/mellon-1.1.1.zip" length="116386524" type="application/octet-stream" sparkle:edSignature="xLsRaCz0dRXJUogWh+59ZyLedQzR5VCJdO1CnoFoU+Uznz8h0a/6uuAEeGDLufuL6qF44sFBIziI32ekXD+SAw=="/>
+            <sparkle:minimumAutoupdateVersion>1.0.0</sparkle:minimumAutoupdateVersion>
         </item>
         <item>
             <title>1.1.0</title>
