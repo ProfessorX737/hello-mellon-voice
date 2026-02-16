@@ -1,0 +1,311 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { config } from '../data/config';
+---
+
+<BaseLayout 
+  title="Download Mellon | Free Voice Dictation for Mac"
+  description="Download Mellon - free, privacy-first voice dictation for Mac. Choose to support us with a donation or download for free."
+>
+  <section class="download-section">
+    <div class="container">
+      <h1 class="download-title">Get Mellon</h1>
+      <p class="download-subtitle">Choose how you'd like to download</p>
+
+      <div class="download-choice" id="download-choice">
+        <div class="gif-display" id="gif-display" aria-hidden="true">
+          <img 
+            src="" 
+            alt="" 
+            class="gif-img gif-happy"
+            data-state="donate"
+            id="happy-gif"
+          />
+          <img 
+            src="" 
+            alt="" 
+            class="gif-img gif-sad"
+            data-state="free"
+            id="sad-gif"
+          />
+        </div>
+
+        <div class="download-options">
+          <a 
+            href={config.donateDownloadUrl} 
+            class="download-option option-donate" 
+            target="_blank" 
+            rel="noopener"
+            data-option="donate"
+          >
+            <span class="option-emoji">🤩</span>
+            <span class="option-title">Download with donation</span>
+            <span class="option-desc">Support development & get priority support</span>
+            <span class="option-cta">I'll support Mellon →</span>
+          </a>
+
+          <a 
+            href={config.freeDownloadUrl} 
+            class="download-option option-free" 
+            target="_blank" 
+            rel="noopener"
+            data-option="free"
+          >
+            <span class="option-emoji">😐</span>
+            <span class="option-title">Download free</span>
+            <span class="option-desc">No donation, no problem</span>
+            <span class="option-cta">Just download →</span>
+          </a>
+        </div>
+      </div>
+
+      <p class="download-note">Both options include the full Mellon app. Thank you for using Mellon!</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  (function() {
+    const gifDisplay = document.getElementById('gif-display');
+    const donateOption = document.querySelector('.option-donate');
+    const freeOption = document.querySelector('.option-free');
+    const happyGif = document.getElementById('happy-gif') as HTMLImageElement | null;
+    const sadGif = document.getElementById('sad-gif') as HTMLImageElement | null;
+
+    const happyGifs = [
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hoOGQ2ZzdmNzZ0aTRybWMxZ2c0NDBpazFncnk2YmF1MWhlb2tvYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dmhncG9mMWI4aDhucGpkdG0xcXkwbDdyaHgwbGQxcmpoNGJ4bnh1YSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/CNAhQuDceLwwo/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dXJpYjVjbjVjbTBkaGt3MzZxcDV2b3lnY2I3MTdpOGFrbHdjZWN2eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MziKDo6gO7x8A/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bWVkNXpyemdpN2ljY3J4OGYzemo1cmJzZDhpYTBicDdteHVvMDBpciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VbKLOdvCxBFNZpYvhL/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3hqMmZlZjNxNWR6eXkzY2lseXhicHZ2Y2JwMWZiYjk1dGI3Mm52NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11sBLVxNs7v6WA/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGpwOTdoMGRpODJmbTJmOTA4amR0b2N3MnVwMHBxcGxmcjZscmxtbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DIuf1nZCDvupSmBQ95/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXUxcDd4anl0cjhnMTRhYnVoOWF3Y3htbHJkZHViYm1vaHk0N3M2aiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l3vRlT2k2L35Cnn5C/giphy.gif',
+    ];
+
+    const sadGifs = [
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2xxNDVxNjQ3dndoeHNjbmJwamNlZ3liOGlvNnQ0aXA5eW9uM3I5bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oAt21Fnr4i54uK8vK/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2xxNDVxNjQ3dndoeHNjbmJwamNlZ3liOGlvNnQ0aXA5eW9uM3I5bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Jq7y34Hgfy01y/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjRxMGN4bzd4YTc1N2piaWllZnJwcDhpeW42OGNtZ3htcmFkN3RzcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/aWMJvA76tNnBR9gkpT/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjRxMGN4bzd4YTc1N2piaWllZnJwcDhpeW42OGNtZ3htcmFkN3RzcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/7AzEXdIb1wyCTWJntb/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTRxYjM5Y3Fud3Jxc2hpbmttN2s0dmdvdDk0c3Ricnd4MWs3dDRwMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/A5tGm61RrBHpu/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaThsNnYzNzEyZHFlYnU3eXhuY2YyYzF4ZjFoeDBsc2V1dGIxZmNscyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/dCwNmR9BBOzKpiBQOs/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bzM3dGd4dDVhYmZ4bW5xbG04aDNkMHNsbG11cGo5NHFrMW9wd244NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/12Bpme5pTzGmg8/giphy.gif',
+      'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWJjeDFlOGJnbWxscTd3bHExaWM1c2o3OGlsMmlibnhydHBoMm90NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/pNn4hlkovWAHfpLRRD/giphy.gif'
+    ];
+
+    let happyIndex = 0;
+    let sadIndex = 0;
+
+    // Preload all GIFs into browser cache
+    happyGifs.forEach(src => { const img = new Image(); img.src = src; });
+    sadGifs.forEach(src => { const img = new Image(); img.src = src; });
+
+    function showHappy() {
+      if (happyGif) {
+        happyGif.src = happyGifs[happyIndex];
+        happyIndex = (happyIndex + 1) % happyGifs.length;
+      }
+      requestAnimationFrame(() => {
+        gifDisplay?.setAttribute('data-active', 'donate');
+      });
+    }
+
+    function showSad() {
+      if (sadGif) {
+        sadGif.src = sadGifs[sadIndex];
+        sadIndex = (sadIndex + 1) % sadGifs.length;
+      }
+      requestAnimationFrame(() => {
+        gifDisplay?.setAttribute('data-active', 'free');
+      });
+    }
+
+    function showDefault() {
+      gifDisplay?.setAttribute('data-active', '');
+    }
+
+    donateOption?.addEventListener('mouseenter', showHappy);
+    donateOption?.addEventListener('focus', showHappy);
+    freeOption?.addEventListener('mouseenter', showSad);
+    freeOption?.addEventListener('focus', showSad);
+
+    gifDisplay?.addEventListener('mouseleave', showDefault);
+    donateOption?.addEventListener('mouseleave', function(e) {
+      if (!freeOption?.contains(e.relatedTarget as Node)) showDefault();
+    });
+    freeOption?.addEventListener('mouseleave', function(e) {
+      if (!donateOption?.contains(e.relatedTarget as Node)) showDefault();
+    });
+
+    // Set initial GIFs
+    if (happyGif) happyGif.src = happyGifs[0];
+    if (sadGif) sadGif.src = sadGifs[0];
+  })();
+</script>
+
+<style>
+  .download-section {
+    padding: var(--space-5xl) 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .download-title {
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .download-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .download-choice {
+    max-width: 700px;
+    margin: 0 auto var(--space-2xl);
+  }
+
+  .gif-display {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    line-height: 1;
+    position: relative;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gif-img {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 12px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .gif-display[data-active="donate"] .gif-happy,
+  .gif-display[data-active="free"] .gif-sad {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+
+  .gif-display[data-active="donate"] .gif-sad,
+  .gif-display[data-active="free"] .gif-happy {
+    visibility: hidden;
+  }
+
+  .gif-display:not([data-active]) .gif-happy {
+    opacity: 0.6;
+    transform: scale(0.95);
+    visibility: visible;
+  }
+
+  .gif-display:not([data-active]) .gif-sad {
+    visibility: hidden;
+  }
+
+  .download-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .download-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+  }
+
+  .option-donate {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%);
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+
+  .option-donate:hover {
+    border-color: rgba(34, 197, 94, 0.6);
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.2);
+  }
+
+  .option-free {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .option-free:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .option-emoji {
+    font-size: 48px;
+    margin-bottom: var(--space-md);
+  }
+
+  .option-donate .option-emoji { content: '🤩'; }
+  .option-free .option-emoji { content: '😐'; }
+
+  .option-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .option-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  .option-cta {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-accent-primary);
+  }
+
+  .option-donate .option-cta {
+    color: #22c55e;
+  }
+
+  .download-note {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .download-options {
+      grid-template-columns: 1fr;
+    }
+
+    .gif-img {
+      width: 110px;
+      height: 110px;
+    }
+
+    .gif-display {
+      min-height: 120px;
+    }
+  }
+</style>
