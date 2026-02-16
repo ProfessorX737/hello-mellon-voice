@@ -3,9 +3,24 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.1.1</title>
+            <pubDate>Sun, 16 Feb 2026 18:32:00 +1100</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.1.1</h2>
+                <ul>
+                    <li><strong>Security Fix:</strong> Resolved AI enhancement prompt injection vulnerability by wrapping user transcriptions in XML tags</li>
+                    <li>This prevents the AI from misinterpreting dictated text as instructions</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.1.1/mellon-1.1.1.zip" length="58263216" type="application/octet-stream" sparkle:edSignature="kpuAoa6rDZEwrjhY6MhSRAAKCmMlInU48iHFAztwbbr6bq6cu/o3+NC1PnCHOgC2x4lpVOm4kJEz6Ddq5j18Bg=="/>
+        </item>
+        <item>
             <title>1.1.0</title>
             <pubDate>Sat, 14 Feb 2026 23:14:00 +1100</pubDate>
-            <sparkle:version>1</sparkle:version>
+            <sparkle:version>2</sparkle:version>
             <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
