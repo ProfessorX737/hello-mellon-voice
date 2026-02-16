@@ -78,6 +78,8 @@ import { config } from '../data/config';
           >
             Download Mellon →
           </a>
+          </br>
+          <a href="#" class="donate-again-btn" id="donate-again-btn">Donate again</a>
         </div>
       </div>
 
@@ -188,8 +190,7 @@ import { config } from '../data/config';
       }, 300);
     }
 
-    donateBtn?.addEventListener('click', function(e) {
-      e.preventDefault();
+    function openPayPalPopup(showThankYouOnClose: boolean) {
       const w = 500;
       const h = 700;
       const left = window.screenX + Math.max(0, (window.outerWidth - w) / 2);
@@ -200,16 +201,26 @@ import { config } from '../data/config';
         `width=${w},height=${h},top=${top},left=${left},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`
       );
 
-      if (popup) {
+      if (popup && showThankYouOnClose) {
         const pollClose = setInterval(() => {
           if (popup.closed) {
             clearInterval(pollClose);
             showPostDonateState();
           }
         }, 300);
-      } else {
+      } else if (!popup && showThankYouOnClose) {
         showPostDonateState();
       }
+    }
+
+    donateBtn?.addEventListener('click', function(e) {
+      e.preventDefault();
+      openPayPalPopup(true);
+    });
+
+    document.getElementById('donate-again-btn')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      openPayPalPopup(false);
     });
   })();
 </script>
@@ -440,6 +451,19 @@ import { config } from '../data/config';
   .download-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 50px rgba(34, 197, 94, 0.4);
+  }
+
+  .donate-again-btn {
+    display: inline-block;
+    margin-top: var(--space-lg);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .donate-again-btn:hover {
+    color: #22c55e;
   }
 
   .system-requirements {

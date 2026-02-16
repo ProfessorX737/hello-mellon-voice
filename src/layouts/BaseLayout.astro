@@ -129,6 +129,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           }
         });
       });
+
+      // PayPal donate popup (header, footer, etc.)
+      document.querySelectorAll('.paypal-donate-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const url = 'https://www.paypal.com/donate/?hosted_button_id=8D8LYTB9K6HVU';
+          const w = 500, h = 700;
+          const left = window.screenX + Math.max(0, (window.outerWidth - w) / 2);
+          const top = window.screenY + Math.max(0, (window.outerHeight - h) / 2);
+          window.open(url, 'PayPalDonate', `width=${w},height=${h},top=${top},left=${left},toolbar=no,menubar=no,scrollbars=yes,resizable=yes`);
+          document.getElementById('mobileMenu')?.classList.remove('active');
+          document.getElementById('mobileMenuBtn')?.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
     </script>
   </body>
 </html>
