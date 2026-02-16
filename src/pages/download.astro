@@ -32,11 +32,12 @@ import { config } from '../data/config';
 
         <div class="download-options">
           <a 
-            href={config.donateDownloadUrl} 
+            href="https://www.paypal.com/donate/?hosted_button_id=8D8LYTB9K6HVU" 
             class="download-option option-donate" 
             target="_blank" 
             rel="noopener"
             data-option="donate"
+            id="donate-btn"
           >
             <span class="option-emoji">🤩</span>
             <span class="option-title">Download with donation</span>
@@ -59,7 +60,30 @@ import { config } from '../data/config';
         </div>
       </div>
 
-      <p class="download-note">Both options include the full Mellon app. Thank you for using Mellon!</p>
+      <!-- Post-donation thank you + download -->
+      <div class="post-donate" id="post-donate">
+        <div class="post-donate-inner">
+          <div class="gif-display gif-display-thanks" id="gif-thanks" aria-hidden="true">
+            <img 
+              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hoOGQ2ZzdmNzZ0aTRybWMxZ2c0NDBpazFncnk2YmF1MWhlb2tvYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" 
+              alt="" 
+              class="gif-img gif-thanks-img"
+            />
+          </div>
+          <h2 class="post-donate-title">You're awesome!</h2>
+          <p class="post-donate-desc">Complete your donation in the PayPal tab, then grab your download below.</p>
+          <a 
+            href={config.freeDownloadUrl} 
+            class="download-btn"
+            target="_blank"
+            rel="noopener"
+          >
+            Download Mellon →
+          </a>
+        </div>
+      </div>
+
+      <p class="download-note" id="download-note">Both options include the full Mellon app. Thank you for using Mellon!</p>
     </div>
   </section>
 </BaseLayout>
@@ -140,6 +164,25 @@ import { config } from '../data/config';
     // Set initial GIFs
     if (happyGif) happyGif.src = happyGifs[0];
     if (sadGif) sadGif.src = sadGifs[0];
+
+    // Donate button: open PayPal, then show download
+    const donateBtn = document.getElementById('donate-btn');
+    const downloadChoice = document.getElementById('download-choice');
+    const postDonate = document.getElementById('post-donate');
+    const downloadNote = document.getElementById('download-note');
+
+    donateBtn?.addEventListener('click', function() {
+      // Link opens PayPal in new tab (default behavior)
+      // Transition the page to show the download
+      setTimeout(() => {
+        downloadChoice?.classList.add('fade-out');
+        setTimeout(() => {
+          downloadChoice!.style.display = 'none';
+          if (downloadNote) downloadNote.style.display = 'none';
+          postDonate?.classList.add('visible');
+        }, 300);
+      }, 200);
+    });
   })();
 </script>
 
@@ -292,6 +335,83 @@ import { config } from '../data/config';
     text-align: center;
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
+    transition: opacity 0.3s ease;
+  }
+
+  /* Post-donate state */
+  .download-choice.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .post-donate {
+    display: none;
+    max-width: 500px;
+    margin: 0 auto var(--space-2xl);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .post-donate.visible {
+    display: block;
+    animation: fadeInUp 0.4s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .gif-display-thanks {
+    margin-bottom: var(--space-xl);
+  }
+
+  .gif-thanks-img {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    visibility: visible !important;
+  }
+
+  .post-donate-title {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-donate-desc {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+  }
+
+  .download-btn {
+    display: inline-block;
+    padding: var(--space-md) var(--space-2xl);
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: #fff;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+  }
+
+  .download-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(34, 197, 94, 0.4);
   }
 
   @media (max-width: 640px) {
