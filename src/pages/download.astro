@@ -60,6 +60,15 @@ import { config } from '../data/config';
       </div>
 
       <p class="download-note">Both options include the full Mellon app. Thank you for using Mellon!</p>
+
+      <div class="system-requirements">
+        <h3>System Requirements</h3>
+        <ul>
+          <li><strong>macOS 13.0 (Ventura)</strong> or later</li>
+          <li><strong>Universal Binary:</strong> Works on both Intel and Apple Silicon Macs (M1/M2/M3/M4)</li>
+          <li><strong>Size:</strong> ~56 MB download</li>
+        </ul>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -292,6 +301,44 @@ import { config } from '../data/config';
     text-align: center;
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
+  }
+
+  .system-requirements {
+    max-width: 500px;
+    margin: var(--space-3xl) auto 0;
+    padding: var(--space-xl);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+  }
+
+  .system-requirements h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+    text-align: center;
+  }
+
+  .system-requirements ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .system-requirements li {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .system-requirements li:last-child {
+    border-bottom: none;
+  }
+
+  .system-requirements strong {
+    color: var(--color-text-primary);
   }
 
   @media (max-width: 640px) {
