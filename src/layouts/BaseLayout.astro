@@ -103,37 +103,43 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         });
       });
 
-      // Parallax effect for gradient orbs
-      let ticking = false;
+      // Parallax effect for gradient orbs (cached selectors)
+      const orbs = document.querySelectorAll('.gradient-orb, .mesh-blob, .orb-1, .orb-2, .orb-3');
+      let scrollTicking = false;
       window.addEventListener('scroll', () => {
-        if (!ticking) {
+        if (!scrollTicking) {
           window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
-            const orbs = document.querySelectorAll('.gradient-orb, .mesh-blob, .orb-1, .orb-2, .orb-3');
             orbs.forEach((orb, index) => {
               const speed = 0.5 + (index * 0.1);
               orb.style.transform = `translateY(${scrolled * speed}px)`;
             });
-            ticking = false;
+            scrollTicking = false;
           });
-          ticking = true;
+          scrollTicking = true;
         }
-      });
+      }, { passive: true });
 
-      // Mouse move effect for interactive elements
+      // Mouse move effect for interactive elements (cached + throttled)
+      const cards = document.querySelectorAll('.feature-card, .pricing-card, .step-card');
+      let mouseTicking = false;
       document.addEventListener('mousemove', (e) => {
-        const cards = document.querySelectorAll('.feature-card, .pricing-card, .step-card');
-        cards.forEach(card => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          
-          if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-          }
+        if (mouseTicking) return;
+        mouseTicking = true;
+        window.requestAnimationFrame(() => {
+          cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+              card.style.setProperty('--mouse-x', `${x}px`);
+              card.style.setProperty('--mouse-y', `${y}px`);
+            }
+          });
+          mouseTicking = false;
         });
-      });
+      }, { passive: true });
 
       // PayPal donate popup (header, footer, etc.)
       document.querySelectorAll('.paypal-donate-btn').forEach(btn => {
