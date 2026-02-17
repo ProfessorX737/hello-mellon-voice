@@ -3,6 +3,23 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.3.0</title>
+            <pubDate>Tue, 17 Feb 2026 13:30:00 +1100</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.3.0</h2>
+                <ul>
+                    <li><strong>Version display:</strong> Current version shown below the sidebar title</li>
+                    <li><strong>Update notifications:</strong> Banner appears when a new version is available</li>
+                    <li><strong>Check for Updates:</strong> New button on the About page</li>
+                    <li><strong>Auto-update detection:</strong> Checks on launch and every 12 hours</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.3.0/mellon.zip" length="58208607" type="application/octet-stream" sparkle:edSignature="us3C0z/Ed16qgymeYa8RDqashVzCFJTlOKETcdrxIC471UgETPec43HAoA4eGCi3PxOJFbONHcx9iClHcFHMBA=="/>
+        </item>
+        <item>
             <title>1.2.1</title>
             <pubDate>Mon, 17 Feb 2026 18:00:00 +1100</pubDate>
             <sparkle:version>5</sparkle:version>
