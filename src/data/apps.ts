@@ -19,7 +19,7 @@ export const apps: AppItem[] = [
   { name: 'Apple Notes', iconPath: '/icons/notes.svg' },
   { name: 'Discord', icon: 'discord' },
   { name: 'Obsidian', iconPath: '/icons/obsidian.svg' },
-  { name: 'Chronocat', iconPath: '/icons/chronocat.svg' },
+  { name: 'Chronocat', iconPath: '/icons/chronocat.png' },
   
   // Row 2
   { name: 'Linear', iconPath: '/icons/linear.svg' },
@@ -37,7 +37,7 @@ export const apps: AppItem[] = [
   { name: 'Chrome', iconPath: '/icons/chrome.svg' },
   { name: 'Safari', iconPath: '/icons/safari.svg' },
   { name: 'Google Docs', icon: 'gdocs' },
-  { name: 'ChatGPT', iconPath: '/icons/chatgpt.svg' },
+  { name: 'ChatGPT', iconPath: '/icons/chatgpt.png' },
 ];
 
 // ============================================================

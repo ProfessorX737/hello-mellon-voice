@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mellonvoice.com",
+  site: "https://voice.mellon.chat",
   integrations: [sitemap()],
   output: "static",
   compressHTML: true,
