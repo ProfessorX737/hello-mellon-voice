@@ -3,6 +3,21 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.2.1</title>
+            <pubDate>Mon, 17 Feb 2026 18:00:00 +1100</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.2.1</h2>
+                <ul>
+                    <li><strong>Bug fix:</strong> Onboarding window now tall enough to display all content</li>
+                    <li><strong>Bug fix:</strong> App window now appears when reopened via Spotlight or Dock click</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.2.1/mellon.zip" length="58183617" type="application/octet-stream" sparkle:edSignature="6x344Uw5wpqlymhinQdyG5YsoYiqLRafVrc3H89Fgo7QOMnEnvgX2kb+a9XXq8zNKS9oxPdcrBXXK7FMRSjqAQ=="/>
+        </item>
+        <item>
             <title>1.2.0</title>
             <pubDate>Mon, 17 Feb 2026 10:50:00 +1100</pubDate>
             <sparkle:version>4</sparkle:version>
