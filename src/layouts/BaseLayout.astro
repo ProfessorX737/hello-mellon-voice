@@ -25,6 +25,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/mellon-favicon.png" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Fonts - preconnect + non-blocking load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" media="print" onload="this.media='all'" />
     
     <!-- Primary Meta Tags -->
     <title>{title}</title>
