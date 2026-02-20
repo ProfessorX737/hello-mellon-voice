@@ -3,6 +3,22 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.4.1</title>
+            <pubDate>Thu, 20 Feb 2026 12:25:00 +1100</pubDate>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.4.1</h2>
+                <ul>
+                    <li><strong>Simplified API:</strong> Merged spellcheck into main OpenAI-compatible endpoint</li>
+                    <li><strong>Removed:</strong> /v1/audio/transcriptions/enhanced (use /v1/audio/transcriptions instead)</li>
+                    <li><strong>API docs:</strong> Added documentation link in settings</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.4.1/mellon.zip" length="58249752" type="application/octet-stream" sparkle:edSignature="G6eEA64PthtEgJ1JB9OD9P1QPEL8bG1wMXOqJU6vMmgR+ltN1jRUajqwppd/S8yhxU2r/vUp+nTfd+UTCuP5Bw=="/>
+        </item>
+        <item>
             <title>1.4.0</title>
             <pubDate>Thu, 20 Feb 2026 12:07:00 +1100</pubDate>
             <sparkle:version>9</sparkle:version>
