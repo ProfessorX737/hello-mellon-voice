@@ -14,6 +14,115 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "openclaw-local-speech-to-text-mellon",
+    title: "How to Add Local Speech-to-Text to OpenClaw with Mellon",
+    description: "Step-by-step guide to configuring OpenClaw with Mellon for private, local voice transcription. OpenAI-compatible Whisper API with custom dictionary support — no cloud needed.",
+    date: "2026-02-20",
+    excerpt: "Give your OpenClaw AI agent local speech-to-text superpowers. This guide shows you how to configure Mellon as a private, on-device transcription backend — with custom dictionary and spellcheck built in.",
+    content: `
+      <p>If you're using <a href="https://openclaw.com">OpenClaw</a> to build AI agents that handle voice messages, you need a speech-to-text backend. Most setups send audio to cloud APIs like OpenAI's Whisper — but what if you want it <strong>fast, private, and free</strong>?</p>
+      <p><strong>Mellon</strong> runs a local Whisper model on your Mac and exposes an OpenAI-compatible API. That means OpenClaw can use it as a drop-in replacement — no API keys, no cloud, no per-minute billing. Your audio never leaves your device.</p>
+      <p><em>Available in Mellon v1.4.0+.</em></p>
+
+      <h2>Setup (2 minutes)</h2>
+
+      <h3>Step 1: Install Mellon</h3>
+      <p><a href="/#pricing">Download Mellon</a> (free) and launch it. The Whisper model downloads automatically on first launch.</p>
+
+      <h3>Step 2: Enable the API Server</h3>
+      <p>Open Mellon's settings and go to <strong>API Server</strong>. Toggle the server on. It starts on <code>http://localhost:8765</code> by default.</p>
+      <p>Verify it's running:</p>
+      <pre><code>curl http://localhost:8765/health
+# {"status": "ok", "model_loaded": true}</code></pre>
+
+      <h3>Step 3: Configure OpenClaw</h3>
+      <p>Add this to your <code>openclaw.json</code> config file:</p>
+      <pre><code>{
+  "tools": {
+    "media": {
+      "audio": {
+        "enabled": true,
+        "models": [{
+          "provider": "openai",
+          "model": "whisper-1",
+          "baseUrl": "http://127.0.0.1:8765/v1"
+        }]
+      }
+    }
+  }
+}</code></pre>
+      <p>That's it. Restart OpenClaw and send a voice message — it'll be transcribed locally by Mellon.</p>
+
+      <h2>What You Get</h2>
+      <p>Mellon doesn't just run Whisper. When OpenClaw sends audio to the <code>/v1/audio/transcriptions</code> endpoint, it goes through the <strong>full transcription pipeline</strong>:</p>
+      <ol>
+        <li><strong>Whisper transcription</strong> — on-device, using Apple's Neural Engine for speed</li>
+        <li><strong>Custom dictionary matching</strong> — your custom terms (product names, people, jargon) are phonetically matched and corrected</li>
+        <li><strong>Medical dictionary</strong> — if enabled, medical terminology is automatically recognized</li>
+        <li><strong>Spellcheck corrections</strong> — common Whisper mistakes are caught and fixed</li>
+      </ol>
+      <p>For example, if you've added "ChronoCat" and "Mellon" to your custom dictionary, Whisper's output of <em>"I updated chrono cat and opened melon"</em> gets automatically corrected to <em>"I updated ChronoCat and opened Mellon"</em>.</p>
+
+      <h2>All Available Endpoints</h2>
+      <p>Mellon exposes several endpoints depending on your needs:</p>
+
+      <h3>POST /v1/audio/transcriptions</h3>
+      <p><strong>Recommended.</strong> OpenAI-compatible (multipart/form-data). Full pipeline: Whisper + spellcheck + custom dictionary.</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions \\
+  -F "file=@recording.wav" \\
+  -F "model=whisper-1"
+
+# {"text": "I updated ChronoCat and opened Mellon."}</code></pre>
+
+      <h3>POST /transcribe-full</h3>
+      <p>Raw audio body. Same full pipeline, but returns detailed correction data and timing.</p>
+      <pre><code>curl -X POST http://localhost:8765/transcribe-full \\
+  --data-binary @recording.wav \\
+  -H "Content-Type: application/octet-stream"
+
+# {
+#   "success": true,
+#   "text": "I updated ChronoCat and opened Mellon.",
+#   "whisper_text": "I updated chrono cat and opened melon.",
+#   "corrections": [
+#     {"original": "chrono cat", "corrected": "ChronoCat", "source": "custom"}
+#   ],
+#   "timing": {"whisper_ms": 1024, "spellcheck_ms": 2, "total_ms": 1026}
+# }</code></pre>
+
+      <h3>POST /transcribe</h3>
+      <p>Raw audio body. Whisper only — no spellcheck or dictionary corrections.</p>
+      <pre><code>curl -X POST http://localhost:8765/transcribe \\
+  --data-binary @recording.wav \\
+  -H "Content-Type: application/octet-stream"
+
+# {"success": true, "text": "I updated chrono cat.", "duration_ms": 1025}</code></pre>
+
+      <h3>GET /health</h3>
+      <p>Returns server status and whether the Whisper model is loaded.</p>
+
+      <h2>Supported Audio Formats</h2>
+      <p>All endpoints accept: <strong>WAV, MP3, M4A, FLAC, AIFF, OGG</strong> (OGG requires macOS 14+). Audio is automatically converted — no pre-processing needed.</p>
+
+      <h2>Custom Dictionary Tips</h2>
+      <p>To get the most out of the API, add your commonly used terms in <strong>Mellon → Settings → Dictionary</strong>:</p>
+      <ul>
+        <li><strong>Product names</strong> — brand names, app names, project codenames</li>
+        <li><strong>People's names</strong> — colleagues, contacts, team members</li>
+        <li><strong>Technical jargon</strong> — industry-specific terms Whisper might misspell</li>
+        <li><strong>Medical terms</strong> — enable the medical dictionary toggle for healthcare terminology</li>
+      </ul>
+      <p>These corrections apply automatically to every API transcription — no configuration per-request.</p>
+
+      <h2>Privacy</h2>
+      <p>The API server only listens on <code>localhost</code>. All processing happens on your Mac using Apple Silicon's Neural Engine. No audio data leaves your device, ever. No API keys, no accounts, no usage tracking.</p>
+
+      <div class="cta-block">
+        <p><strong>Ready to add local speech-to-text to your OpenClaw agent?</strong> <a href="/#pricing">Download Mellon free</a> — the API server is included with every installation.</p>
+      </div>
+    `,
+  },
+  {
     slug: "best-dictation-app-mac-2025",
     title: "What Is the Best Dictation App for Mac in 2025? (Compared)",
     description: "Comparing the best dictation apps for Mac: Mellon, Wispr, MacWhisper, VoiceInk & more. Find the best speech-to-text and voice typing software for your needs.",
