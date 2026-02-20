@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.4.2</title>
+            <pubDate>Fri, 20 Feb 2026 13:00:30 +1100</pubDate>
+            <sparkle:version>11</sparkle:version>
+            <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.4.2</h2>
+                <ul>
+                    <li>Check for updates on every window reopen, not just first launch</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.4.2/mellon.zip" length="58249883" type="application/octet-stream" sparkle:edSignature="g7ygRd7mIBwP8LL3YrivnV1Zld6IqvBR5LCKg/hunc2qAHjIcqGoHC9W0dcVQVQeqcR4IUcQ7wMx0DqAyuKjAA=="/>
+        </item>
+        <item>
             <title>1.4.1</title>
             <pubDate>Thu, 20 Feb 2026 12:25:00 +1100</pubDate>
             <sparkle:version>10</sparkle:version>
