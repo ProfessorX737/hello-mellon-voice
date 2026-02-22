@@ -15,13 +15,32 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "mellon-agent-mode-voice-ai-commands",
-    title: "Agent Mode: Control AI With Your Voice Using \"Hey Mellon\"",
-    description: "Mellon's Agent Mode lets you trigger AI commands by voice. Say \"Hey Mellon\" to transform, rewrite, or generate text — right where you're typing. Works with selected text or at your cursor.",
+    title: "Agent Mode: Control AI With Your Voice Using Mellon",
+    description: "Mellon's Agent Mode lets you trigger AI commands by voice — with custom trigger words, a dedicated shortcut key, and smart tap-vs-hold detection. Say your trigger word to transform, rewrite, or generate text right where you're typing.",
     date: "2026-02-22",
-    excerpt: "Say \"Hey Mellon, summarize this\" and watch AI transform your text in place. Agent Mode brings voice-activated AI commands to any app on your Mac — no copy-pasting, no switching windows.",
+    excerpt: "Say \"Hey Mellon, summarize this\" and watch AI transform your text in place. Agent Mode brings voice-activated AI commands to any app on your Mac — with custom trigger words, a dedicated shortcut, and smart tap-vs-hold detection.",
     content: `
       <p>Mellon started as a dictation app: you speak, words appear. But what if your voice could do more than just type? What if you could <strong>command AI</strong> just by talking to it — and have it act on the text right in front of you?</p>
-      <p>That's <strong>Agent Mode</strong>. Say "Hey Mellon" followed by any instruction, and Mellon sends your command — along with your current text context — to an AI model. The result gets pasted directly into your app. No copy-pasting. No switching to ChatGPT. Just speak and it happens.</p>
+      <p>That's <strong>Agent Mode</strong>. Say your trigger word followed by any instruction, and Mellon sends your command — along with your current text context — to an AI model. The result gets pasted directly into your app. No copy-pasting. No switching to ChatGPT. Just speak and it happens.</p>
+
+      <h2>Two Ways to Activate Agent Mode</h2>
+      <p>Agent Mode gives you two ways to trigger AI commands: <strong>voice trigger words</strong> during any dictation session, or a <strong>dedicated shortcut key</strong> for instant access.</p>
+
+      <h3>Voice Trigger Words</h3>
+      <p>While dictating in any mode, say your trigger word followed by a command. Mellon ships with a built-in "Mellon" trigger group (recognizing "Hey Mellon", "Mellon", "Hey melon", and other pronunciation variations), and you can <strong>add your own custom trigger word groups</strong> with as many variations as you like.</p>
+      <p>For example, you could add a "Jarvis" trigger group with variations like "Hey Jarvis", "Jarvis", and "Hey Jarvis please". When Mellon detects any of these phrases in your dictation, it treats the rest of your sentence as an AI command.</p>
+      <p>Trigger words work during <strong>any dictation session</strong> — whether you started recording with the dictation shortcut or the agent mode shortcut. You don't need a special mode to use them.</p>
+
+      <h3>Dedicated Shortcut Key</h3>
+      <p>You can also assign a <strong>dedicated modifier key</strong> for Agent Mode (e.g., Right Option, Right Command, or any other modifier). When you use this shortcut, the entire transcription is sent as an AI command — no trigger word needed. This is useful when you know upfront that you want to give an AI instruction.</p>
+
+      <h2>Smart Tap vs Hold</h2>
+      <p>Both the dictation shortcut and the agent mode shortcut support <strong>automatic tap-vs-hold detection</strong>. Mellon uses a 300ms threshold to determine your intent:</p>
+      <ul>
+        <li><strong>Quick tap</strong> (under 300ms) — toggles recording on/off. A lock icon appears to indicate toggle mode is active. Tap again to stop.</li>
+        <li><strong>Hold down</strong> (300ms or longer) — records while held. Release to stop. Great for quick one-off commands.</li>
+      </ul>
+      <p>You don't need to configure this — it just works. Use whichever feels natural in the moment.</p>
 
       <h2>How It Works</h2>
       <p>Agent Mode has two behaviours depending on whether you have text selected:</p>
@@ -64,7 +83,8 @@ export const blogPosts: BlogPost[] = [
         <li>Open <strong>Mellon → Settings → AI Enhancement → Post-processing</strong></li>
         <li>Select your AI provider and enter your API key</li>
         <li>Go to the <strong>Agent Mode</strong> tab and toggle it on</li>
-        <li>Start dictating — any time you say "Hey Mellon", the rest of your sentence becomes an AI command</li>
+        <li>Optionally, assign a <strong>dedicated shortcut key</strong> for agent mode and add <strong>custom trigger word groups</strong></li>
+        <li>Start dictating — say your trigger word, or use the agent mode shortcut, and the rest becomes an AI command</li>
       </ol>
 
       <h2>Why Voice + AI Matters</h2>
