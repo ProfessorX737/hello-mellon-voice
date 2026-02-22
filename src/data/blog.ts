@@ -14,6 +14,69 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "mellon-agent-mode-voice-ai-commands",
+    title: "Agent Mode: Control AI With Your Voice Using \"Hey Mellon\"",
+    description: "Mellon's Agent Mode lets you trigger AI commands by voice. Say \"Hey Mellon\" to transform, rewrite, or generate text — right where you're typing. Works with selected text or at your cursor.",
+    date: "2026-02-22",
+    excerpt: "Say \"Hey Mellon, summarize this\" and watch AI transform your text in place. Agent Mode brings voice-activated AI commands to any app on your Mac — no copy-pasting, no switching windows.",
+    content: `
+      <p>Mellon started as a dictation app: you speak, words appear. But what if your voice could do more than just type? What if you could <strong>command AI</strong> just by talking to it — and have it act on the text right in front of you?</p>
+      <p>That's <strong>Agent Mode</strong>. Say "Hey Mellon" followed by any instruction, and Mellon sends your command — along with your current text context — to an AI model. The result gets pasted directly into your app. No copy-pasting. No switching to ChatGPT. Just speak and it happens.</p>
+
+      <h2>How It Works</h2>
+      <p>Agent Mode has two behaviours depending on whether you have text selected:</p>
+
+      <h3>With Selected Text → Replace</h3>
+      <p>If you've highlighted text in any app, Agent Mode treats that selection as the target. The AI sees your selected text and your spoken command, then <strong>replaces the selection</strong> with its output.</p>
+      <p>Examples:</p>
+      <ul>
+        <li><strong>"Hey Mellon, make this more concise"</strong> — rewrites the selected paragraph to be shorter</li>
+        <li><strong>"Hey Mellon, translate this to French"</strong> — replaces the English text with French</li>
+        <li><strong>"Hey Mellon, fix the grammar"</strong> — corrects errors in the selected text</li>
+        <li><strong>"Hey Mellon, make this sound more professional"</strong> — adjusts tone while keeping meaning</li>
+      </ul>
+
+      <h3>Without Selected Text → Insert at Cursor</h3>
+      <p>If nothing is selected, Agent Mode reads the text around your cursor position — what's before and after it — and <strong>inserts the AI's output right where your cursor is</strong>.</p>
+      <p>Examples:</p>
+      <ul>
+        <li><strong>"Hey Mellon, write a follow-up sentence"</strong> — continues where you left off</li>
+        <li><strong>"Hey Mellon, add a bullet list of three key points"</strong> — generates a list at the cursor</li>
+        <li><strong>"Hey Mellon, write the conclusion for this email"</strong> — reads the email context and writes the ending</li>
+      </ul>
+
+      <h2>Works in Any App</h2>
+      <p>Because Mellon operates at the system level, Agent Mode works wherever you can type: emails, documents, code editors, Slack, Notes, even browser text fields. You don't need a plugin or extension — Mellon reads the focused text field automatically.</p>
+
+      <h2>Choose Your AI Provider</h2>
+      <p>Agent Mode uses the same AI provider you've configured in Mellon's settings. You can choose from:</p>
+      <ul>
+        <li><strong>Anthropic (Claude)</strong> — great for nuanced writing and following complex instructions</li>
+        <li><strong>OpenAI (GPT)</strong> — versatile, widely used</li>
+        <li><strong>Google Gemini</strong> — strong at reasoning and multilingual tasks</li>
+        <li><strong>Groq</strong> — fast inference for quick responses</li>
+        <li><strong>Custom endpoint</strong> — point to any OpenAI-compatible API (local LLMs, corporate proxies, etc.)</li>
+      </ul>
+      <p>Switch providers or models any time in <strong>Settings → AI Enhancement → Post-processing</strong>. Agent Mode automatically uses whatever you've configured.</p>
+
+      <h2>Setup (30 Seconds)</h2>
+      <ol>
+        <li>Open <strong>Mellon → Settings → AI Enhancement → Post-processing</strong></li>
+        <li>Select your AI provider and enter your API key</li>
+        <li>Go to the <strong>Agent Mode</strong> tab and toggle it on</li>
+        <li>Start dictating — any time you say "Hey Mellon", the rest of your sentence becomes an AI command</li>
+      </ol>
+
+      <h2>Why Voice + AI Matters</h2>
+      <p>Copy-pasting text into ChatGPT, waiting for a response, then pasting it back is slow. Agent Mode eliminates that entire loop. You stay in your app, in your flow. Select text, speak a command, and the result appears — all in a few seconds.</p>
+      <p>For anyone who writes a lot — emails, docs, code comments, messages — this turns your voice into an AI-powered editing tool. And since everything runs through your own API key, there's no Mellon subscription or middleman.</p>
+
+      <div class="cta-block">
+        <p><strong>Try Agent Mode today.</strong> <a href="/#pricing">Download Mellon free</a>, configure your AI provider, and start commanding AI with your voice.</p>
+      </div>
+    `,
+  },
+  {
     slug: "openclaw-local-speech-to-text-mellon",
     title: "How to Add Local Speech-to-Text to OpenClaw with Mellon",
     description: "Step-by-step guide to configuring OpenClaw with Mellon for private, local voice transcription. OpenAI-compatible Whisper API with custom dictionary support — no cloud needed.",
