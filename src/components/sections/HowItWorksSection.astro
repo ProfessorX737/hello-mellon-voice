@@ -1,97 +1,88 @@
 ---
-import KeyboardMockup from '../ui/KeyboardMockup.astro';
-import WaveformMockup from '../ui/WaveformMockup.astro';
-import EditorMockup from '../ui/EditorMockup.astro';
+const steps = [
+  {
+    number: '01',
+    icon: 'calendar',
+    title: 'Book Your Call',
+    description: 'Jump on a 30-minute Zoom call with our team. We\'ll learn about your business, your pain points, and what you need help with.'
+  },
+  {
+    number: '02',
+    icon: 'settings',
+    title: 'We Build Your Team',
+    description: 'Our developers configure your AI workers with your brand voice, systems access, and specific workflows. Choose remote setup or we\'ll come to you.'
+  },
+  {
+    number: '03',
+    icon: 'rocket',
+    title: 'Start Working',
+    description: 'Your AI team goes live. They\'re available 24/7, integrate with your existing tools, and keep learning as they work with you.'
+  }
+];
 ---
 
-<!-- How It Works Section - Mobbin-inspired Design -->
 <section class="how-it-works-section" id="how-it-works">
-  <!-- Background Elements -->
-  <div class="section-bg">
-    <div class="gradient-blob blob-1"></div>
-    <div class="gradient-blob blob-2"></div>
-  </div>
-
   <div class="container">
-    <!-- Section Header -->
-    <div class="section-header" data-animate="fade-up">
+    <div class="section-header section-header-left" data-animate="fade-up">
       <span class="section-badge">How It Works</span>
-      <h2 class="section-title">From Typing to Talking<br/>in Seconds</h2>
+      <h2 class="section-title">Set Up in 3 Simple Steps</h2>
       <p class="section-subtitle">
-        Simple Setup. No Cloud or Internet accounts. Just Instant Productivity.
+        Getting started is easy. We handle all the technical setup so you can focus on running your business.
       </p>
     </div>
 
-    <!-- Steps -->
     <div class="steps-container">
-      <!-- Connection Line -->
-      <div class="connection-line" data-animate="scale-in">
+      {steps.map((step, index) => (
+        <div class="step-card" data-animate="fade-up" data-delay={index * 150}>
+          <div class="step-number">{step.number}</div>
+          <div class="step-icon">
+            {step.icon === 'calendar' && (
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            )}
+            {step.icon === 'settings' && (
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            )}
+            {step.icon === 'rocket' && (
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              </svg>
+            )}
+          </div>
+          <h3 class="step-title">{step.title}</h3>
+          <p class="step-description">{step.description}</p>
+        </div>
+      ))}
+
+      <div class="connector-line" aria-hidden="true">
         <div class="line-progress"></div>
       </div>
+    </div>
 
-      <div class="steps-grid" data-stagger>
-        <!-- Step 1: Press Hotkey -->
-        <div class="step-card" data-animate="fade-up">
-          <div class="step-number-wrapper">
-            <span class="step-number">01</span>
-            <div class="step-pulse"></div>
-          </div>
-          <div class="step-visual">
-            <div class="step-mockup-wrapper">
-              <KeyboardMockup />
-            </div>
-            <div class="step-glow"></div>
-          </div>
-          <div class="step-content">
-            <h3>Trigger Anywhere</h3>
-            <p>Tap your custom hotkey in any app: Cursor, Slack, or Outlook. Mellon is ready to listen instantly.</p>
-          </div>
-          <div class="step-arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Step 2: Speak Naturally -->
-        <div class="step-card" data-animate="fade-up">
-          <div class="step-number-wrapper">
-            <span class="step-number">02</span>
-            <div class="step-pulse"></div>
-          </div>
-          <div class="step-visual">
-            <div class="step-mockup-wrapper">
-              <WaveformMockup />
-            </div>
-            <div class="step-glow step-glow-alt"></div>
-          </div>
-          <div class="step-content">
-            <h3>Speak Naturally</h3>
-            <p>Just chat. Processed 100% on-device. Your data never leaves your Mac.</p>
-          </div>
-          <div class="step-arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Step 3: Perfect Text Appears -->
-        <div class="step-card" data-animate="fade-up">
-          <div class="step-number-wrapper">
-            <span class="step-number">03</span>
-            <div class="step-pulse"></div>
-          </div>
-          <div class="step-visual">
-            <div class="step-mockup-wrapper">
-              <EditorMockup />
-            </div>
-            <div class="step-glow step-glow-alt2"></div>
-          </div>
-          <div class="step-content">
-            <h3>Near Instant Execution</h3>
-            <p>Text appears exactly where you need it, perfectly formatted.</p>
-          </div>
+    <div class="setup-callout" data-animate="fade-up">
+      <div class="callout-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="callout-content">
+        <h4>Want us in person?</h4>
+        <p>We offer on-site setup across Australia's east coast. Same price, just add travel costs. Remote setup is always free and works great too.</p>
+        <div class="location-tags">
+          <span class="location-tag">Sydney</span>
+          <span class="location-tag">Melbourne</span>
+          <span class="location-tag">Brisbane</span>
         </div>
       </div>
     </div>
@@ -99,367 +90,195 @@ import EditorMockup from '../ui/EditorMockup.astro';
 </section>
 
 <style>
-  /* ========== HOW IT WORKS SECTION ========== */
   .how-it-works-section {
-    background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
-    position: relative;
-    overflow: hidden;
+    padding: var(--space-5xl) 0;
+    background-color: var(--color-bg-elevated);
   }
 
-  /* Background Elements */
-  .section-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .gradient-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.3;
-  }
-
-  .blob-1 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.5) 0%, transparent 70%);
-    top: -100px;
-    left: -100px;
-  }
-
-  .blob-2 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
-    bottom: -100px;
-    right: -100px;
-  }
-
-  /* Section Header */
-  .section-header {
-    text-align: center;
+  .section-header-left {
+    text-align: left;
+    margin-left: 0;
     max-width: 600px;
-    margin: 0 auto var(--space-4xl);
-    position: relative;
-    z-index: 1;
   }
 
   .section-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-xs) var(--space-md);
+    display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-radius: var(--radius-pill);
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
-    color: #34d399;
-    border: 1px solid rgba(16, 185, 129, 0.2);
-    margin-bottom: var(--space-lg);
+    letter-spacing: 0.1em;
+    color: var(--color-accent-primary);
+    margin-bottom: var(--space-md);
   }
 
   .section-title {
-    font-size: clamp(36px, 5vw, 48px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--font-size-4xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
     margin-bottom: var(--space-md);
-    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
   .section-subtitle {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
     color: var(--color-text-secondary);
-    margin: 0;
+    line-height: 1.6;
   }
 
-  /* Steps Container */
   .steps-container {
     position: relative;
-    margin-bottom: var(--space-4xl);
-  }
-
-  /* Connection Line - Hidden */
-  .connection-line {
-    display: none;
-  }
-
-  .line-progress {
-    display: none;
-  }
-
-  /* Steps Grid */
-  .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-2xl);
-    position: relative;
-    z-index: 1;
+    gap: var(--space-xl);
+    margin-top: var(--space-3xl);
   }
 
   .step-card {
-    text-align: center;
     position: relative;
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-warm-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    text-align: center;
+    transition: all var(--transition-normal);
   }
 
-  .step-number-wrapper {
-    position: relative;
-    display: inline-flex;
-    margin-bottom: var(--space-xl);
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
   }
 
   .step-number {
-    font-size: 14px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-accent-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
     font-weight: 700;
-    color: var(--color-text-muted);
+  }
+
+  .step-icon {
+    color: var(--color-accent-primary);
+    margin: var(--space-md) 0 var(--space-lg);
+  }
+
+  .step-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .step-description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .connector-line {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background-color: var(--color-warm-200);
+    transform: translateY(-50%);
+    z-index: -1;
+  }
+
+  .line-progress {
+    width: 0;
+    height: 100%;
+    background-color: var(--color-accent-primary);
+    transition: width 1s ease-out;
+  }
+
+  .setup-callout {
+    display: flex;
+    gap: var(--space-lg);
+    background-color: rgba(45, 90, 76, 0.08);
+    border: 1px solid rgba(45, 90, 76, 0.15);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-top: var(--space-3xl);
+  }
+
+  .callout-icon {
+    flex-shrink: 0;
     width: 48px;
     height: 48px;
+    background-color: var(--color-success);
+    color: white;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    position: relative;
-    z-index: 1;
-    background: var(--color-bg-secondary);
-    transition: all var(--transition-normal);
   }
 
-  .step-card:hover .step-number {
-    border-color: #6366f1;
-    color: #6366f1;
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-  }
-
-  .step-pulse {
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 2px solid #6366f1;
-    opacity: 0;
-    animation: step-pulse 2s ease-out infinite;
-  }
-
-  @keyframes step-pulse {
-    0% {
-      transform: scale(1);
-      opacity: 0.5;
-    }
-    100% {
-      transform: scale(1.3);
-      opacity: 0;
-    }
-  }
-
-  /* Step Visual */
-  .step-visual {
-    position: relative;
-    margin-bottom: var(--space-xl);
-    display: flex;
-    justify-content: center;
-  }
-
-  .step-mockup-wrapper {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-xl);
-    padding: var(--space-xl);
-    position: relative;
-    z-index: 1;
-    transition: all var(--transition-slow);
-  }
-
-  .step-card:hover .step-mockup-wrapper {
-    transform: translateY(-8px);
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  }
-
-  .step-glow {
-    position: absolute;
-    inset: -20px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-    pointer-events: none;
-  }
-
-  .step-glow-alt {
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
-  }
-
-  .step-glow-alt2 {
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%);
-  }
-
-  .step-card:hover .step-glow {
-    opacity: 1;
-  }
-
-  /* Step Content */
-  .step-content h3 {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    margin-bottom: var(--space-sm);
+  .callout-content h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
     color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
   }
 
-  .step-content p {
+  .callout-content p {
     font-size: var(--font-size-base);
     color: var(--color-text-secondary);
-    margin: 0;
-    line-height: 1.7;
-    max-width: 280px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: var(--space-md);
   }
 
-  /* Step Arrow */
-  .step-arrow {
-    position: absolute;
-    top: 120px;
-    right: -30px;
-    color: var(--color-text-muted);
-    opacity: 0.3;
-    animation: arrow-pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes arrow-pulse {
-    0%, 100% {
-      transform: translateX(0);
-      opacity: 0.3;
-    }
-    50% {
-      transform: translateX(5px);
-      opacity: 0.6;
-    }
-  }
-
-  .step-card:last-child .step-arrow {
-    display: none;
-  }
-
-  /* Integrations Section */
-  .integrations-section {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .integrations-label {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--space-lg);
-  }
-
-  .integrations-marquee {
-    overflow: hidden;
-    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-  }
-
-  .marquee-track {
+  .location-tags {
     display: flex;
-    gap: var(--space-xl);
-    animation: marquee 30s linear infinite;
-  }
-
-  .integration-item {
-    display: flex;
-    align-items: center;
     gap: var(--space-sm);
-    padding: var(--space-md) var(--space-xl);
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-base);
+    flex-wrap: wrap;
+  }
+
+  .location-tag {
+    font-size: var(--font-size-sm);
     font-weight: 500;
-    color: var(--color-text-secondary);
-    white-space: nowrap;
-    transition: all var(--transition-normal);
+    color: var(--color-success);
+    background-color: rgba(45, 90, 76, 0.1);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-pill);
   }
 
-  .integration-item:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .integration-item svg {
-    opacity: 0.7;
-  }
-
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* ========== RESPONSIVE ========== */
-  @media (max-width: 968px) {
-    .connection-line {
-      display: none;
-    }
-
-    .steps-grid {
+  @media (max-width: 1024px) {
+    .steps-container {
       grid-template-columns: 1fr;
-      gap: var(--space-3xl);
+      gap: var(--space-2xl);
     }
 
-    .step-arrow {
+    .connector-line {
       display: none;
     }
 
     .step-card {
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+      text-align: left;
+    }
+
+    .step-number {
+      left: var(--space-xl);
+      transform: none;
     }
   }
 
-  @media (max-width: 480px) {
-    .step-mockup-wrapper {
-      padding: var(--space-lg);
+  @media (max-width: 640px) {
+    .setup-callout {
+      flex-direction: column;
     }
 
-    .integration-item {
-      padding: var(--space-sm) var(--space-md);
-      font-size: var(--font-size-sm);
+    .section-title {
+      font-size: var(--font-size-3xl);
     }
   }
 </style>
-
-<script>
-  // Scroll animation observer
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => {
-          entry.target.classList.add('animate-visible');
-        }, parseInt(delay));
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('#how-it-works [data-animate]').forEach(el => {
-    observer.observe(el);
-  });
-</script>

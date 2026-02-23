@@ -1,229 +1,232 @@
 ---
-// Comparison Section
+const comparisons = [
+  { role: 'Executive Assistant', humanCost: 75000, aiCost: 588 },
+  { role: 'Marketing Manager', humanCost: 95000, aiCost: 588 },
+  { role: 'Social Media Manager', humanCost: 65000, aiCost: 0 },
+  { role: 'SEO Specialist', humanCost: 85000, aiCost: 0 },
+  { role: 'Bookkeeper', humanCost: 60000, aiCost: 0 },
+  { role: 'Business Coach', humanCost: 50000, aiCost: 0 },
+];
+
+const totalHuman = comparisons.reduce((sum, item) => sum + item.humanCost, 0);
+const totalAI = 3588; // Business plan annual cost
+const totalSavings = totalHuman - totalAI;
 ---
-<section class="comparison-section" id="comparison" data-fade-in>
+
+<section class="comparison-section" id="comparison">
   <div class="container">
-    <h2 class="section-title text-center">Don't settle for Less</h2>
-    <p class="section-subtitle text-center">
-      See how we compare to other voice dictation apps
-    </p>
-    
-    <div class="comparison-table-wrapper">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th class="th-feature">Feature</th>
-            <th class="th-mellon">Mellon</th>
-            <th>VoiceInk</th>
-            <th>Wispr</th>
-            <th>Willow</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-feature">One-time Purchase</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">No Subscription</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Privacy-First (100% Local)</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Works Offline</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">macOS Native</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><span class="text-muted">Partial</span></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Works with Any App</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><span class="text-muted">Limited</span></td>
-            <td><span class="text-muted">Limited</span></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Medical Accuracy</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Agent Mode</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Custom Prompts</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><span class="text-muted">Limited</span></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Bring Your Own API Key</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">HTTP Server API</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Custom API Provider</td>
-            <td class="td-mellon"><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-check" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-            <td><svg class="icon-cross" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
-          </tr>
-          <tr>
-            <td class="td-feature">Pricing</td>
-            <td class="td-mellon"><span class="badge-free">Free</span></td>
-            <td><span class="text-muted">One-time</span></td>
-            <td><span class="text-muted">Subscription</span></td>
-            <td><span class="text-muted">Subscription</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-badge">Cost Comparison</span>
+      <h2 class="section-title">The Math Is Simple</h2>
+      <p class="section-subtitle">
+        See how much you'll save by hiring an AI team instead of traditional employees.
+      </p>
+    </div>
+
+    <div class="comparison-content" data-animate="fade-up">
+      <div class="table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Human Hire (Annual)</th>
+              <th>AI Equivalent</th>
+              <th>You Save</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisons.map((item, index) => {
+              const savings = item.humanCost - item.aiCost;
+              const savingsPercent = Math.round((savings / item.humanCost) * 100);
+              return (
+                <tr style={`animation-delay: ${index * 100}ms`}>
+                  <td class="role-cell">{item.role}</td>
+                  <td class="cost-cell human">${item.humanCost.toLocaleString()}/yr</td>
+                  <td class="cost-cell ai">
+                    {item.aiCost > 0 ? `$${item.aiCost}/yr` : 'Included'}
+                  </td>
+                  <td class="savings-cell">
+                    <span class="savings-badge">{savingsPercent}%</span>
+                    <span class="savings-amount">${savings.toLocaleString()}</span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="savings-highlight" data-animate="fade-up">
+        <div class="savings-card">
+          <div class="savings-label">Total Annual Savings</div>
+          <div class="savings-total">${totalSavings.toLocaleString()}</div>
+          <div class="savings-context">
+            Business plan vs hiring a full team
+          </div>
+          <div class="savings-note">
+            Plus: Your AI team works 24/7, never takes leave, and scales instantly as you grow.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* ========== COMPARISON SECTION ========== */
   .comparison-section {
-    background-color: var(--color-bg-primary);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-5xl) 0;
+    background-color: var(--color-accent-secondary);
+    color: white;
   }
 
-  .comparison-table-wrapper {
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--font-size-4xl);
+    font-weight: 600;
+    color: white;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+  }
+
+  .comparison-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .table-wrapper {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-2xl);
     overflow-x: auto;
-    margin-top: var(--space-3xl);
-    -webkit-overflow-scrolling: touch;
   }
 
   .comparison-table {
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
     border-collapse: collapse;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background-color: rgba(255, 255, 255, 0.02);
-  }
-
-  .comparison-table th,
-  .comparison-table td {
-    padding: var(--space-md) var(--space-lg);
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    vertical-align: middle;
-  }
-
-  .comparison-table tbody tr:last-child td {
-    border-bottom: none;
   }
 
   .comparison-table th {
-    background-color: rgba(255, 255, 255, 0.04);
-    color: var(--color-text-secondary);
+    text-align: left;
+    padding: var(--space-md);
+    font-size: var(--font-size-sm);
     font-weight: 600;
-    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .th-feature {
-    text-align: left;
-    background-color: rgba(255, 255, 255, 0.02);
+  .comparison-table td {
+    padding: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  .th-mellon {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
-    color: var(--color-text-primary);
-    border-left: 1px solid rgba(255, 255, 255, 0.06);
-    border-right: 1px solid rgba(255, 255, 255, 0.06);
+  .comparison-table tr:last-child td {
+    border-bottom: none;
   }
 
-  .td-feature {
-    text-align: left;
-    color: var(--color-text-primary);
+  .comparison-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .role-cell {
     font-weight: 500;
-    background-color: rgba(255, 255, 255, 0.02);
+    color: white;
   }
 
-  .td-mellon {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
-    border-left: 1px solid rgba(255, 255, 255, 0.06);
-    border-right: 1px solid rgba(255, 255, 255, 0.06);
+  .cost-cell {
+    color: rgba(255, 255, 255, 0.8);
   }
 
-  .comparison-table td:not(.td-feature):not(.td-mellon) {
-    background-color: rgba(255, 255, 255, 0.02);
-    color: var(--color-text-secondary);
+  .cost-cell.human {
+    text-decoration: line-through;
+    opacity: 0.6;
   }
 
-  .icon-check,
-  .icon-cross {
-    width: 18px;
-    height: 18px;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .icon-check {
-    color: #22c55e;
-  }
-
-  .icon-cross {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .text-muted {
-    color: var(--color-text-muted);
-    font-size: 0.95em;
-  }
-
-  .badge-free {
-    display: inline-block;
-    padding: 4px 10px;
-    background: rgba(34, 197, 94, 0.2);
-    color: #22c55e;
+  .cost-cell.ai {
+    color: #A3E8C9;
     font-weight: 600;
-    font-size: 13px;
+  }
+
+  .savings-cell {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .savings-badge {
+    background-color: var(--color-accent-primary);
+    color: white;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-pill);
   }
 
-  /* ========== RESPONSIVE ========== */
+  .savings-amount {
+    font-weight: 600;
+    color: #A3E8C9;
+  }
+
+  .savings-highlight {
+    text-align: center;
+  }
+
+  .savings-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3xl);
+  }
+
+  .savings-label {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-sm);
+  }
+
+  .savings-total {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: var(--space-sm);
+  }
+
+  .savings-context {
+    font-size: var(--font-size-base);
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: var(--space-lg);
+  }
+
+  .savings-note {
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+  }
+
   @media (max-width: 768px) {
     .comparison-table {
       font-size: var(--font-size-sm);
@@ -231,12 +234,21 @@
 
     .comparison-table th,
     .comparison-table td {
-      padding: var(--space-sm) var(--space-md);
+      padding: var(--space-sm);
     }
 
-    .badge-free {
-      padding: 3px 8px;
-      font-size: 12px;
+    .savings-cell {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
+
+    .savings-total {
+      font-size: 40px;
+    }
+
+    .section-title {
+      font-size: var(--font-size-3xl);
     }
   }
 </style>

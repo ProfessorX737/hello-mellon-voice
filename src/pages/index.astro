@@ -1,34 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
-import VideoSection1 from '../components/sections/VideoSection1.astro';
-import TypingSpeedSection from '../components/sections/TypingSpeedSection.astro';
+import AITeamSection from '../components/sections/AITeamSection.astro';
 import HowItWorksSection from '../components/sections/HowItWorksSection.astro';
-import ProfessionalsSection from '../components/sections/ProfessionalsSection.astro';
-import AppsSection from '../components/sections/AppsSection.astro';
-import FeaturesSection from '../components/sections/FeaturesSection.astro';
+import ServicesSection from '../components/sections/ServicesSection.astro';
 import ComparisonSection from '../components/sections/ComparisonSection.astro';
 import PricingSection from '../components/sections/PricingSection.astro';
+import TrustSection from '../components/sections/TrustSection.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
-import FoundersSection from '../components/sections/FoundersSection.astro';
 import CTASection from '../components/sections/CTASection.astro';
-import { apps } from '../data/apps';
 ---
 
-<BaseLayout 
-  title="Best AI Dictation for Mac | Mellon: Private & Offline"
-  description="Stop subscriptions. Mellon is the one-time purchase AI dictation for Mac. 100% private, local & works in every app. Dictate 4x faster. Never type again."
+<BaseLayout
+  title="Mellon AI | Your AI Team for Australian Businesses"
+  description="Get a full team of AI workers — executive assistants, marketers, accountants, and more. Australian-based, personally set up, 30-day free trial."
 >
-  <HeroSection apps={apps} />
-  <VideoSection1/>
-  <AppsSection apps={apps} />
-  <TypingSpeedSection />
+  <HeroSection />
+  <AITeamSection />
   <HowItWorksSection />
+  <ServicesSection />
   <ComparisonSection />
-  <ProfessionalsSection />
-  <FeaturesSection />
   <PricingSection />
+  <TrustSection />
   <FAQSection />
-  <FoundersSection />
-  <!-- <CTASection /> -->
+  <CTASection />
 </BaseLayout>

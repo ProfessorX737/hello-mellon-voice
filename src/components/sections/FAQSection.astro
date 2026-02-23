@@ -1,131 +1,223 @@
 ---
-// FAQ Section
+import { faqItems } from '../../data/faq';
 ---
 
-<section class="faq-section" id="faq" data-fade-in>
+<section class="faq-section" id="faq">
   <div class="container">
-    <h2 class="section-title text-center">Frequently Asked Questions</h2>
-    
-    <div class="faq-container">
-      <details class="faq-item">
-        <summary>What is the best dictation app for Mac?</summary>
-        <p>Mellon is one of the best dictation apps for Mac—and it's free. It runs 100% locally on your Mac (no cloud), works in every app, reaches 150+ WPM, and requires no subscription. For the best free speech-to-text and voice typing software that respects your privacy, Mellon is a top choice.</p>
-      </details>
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-badge">FAQ</span>
+      <h2 class="section-title">Questions? We've Got Answers</h2>
+      <p class="section-subtitle">
+        Everything you need to know about Mellon AI. Can't find what you're looking for? Reach out to us directly.
+      </p>
+    </div>
 
-      <details class="faq-item">
-        <summary>What is the best free dictation software?</summary>
-        <p>Mellon is the best free dictation software for Mac. Unlike many "free" options that send your voice to the cloud or limit usage, Mellon processes everything on your Mac. No account, no subscription, no data collection. It's free speech-to-text that works offline in any app.</p>
-      </details>
+    <div class="faq-container" data-animate="fade-up">
+      {faqItems.map((item, index) => (
+        <div class="faq-item" data-faq={item.id}>
+          <button 
+            class="faq-question" 
+            aria-expanded="false"
+            aria-controls={`answer-${item.id}`}
+          >
+            <span class="question-text">{item.question}</span>
+            <span class="question-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div 
+            id={`answer-${item.id}`}
+            class="faq-answer"
+            aria-hidden="true"
+          >
+            <div class="answer-content">
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
 
-      <details class="faq-item">
-        <summary>How does Mellon compare to other dictation apps?</summary>
-        <p>Compared to Wispr, VoiceInk, MacWhisper, and Apple's built-in dictation, Mellon stands out for being free, fully local (your voice never leaves your Mac), and universal—it works in every text field. No cloud processing, no subscription. See our <a href="/blog/best-dictation-app-mac-2025">dictation app comparison</a> for details.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Is there a free speech-to-text app for Mac?</summary>
-        <p>Yes. Mellon is a free speech-to-text app for Mac that runs entirely on your device. No signup, no payment, no limits. Your voice stays on your Mac—we never collect or process it on our servers. It works offline and in every app you use.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Why is Mellon free?</summary>
-        <p>We believe everyone deserves access to fast, private voice-to-text. Mellon runs entirely on your Mac—no cloud, no subscriptions, no data collection. We're building tools we want to exist in the world, and making them free is part of that vision.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>How can I support or donate?</summary>
-        <p>If Mellon has been useful to you, we'd love your support! You can donate via our website. Every contribution helps us with maintenance costs and improving Mellon. It's completely optional and never required.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Which macOS versions are supported?</summary>
-        <p>Mellon works on macOS 12 (Monterey) and newer. We recommend running the latest macOS version for the best experience.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>How is Mellon different from built-in macOS dictation?</summary>
-        <p>Apple's dictation sends your voice to their servers. Mellon processes everything locally on your Mac—faster, more private, and works offline. Mellon also offers better accuracy, custom shortcuts, and works universally across all apps. It's the best dictation app for Mac users who want privacy and speed.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do you support languages other than English?</summary>
-        <p>Currently, Mellon supports English with high accuracy. We're working on adding support for Spanish, French, and German in future updates.</p>
-      </details>
+    <div class="faq-cta" data-animate="fade-up">
+      <p>Still have questions?</p>
+      <a href="#book-call" class="btn btn-primary">
+        Book a Call With Our Team
+      </a>
     </div>
   </div>
 </section>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.question-icon');
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('open');
+            const otherQuestion = otherItem.querySelector('.faq-question');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            otherQuestion.setAttribute('aria-expanded', 'false');
+            otherAnswer.setAttribute('aria-hidden', 'true');
+            otherAnswer.style.maxHeight = '0';
+          }
+        });
+
+        // Toggle current item
+        if (isOpen) {
+          item.classList.remove('open');
+          question.setAttribute('aria-expanded', 'false');
+          answer.setAttribute('aria-hidden', 'true');
+          answer.style.maxHeight = '0';
+        } else {
+          item.classList.add('open');
+          question.setAttribute('aria-expanded', 'true');
+          answer.setAttribute('aria-hidden', 'false');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+  });
+</script>
+
 <style>
-  /* ========== FAQ SECTION ========== */
   .faq-section {
-    background-color: var(--color-bg-primary);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-5xl) 0;
+    background-color: var(--color-bg-elevated);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--font-size-4xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
   }
 
   .faq-container {
     max-width: 800px;
-    margin: var(--space-3xl) auto 0;
+    margin: 0 auto var(--space-3xl);
   }
 
   .faq-item {
-    background-color: var(--color-bg-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    padding: var(--space-xl);
-    margin-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-warm-200);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    background: none;
+    border: none;
+    text-align: left;
     cursor: pointer;
-    transition: all var(--transition-normal);
-  }
-
-  .faq-item:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: var(--shadow-subtle);
-  }
-
-  .faq-item summary {
-    font-weight: 600;
+    font-size: var(--font-size-lg);
+    font-weight: 500;
     color: var(--color-text-primary);
-    font-size: 16px;
-    outline: none;
-    list-style: none;
-    cursor: pointer;
-    user-select: none;
+    transition: color var(--transition-fast);
   }
 
-  .faq-item summary::-webkit-details-marker {
-    display: none;
+  .faq-question:hover {
+    color: var(--color-accent-primary);
   }
 
-  .faq-item summary::before {
-    content: '▶';
-    display: inline-block;
-    margin-right: var(--space-sm);
+  .question-text {
+    flex: 1;
+  }
+
+  .question-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
     transition: transform var(--transition-normal);
   }
 
-  .faq-item[open] summary::before {
-    transform: rotate(90deg);
+  .faq-item.open .question-icon {
+    transform: rotate(45deg);
+    color: var(--color-accent-primary);
   }
 
-  .faq-item[open] summary {
-    margin-bottom: var(--space-md);
-    color: var(--color-text-primary);
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal);
   }
 
-  .faq-item p {
+  .answer-content {
+    padding-bottom: var(--space-lg);
+  }
+
+  .answer-content p {
+    font-size: var(--font-size-base);
     color: var(--color-text-secondary);
     line-height: 1.7;
     margin: 0;
   }
 
-  .faq-item a {
-    color: var(--color-accent-primary);
-    text-decoration: none;
-    font-weight: 500;
+  .faq-cta {
+    text-align: center;
+    padding: var(--space-2xl);
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-warm-200);
+    border-radius: var(--radius-lg);
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .faq-item a:hover {
-    text-decoration: underline;
+  .faq-cta p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  @media (max-width: 640px) {
+    .faq-question {
+      font-size: var(--font-size-base);
+      padding: var(--space-md) 0;
+    }
+
+    .section-title {
+      font-size: var(--font-size-3xl);
+    }
   }
 </style>
-

@@ -1,0 +1,203 @@
+---
+import { teamMembers } from '../../data/ai-team';
+---
+
+<section class="ai-team-section" id="ai-team">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-badge">Your AI Team</span>
+      <h2 class="section-title">Meet Your New Team</h2>
+      <p class="section-subtitle">
+        Each AI worker is trained on your business, your voice, and your workflows. They work 24/7, never call in sick, and cost a fraction of human hires.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      {teamMembers.map((member, index) => (
+        <div class="team-card" data-animate="fade-up" data-delay={index * 100}>
+          <div class="card-header">
+            <div class="avatar-wrapper">
+              <div class="avatar" style={`background: ${member.gradient}`}>
+                <span class="avatar-initial">{member.name[0]}</span>
+              </div>
+            </div>
+            <h3 class="member-name">{member.name}</h3>
+            <p class="member-role">{member.role}</p>
+            <p class="member-tagline">"{member.tagline}"</p>
+          </div>
+          <div class="card-body">
+            <ul class="skills-list">
+              {member.skills.map(skill => (
+                <li class="skill-item">
+                  <svg class="skill-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="3" fill="currentColor"/>
+                  </svg>
+                  <span>{skill}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="section-cta" data-animate="fade-up">
+      <a href="#services" class="btn btn-secondary btn-large">
+        See What Your Team Can Do
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ai-team-section {
+    padding: var(--space-5xl) 0;
+    background-color: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-warm-200);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: var(--font-size-4xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .team-card {
+    background-color: var(--color-bg-elevated);
+    border: 1px solid var(--color-warm-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+  }
+
+  .team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .avatar-wrapper {
+    margin-bottom: var(--space-md);
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 4px solid white;
+    box-shadow: var(--shadow-md);
+  }
+
+  .avatar-initial {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .member-name {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+  }
+
+  .member-role {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .member-tagline {
+    font-size: var(--font-size-sm);
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .skills-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    padding: var(--space-xs) 0;
+  }
+
+  .skill-icon {
+    color: var(--color-accent-primary);
+    flex-shrink: 0;
+  }
+
+  .section-cta {
+    text-align: center;
+  }
+
+  @media (max-width: 1024px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+</style>
