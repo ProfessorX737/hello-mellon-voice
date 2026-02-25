@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.6.2</title>
+            <pubDate>Wed, 25 Feb 2026 18:58:05 +1100</pubDate>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>1.6.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.6.2</h2>
+                <ul>
+                    <li>Fix tap/hold detection for fn key spurious flag drops. Bump tap threshold to 500ms. Defer release decisions to handle fn/globe key behavior correctly.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.6.2/mellon.zip" length="58182670" type="application/octet-stream" sparkle:edSignature="mYkO9telsvpE9l343YrLScBCmBmxpoDLD/VvSnYsu8hSIA4n/P6E2M3ksGu3NFia7B6apM0rhZVME9QIH+fYBw=="/>
+        </item>
+        <item>
             <title>1.6.1</title>
             <pubDate>Mon, 23 Feb 2026 16:15:02 +1100</pubDate>
             <sparkle:version>16</sparkle:version>
