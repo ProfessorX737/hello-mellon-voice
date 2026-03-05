@@ -102,6 +102,9 @@ export const blogPosts: BlogPost[] = [
       </ol>
       <p>Behind the scenes, Mellon accumulates samples, runs VAD every ~5 seconds of new audio, and splits at silence boundaries (minimum 30s chunks, hard cap at 2 minutes). Each chunk is transcribed independently, so text accumulates as you record.</p>
 
+      <h3>Concurrent Sessions</h3>
+      <p>The streaming API handles <strong>multiple transcription sessions simultaneously</strong>. Each session independently buffers and chunks its audio, so you can run several recordings in parallel without interference. When two or more sessions produce a chunk at the same time, Whisper model access is serialized — chunks are queued and processed one at a time, ensuring stable performance without contention. This makes the API well-suited for multi-user or multi-source setups where several audio streams need transcription at once.</p>
+
       <h3>POST /v1/audio/transcriptions/stream/start</h3>
       <p>Start a new streaming session. Optionally specify a language.</p>
       <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions/stream/start \\
