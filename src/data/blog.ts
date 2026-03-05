@@ -14,6 +14,212 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "mellon-api-complete-guide",
+    title: "Mellon API: Complete Guide to Local Speech-to-Text Endpoints",
+    description: "Full reference for Mellon's local HTTP transcription API — batch endpoints, OpenAI-compatible interface, streaming sessions for long-form audio, Agent Mode, and more. All on-device, no cloud required.",
+    date: "2026-03-05",
+    excerpt: "Everything you need to integrate with Mellon's local transcription server. Batch transcription, OpenAI-compatible endpoint, real-time streaming for long recordings, and voice-activated AI commands — all running on your Mac with zero cloud dependency.",
+    content: `
+      <p>Mellon runs a local HTTP server on your Mac that exposes <strong>Whisper speech-to-text</strong> through a simple API. Whether you're building an AI agent, automating transcription workflows, or integrating voice into your app — everything runs on-device with no API keys, no cloud, and no per-minute billing.</p>
+      <p><em>Available in Mellon v1.4.0+. Streaming endpoints available in v1.5.0+.</em></p>
+
+      <h2>Getting Started</h2>
+
+      <h3>1. Enable the API Server</h3>
+      <p>Open Mellon's settings and go to <strong>API Server</strong>. Toggle the server on. It starts on <code>http://localhost:8765</code> by default.</p>
+      <p>Verify it's running:</p>
+      <pre><code>curl http://localhost:8765/health
+# {"status": "ok", "model_loaded": true}</code></pre>
+
+      <h3>2. Send Audio</h3>
+      <p>Pick the endpoint that fits your use case — see the full reference below. The simplest way to test:</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions \\
+  -F "file=@recording.wav" \\
+  -F "model=whisper-1"
+
+# {"text": "Hello, this is a test recording."}</code></pre>
+
+      <h2>Batch Endpoints</h2>
+      <p>These endpoints accept a complete audio file and return the transcription in one response. Best for short-to-medium recordings (up to a few minutes).</p>
+
+      <h3>POST /v1/audio/transcriptions</h3>
+      <p><strong>Recommended for most integrations.</strong> OpenAI-compatible (multipart/form-data). Runs the full pipeline: Whisper + spellcheck + custom dictionary corrections.</p>
+      <p>This is a drop-in replacement for <code>https://api.openai.com/v1/audio/transcriptions</code> — tools like <a href="https://openclaw.com">OpenClaw</a> can point to Mellon with zero code changes.</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions \\
+  -F "file=@recording.wav" \\
+  -F "model=whisper-1"
+
+# {"text": "I updated ChronoCat and opened Mellon."}</code></pre>
+      <p><strong>OpenClaw config example:</strong></p>
+      <pre><code>{
+  "tools": {
+    "media": {
+      "audio": {
+        "enabled": true,
+        "models": [{
+          "provider": "openai",
+          "model": "whisper-1",
+          "baseUrl": "http://127.0.0.1:8765/v1"
+        }]
+      }
+    }
+  }
+}</code></pre>
+
+      <h3>POST /transcribe-full</h3>
+      <p>Raw audio body. Same full pipeline as above, but returns detailed correction data and timing information. Useful for debugging or when you need to see what Whisper originally produced vs. what was corrected.</p>
+      <pre><code>curl -X POST http://localhost:8765/transcribe-full \\
+  --data-binary @recording.wav \\
+  -H "Content-Type: application/octet-stream"
+
+# {
+#   "success": true,
+#   "text": "I updated ChronoCat and opened Mellon.",
+#   "whisper_text": "I updated chrono cat and opened melon.",
+#   "corrections": [
+#     {"original": "chrono cat", "corrected": "ChronoCat", "source": "custom"}
+#   ],
+#   "timing": {"whisper_ms": 1024, "spellcheck_ms": 2, "total_ms": 1026}
+# }</code></pre>
+
+      <h3>POST /transcribe</h3>
+      <p>Raw audio body. Whisper only — no spellcheck or dictionary corrections. Fastest option when you just need raw transcription.</p>
+      <pre><code>curl -X POST http://localhost:8765/transcribe \\
+  --data-binary @recording.wav \\
+  -H "Content-Type: application/octet-stream"
+
+# {"success": true, "text": "I updated chrono cat.", "duration_ms": 1025}</code></pre>
+
+      <h2>Streaming Endpoints</h2>
+      <p>For <strong>long-form audio</strong> or <strong>real-time recording</strong>, streaming endpoints let you feed audio in chunks while transcription happens in the background. Instead of waiting for the entire recording to finish, Mellon processes audio as it arrives — using Voice Activity Detection (VAD) to find natural silence boundaries and transcribe completed chunks independently.</p>
+      <p>This means you can transcribe recordings of <strong>any length</strong> without hitting memory limits, and get progress updates as the session progresses.</p>
+
+      <h3>How It Works</h3>
+      <ol>
+        <li><strong>Start</strong> a session — you get back a <code>session_id</code></li>
+        <li><strong>Feed</strong> raw PCM audio chunks as they're recorded (16kHz, mono)</li>
+        <li><strong>End</strong> the session — Mellon transcribes any remaining audio and returns the full text</li>
+      </ol>
+      <p>Behind the scenes, Mellon accumulates samples, runs VAD every ~5 seconds of new audio, and splits at silence boundaries (minimum 30s chunks, hard cap at 2 minutes). Each chunk is transcribed independently, so text accumulates as you record.</p>
+
+      <h3>POST /v1/audio/transcriptions/stream/start</h3>
+      <p>Start a new streaming session. Optionally specify a language.</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions/stream/start \\
+  -H "Content-Type: application/json" \\
+  -d '{"language": "en"}'
+
+# {"session_id": "A1B2C3D4-...", "success": true}</code></pre>
+      <p>Sessions automatically expire after 10 minutes of inactivity.</p>
+
+      <h3>POST /v1/audio/transcriptions/stream/feed</h3>
+      <p>Feed a chunk of raw PCM audio data. Send <strong>16-bit signed integer PCM</strong> by default (16kHz, mono). For float32 samples, include the <code>X-Audio-Format: float32</code> header.</p>
+      <p>Returns progress stats so you can show a live indicator:</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions/stream/feed \\
+  -H "X-Session-Id: A1B2C3D4-..." \\
+  -H "Content-Type: application/octet-stream" \\
+  --data-binary @chunk.pcm
+
+# {
+#   "success": true,
+#   "words_so_far": 42,
+#   "minutes_transcribed": 1.5,
+#   "minutes_recorded": 2.3,
+#   "bytes_fed": 32000
+# }</code></pre>
+      <p><strong>Response fields:</strong></p>
+      <ul>
+        <li><code>words_so_far</code> — number of words transcribed from completed chunks</li>
+        <li><code>minutes_transcribed</code> — how many minutes of audio have been transcribed</li>
+        <li><code>minutes_recorded</code> — total audio duration fed so far</li>
+        <li><code>bytes_fed</code> — size of this particular chunk in bytes</li>
+      </ul>
+
+      <h3>POST /v1/audio/transcriptions/stream/end</h3>
+      <p>End the session. Mellon transcribes any remaining buffered audio and returns the complete text for the entire session.</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions/stream/end \\
+  -H "X-Session-Id: A1B2C3D4-..."
+
+# {"success": true, "text": "The complete transcription of the entire recording session..."}</code></pre>
+
+      <h3>Streaming Example (Python)</h3>
+      <p>Here's a complete example that records from the microphone and streams to Mellon:</p>
+      <pre><code>import requests
+import sounddevice as sd
+import numpy as np
+
+BASE = "http://localhost:8765/v1/audio/transcriptions/stream"
+SAMPLE_RATE = 16000
+CHUNK_SECONDS = 3
+
+# Start session
+r = requests.post(f"{BASE}/start", json={"language": "en"})
+session_id = r.json()["session_id"]
+
+print("Recording... press Ctrl+C to stop")
+try:
+    while True:
+        audio = sd.rec(int(SAMPLE_RATE * CHUNK_SECONDS),
+                       samplerate=SAMPLE_RATE, channels=1, dtype="int16")
+        sd.wait()
+        r = requests.post(f"{BASE}/feed",
+                          headers={"X-Session-Id": session_id},
+                          data=audio.tobytes())
+        print(f"  words: {r.json()['words_so_far']}")
+except KeyboardInterrupt:
+    pass
+
+# End session and get full text
+r = requests.post(f"{BASE}/end",
+                  headers={"X-Session-Id": session_id})
+print(f"\\nFinal: {r.json()['text']}")</code></pre>
+
+      <h2>Agent Mode Endpoints</h2>
+      <p>These endpoints power Mellon's <a href="/blog/mellon-agent-mode-voice-ai-commands">Agent Mode</a> — voice-activated AI commands. They're primarily used for end-to-end testing but are available if you want to build your own integrations.</p>
+
+      <h3>POST /e2e/agent-mode</h3>
+      <p>Full agent mode pipeline: Whisper transcription, trigger word detection (e.g., "Hey Mellon"), then AI command execution.</p>
+
+      <h3>POST /e2e/transcribe-full</h3>
+      <p>Full pipeline with cursor context capture — used for E2E testing the complete transcription flow including accessibility context.</p>
+
+      <h3>POST /e2e/test-trigger</h3>
+      <p>Test trigger word detection without audio. Send JSON with a <code>text</code> field.</p>
+      <pre><code>curl -X POST http://localhost:8765/e2e/test-trigger \\
+  -H "Content-Type: application/json" \\
+  -d '{"text": "Hey Mellon summarize this paragraph"}'</code></pre>
+
+      <h2>Utility Endpoints</h2>
+
+      <h3>GET /health</h3>
+      <p>Returns server status and whether the Whisper model is loaded.</p>
+      <pre><code>curl http://localhost:8765/health
+# {"status": "ok", "model_loaded": true}</code></pre>
+
+      <h3>GET /</h3>
+      <p>Returns a JSON listing of all available endpoints and their descriptions.</p>
+
+      <h2>Supported Audio Formats</h2>
+      <p>Batch endpoints accept: <strong>WAV, MP3, M4A, FLAC, AIFF, OGG</strong> (OGG requires macOS 14+). Audio is automatically converted to 16kHz mono PCM internally — no pre-processing needed.</p>
+      <p>Streaming endpoints expect <strong>raw PCM audio</strong> at 16kHz mono — either 16-bit signed integer (default) or float32 (with <code>X-Audio-Format: float32</code> header).</p>
+
+      <h2>Custom Dictionary</h2>
+      <p>All endpoints that run the full pipeline (everything except <code>/transcribe</code>) benefit from your custom dictionary. Add terms in <strong>Mellon &rarr; Settings &rarr; Dictionary</strong>:</p>
+      <ul>
+        <li><strong>Product names</strong> — brand names, app names, project codenames</li>
+        <li><strong>People's names</strong> — colleagues, contacts, team members</li>
+        <li><strong>Technical jargon</strong> — industry-specific terms Whisper might misspell</li>
+        <li><strong>Medical terms</strong> — enable the medical dictionary toggle for healthcare terminology</li>
+      </ul>
+
+      <h2>Privacy</h2>
+      <p>The API server only listens on <code>localhost</code>. All processing happens on your Mac using Apple Silicon's Neural Engine. No audio data leaves your device. No API keys, no accounts, no usage tracking.</p>
+
+      <div class="cta-block">
+        <p><strong>Ready to integrate local speech-to-text?</strong> <a href="/#pricing">Download Mellon free</a> — the API server is included with every installation.</p>
+      </div>
+    `,
+  },
+  {
     slug: "mellon-agent-mode-voice-ai-commands",
     title: "Agent Mode: Control AI With Your Voice Using Mellon",
     description: "Mellon's Agent Mode lets you trigger AI commands by voice — with custom trigger words, a dedicated shortcut key, and smart tap-vs-hold detection. Say your trigger word to transform, rewrite, or generate text right where you're typing.",
