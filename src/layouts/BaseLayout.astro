@@ -7,12 +7,18 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  ogType?: string;
+  publishedDate?: string;
+  noindex?: boolean;
 }
 
-const { 
+const {
   title = 'Mellon - Privacy-First Voice Dictation for macOS',
   description = 'One-time purchase. Forever access. Local voice dictation that respects your privacy. Works with every app you love.',
-  image = '/og-image.png'
+  image = '/og-image.png',
+  ogType = 'website',
+  publishedDate,
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -23,7 +29,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/mellon-favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Fonts - preconnect + non-blocking load -->
@@ -38,7 +48,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -51,10 +61,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.site)} />
     
+    <!-- Open Graph type-specific -->
+    {publishedDate && <meta property="article:published_time" content={publishedDate} />}
+
     <!-- Additional SEO -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <meta name="author" content="Mellon" />
     <meta name="keywords" content="voice dictation, macOS, privacy, speech to text, local processing, one-time purchase" />
+
+    <slot name="head" />
   </head>
   <body>
     <Header />
