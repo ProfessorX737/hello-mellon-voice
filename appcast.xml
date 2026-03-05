@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.7.3</title>
+            <pubDate>Thu, 05 Mar 2026 23:51:42 +1100</pubDate>
+            <sparkle:version>21</sparkle:version>
+            <sparkle:shortVersionString>1.7.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.3</h2>
+                <ul>
+                    <li>Add Permissions settings page, fix microphone permission check for AVAudioEngine (fixes recording not working on some Macs)</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.3/mellon.zip" length="58236046" type="application/octet-stream" sparkle:edSignature="MFSKwjxYaHryozNE9be5BuINMqL2TUu9MHkoXiO7n3C8tOgGU0sy4kmKnlNOLn2h5at2XjUNcwWK4mieGrhtBg=="/>
+        </item>
+        <item>
             <title>1.7.2</title>
             <pubDate>Thu, 05 Mar 2026 17:39:51 +1100</pubDate>
             <sparkle:version>20</sparkle:version>
