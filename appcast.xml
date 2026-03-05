@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.7.0</title>
+            <pubDate>Thu, 05 Mar 2026 11:53:10 +1100</pubDate>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.7.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.0</h2>
+                <ul>
+                    <li>Streaming transcription architecture: AVAudioEngine replaces AVAudioRecorder, real-time chunked transcription during long recordings via VAD-based silence detection, new streaming API endpoints</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.0/mellon.zip" length="58220100" type="application/octet-stream" sparkle:edSignature="C5RtmTsF9EFrUWTZgeLLds3cXezqnPfEctLli3iS6UldugDzFaQIlRDv6xF+zeStZGJm0lOVbiWi003XoSZbDA=="/>
+        </item>
+        <item>
             <title>1.6.2</title>
             <pubDate>Wed, 25 Feb 2026 18:58:05 +1100</pubDate>
             <sparkle:version>17</sparkle:version>
