@@ -1,0 +1,314 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>mellon</title>
+        <item>
+            <title>1.7.4</title>
+            <pubDate>Fri, 06 Mar 2026 16:06:13 +1100</pubDate>
+            <sparkle:version>22</sparkle:version>
+            <sparkle:shortVersionString>1.7.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.4</h2>
+                <ul>
+                    <li>Fix first-press recording error (tap/hold timer now measures actual recording time), add [Flow] log tracing for debugging, remove debug file writes that triggered permission dialogs</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.4/mellon.zip" length="58227988" type="application/octet-stream" sparkle:edSignature="Lv958W6mK1Tuqq/3spPcBh2YNmN0Kk4AbZu38gevENmFtetz764JY3bPHR5LLJw3CdCQa+ROANiKnmMswOM4DA=="/>
+        </item>
+        <item>
+            <title>1.7.3</title>
+            <pubDate>Thu, 05 Mar 2026 23:51:42 +1100</pubDate>
+            <sparkle:version>21</sparkle:version>
+            <sparkle:shortVersionString>1.7.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.3</h2>
+                <ul>
+                    <li>Add Permissions settings page, fix microphone permission check for AVAudioEngine (fixes recording not working on some Macs)</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.3/mellon.zip" length="58236046" type="application/octet-stream" sparkle:edSignature="MFSKwjxYaHryozNE9be5BuINMqL2TUu9MHkoXiO7n3C8tOgGU0sy4kmKnlNOLn2h5at2XjUNcwWK4mieGrhtBg=="/>
+        </item>
+        <item>
+            <title>1.7.2</title>
+            <pubDate>Thu, 05 Mar 2026 17:39:51 +1100</pubDate>
+            <sparkle:version>20</sparkle:version>
+            <sparkle:shortVersionString>1.7.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.2</h2>
+                <ul>
+                    <li>Check for updates when app comes to foreground (not just on window open/restart)</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.2/mellon.zip" length="58223911" type="application/octet-stream" sparkle:edSignature="oKFl9Gyjm751rVaTYRhZTICpTqkwHrTGM3sRHAtg94EnTGAx9CqbQOejZIh5uPRAp95M9uXHQX5ZHuN3lZ1mCA=="/>
+        </item>
+        <item>
+            <title>1.7.1</title>
+            <pubDate>Thu, 05 Mar 2026 17:19:46 +1100</pubDate>
+            <sparkle:version>19</sparkle:version>
+            <sparkle:shortVersionString>1.7.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.1</h2>
+                <ul>
+                    <li>Fix streaming stop race condition (missing final chunk text), add progress fields to feed API response, update API server settings page with streaming endpoints</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.1/mellon.zip" length="58223687" type="application/octet-stream" sparkle:edSignature="nfqB7SJmMRevOSu1GU+MpHGWhP99vACt3+klkfdYZjUARSpHuEQ1It4JBA4Xz6CGbaPyoBdbfoE0Fm6vraXrDQ=="/>
+        </item>
+        <item>
+            <title>1.7.0</title>
+            <pubDate>Thu, 05 Mar 2026 11:53:10 +1100</pubDate>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.7.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.0</h2>
+                <ul>
+                    <li>Streaming transcription architecture: AVAudioEngine replaces AVAudioRecorder, real-time chunked transcription during long recordings via VAD-based silence detection, new streaming API endpoints</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.0/mellon.zip" length="58220100" type="application/octet-stream" sparkle:edSignature="C5RtmTsF9EFrUWTZgeLLds3cXezqnPfEctLli3iS6UldugDzFaQIlRDv6xF+zeStZGJm0lOVbiWi003XoSZbDA=="/>
+        </item>
+        <item>
+            <title>1.6.2</title>
+            <pubDate>Wed, 25 Feb 2026 18:58:05 +1100</pubDate>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>1.6.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.6.2</h2>
+                <ul>
+                    <li>Fix tap/hold detection for fn key spurious flag drops. Bump tap threshold to 500ms. Defer release decisions to handle fn/globe key behavior correctly.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.6.2/mellon.zip" length="58182670" type="application/octet-stream" sparkle:edSignature="mYkO9telsvpE9l343YrLScBCmBmxpoDLD/VvSnYsu8hSIA4n/P6E2M3ksGu3NFia7B6apM0rhZVME9QIH+fYBw=="/>
+        </item>
+        <item>
+            <title>1.6.1</title>
+            <pubDate>Mon, 23 Feb 2026 16:15:02 +1100</pubDate>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>1.6.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.6.1</h2>
+                <ul>
+                    <li>Fix widget animation regression from tap/hold shortcut changes. Fix spellcheck toast showing wrong word in green pill after correction.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.6.1/mellon.zip" length="58181244" type="application/octet-stream" sparkle:edSignature="JLuwgauNXZG2M6IR7JrowsLqsohNBDKGctiatBmvgB0ifVxYnApEvoNn48tkE6WwAdDd2r4PMu5pgJwFEtWBCA=="/>
+        </item>
+        <item>
+            <title>1.6.0</title>
+            <pubDate>Sun, 22 Feb 2026 22:32:29 +1100</pubDate>
+            <sparkle:version>15</sparkle:version>
+            <sparkle:shortVersionString>1.6.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.6.0</h2>
+                <ul>
+                    <li>Merge dictation and hands-free into single auto-detecting shortcut (tap to toggle, hold to record). Add dedicated agent mode shortcut key. Add customizable trigger word groups. Add API docs link for HTTP server. Bug fixes and UI improvements.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.6.0/mellon.zip" length="58176881" type="application/octet-stream" sparkle:edSignature="7B1wHRc2fZa6nNLR3cX9WkOSBYOFt7jyd/Fv0MXBFIHugtBx9GjL3FiZMNVoBSEpquQ7f1805xEd3Il3KbLQBw=="/>
+        </item>
+        <item>
+            <title>1.5.1</title>
+            <pubDate>Fri, 20 Feb 2026 19:07:15 +1100</pubDate>
+            <sparkle:version>14</sparkle:version>
+            <sparkle:shortVersionString>1.5.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.5.1</h2>
+                <ul>
+                    <li>Fix hotkey info banner showing 'Hold None' when dictation shortcut is disabled. Add warning when both shortcuts are set to None.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.5.1/mellon.zip" length="58128030" type="application/octet-stream" sparkle:edSignature="LFF4PzGZUskLHk/+SDz6h2PZELq1idDpKjpwVYJ4kJK6njx61RkdsaiqqIti3u2DjOavdyA7CA7kISsWystJBg=="/>
+        </item>
+        <item>
+            <title>1.5.0</title>
+            <pubDate>Fri, 20 Feb 2026 15:27:47 +1100</pubDate>
+            <sparkle:version>13</sparkle:version>
+            <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.5.0</h2>
+                <ul>
+                    <li>Replace free-form shortcut recorder with preset dropdown picker. Choose from 7 modifier keys (Fn, Right ⌥, Left ⌥, etc.) instead of recording arbitrary key combos.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.5.0/mellon.zip" length="58121551" type="application/octet-stream" sparkle:edSignature="YK8qymE5rCLBS2VKRQgCNJe8wC/at49/HVYAoPIdcZgGxpbX0KzrOUS89G5apNWz3XF/G10KTS9X70PDxKYiBg=="/>
+        </item>
+        <item>
+            <title>1.4.2</title>
+            <pubDate>Fri, 20 Feb 2026 13:00:30 +1100</pubDate>
+            <sparkle:version>11</sparkle:version>
+            <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.4.2</h2>
+                <ul>
+                    <li>Check for updates on every window reopen, not just first launch</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.4.2/mellon.zip" length="58249883" type="application/octet-stream" sparkle:edSignature="g7ygRd7mIBwP8LL3YrivnV1Zld6IqvBR5LCKg/hunc2qAHjIcqGoHC9W0dcVQVQeqcR4IUcQ7wMx0DqAyuKjAA=="/>
+        </item>
+        <item>
+            <title>1.4.1</title>
+            <pubDate>Thu, 20 Feb 2026 12:25:00 +1100</pubDate>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.4.1</h2>
+                <ul>
+                    <li><strong>Simplified API:</strong> Merged spellcheck into main OpenAI-compatible endpoint</li>
+                    <li><strong>Removed:</strong> /v1/audio/transcriptions/enhanced (use /v1/audio/transcriptions instead)</li>
+                    <li><strong>API docs:</strong> Added documentation link in settings</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.4.1/mellon.zip" length="58249752" type="application/octet-stream" sparkle:edSignature="G6eEA64PthtEgJ1JB9OD9P1QPEL8bG1wMXOqJU6vMmgR+ltN1jRUajqwppd/S8yhxU2r/vUp+nTfd+UTCuP5Bw=="/>
+        </item>
+        <item>
+            <title>1.4.0</title>
+            <pubDate>Thu, 20 Feb 2026 12:07:00 +1100</pubDate>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.4.0</h2>
+                <ul>
+                    <li><strong>Transcription endpoints:</strong> Full pipeline transcription endpoints (Whisper + spellcheck)</li>
+                    <li><strong>Multi-format audio:</strong> HTTP server now supports multiple audio formats</li>
+                    <li><strong>Browser URL detection:</strong> AppleScript-based detection is now opt-in to avoid automation prompts</li>
+                    <li><strong>Onboarding fix:</strong> Fn key no longer triggers emoji picker during onboarding</li>
+                    <li><strong>Paste sound:</strong> Sound effect plays when text is pasted during onboarding</li>
+                    <li><strong>Developer tools:</strong> Reset settings and permissions buttons</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.4.0/mellon.zip" length="58252548" type="application/octet-stream" sparkle:edSignature="pzcsbG1jbaxaQvFriq2YrWvkh4Xs8asKf7bJt9jwbfBwcWHNgSZwBYJ6IPGLil8k9Nd+po2pyUKgIZW0y11jAQ=="/>
+        </item>
+        <item>
+            <title>1.3.2</title>
+            <pubDate>Mon, 17 Feb 2026 15:30:00 +1100</pubDate>
+            <sparkle:version>8</sparkle:version>
+            <sparkle:shortVersionString>1.3.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.3.2</h2>
+                <ul>
+                    <li><strong>Bug fix:</strong> Update banner now properly appears when a new version is available</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.3.2/mellon.zip" length="58214085" type="application/octet-stream" sparkle:edSignature="bBKYpDFZMm9TUp4gMaKDptVd9f8OkGtTrV/FaUiCnrKKWQ2NcUEw7z4jjI0geRMwBwvqQ8Fy/5p4CsqeXwTHCA=="/>
+        </item>
+        <item>
+            <title>1.3.1</title>
+            <pubDate>Mon, 17 Feb 2026 15:10:00 +1100</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.3.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.3.1</h2>
+                <ul>
+                    <li>Renamed app branding to "mellon voice"</li>
+                    <li>Added "Support mellon voice" donation button on About page</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.3.1/mellon.zip" length="58211071" type="application/octet-stream" sparkle:edSignature="XJDb3N/Hu3MllmJoi3vDOk5+U7UfPBBgcYZr9fCI8e6NjU5lceuKJvBdL7fVx+VfJB+5ULxqlKoEFJ18N/z4Cw=="/>
+        </item>
+        <item>
+            <title>1.3.0</title>
+            <pubDate>Tue, 17 Feb 2026 13:30:00 +1100</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.3.0</h2>
+                <ul>
+                    <li><strong>Version display:</strong> Current version shown below the sidebar title</li>
+                    <li><strong>Update notifications:</strong> Banner appears when a new version is available</li>
+                    <li><strong>Check for Updates:</strong> New button on the About page</li>
+                    <li><strong>Auto-update detection:</strong> Checks on launch and every 12 hours</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.3.0/mellon.zip" length="58208607" type="application/octet-stream" sparkle:edSignature="us3C0z/Ed16qgymeYa8RDqashVzCFJTlOKETcdrxIC471UgETPec43HAoA4eGCi3PxOJFbONHcx9iClHcFHMBA=="/>
+        </item>
+        <item>
+            <title>1.2.1</title>
+            <pubDate>Mon, 17 Feb 2026 18:00:00 +1100</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.2.1</h2>
+                <ul>
+                    <li><strong>Bug fix:</strong> Onboarding window now tall enough to display all content</li>
+                    <li><strong>Bug fix:</strong> App window now appears when reopened via Spotlight or Dock click</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.2.1/mellon.zip" length="58183617" type="application/octet-stream" sparkle:edSignature="6x344Uw5wpqlymhinQdyG5YsoYiqLRafVrc3H89Fgo7QOMnEnvgX2kb+a9XXq8zNKS9oxPdcrBXXK7FMRSjqAQ=="/>
+        </item>
+        <item>
+            <title>1.2.0</title>
+            <pubDate>Mon, 17 Feb 2026 10:50:00 +1100</pubDate>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.2.0</h2>
+                <ul>
+                    <li><strong>New bundle ID:</strong> Changed to chat.mellon.voice</li>
+                    <li><strong>Security fix:</strong> AI enhancement prompt injection prevention</li>
+                    <li><strong>Notarized:</strong> No more Gatekeeper warnings</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.2.0/mellon.zip" length="58183407" type="application/octet-stream" sparkle:edSignature="PHCioivHKUuSqAPM+KKRX+lnaCmNqhIkEGfomxX80PoJ2RgIkMOsjSYQIoMUeSrhZbvEWVsGiVrrzWVK4za5Aw=="/>
+        </item>
+        <item>
+            <title>1.1.1</title>
+            <pubDate>Sun, 16 Feb 2026 18:32:00 +1100</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.1.1</h2>
+                <ul>
+                    <li><strong>Security Fix:</strong> Resolved AI enhancement prompt injection vulnerability by wrapping user transcriptions in XML tags</li>
+                    <li>This prevents the AI from misinterpreting dictated text as instructions</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.1.1/mellon.zip" length="58183419" type="application/octet-stream" sparkle:edSignature="gIDBYG9fnIFzQUgf1xQIKCWcwilfC14rMARQ1YU2VIIjArfVYe3EgepuyJC4ZY9PEBwg/opKyKnuKgL03gNFCQ=="/>
+            <sparkle:minimumAutoupdateVersion>1.0.0</sparkle:minimumAutoupdateVersion>
+        </item>
+        <item>
+            <title>1.1.0</title>
+            <pubDate>Sat, 14 Feb 2026 23:14:00 +1100</pubDate>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.1.0</h2>
+                <ul>
+                    <li><strong>Custom AI Prompts:</strong> Create and manage multiple enhancement prompts with new Prompts tab</li>
+                    <li><strong>AI Enhancement Submenu:</strong> Organized settings across Post-processing, Prompts, and Agent Mode tabs</li>
+                    <li><strong>Model Auto-Discovery:</strong> Fetch available models from all AI providers (OpenAI, Anthropic, Gemini, Groq, Custom)</li>
+                    <li><strong>Agent Mode Improvements:</strong> Better trigger detection, stricter output-only responses, toast notifications</li>
+                    <li><strong>UI Polish:</strong> Black toggle/tab colors, optional Custom API key, improved focus management</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.1.0/mellon-1.1.0.zip" length="58177804" type="application/octet-stream" sparkle:edSignature="F6Rhj6vW1ReUZPvlYTL5C4puMuGLE+hhyf/5sixzFjVnnnmYn9pSPb5jKPYHXlNK+7IRza0r0BTmvvALGAjDAA=="/>
+        </item>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Sat, 14 Feb 2026 09:39:59 +1100</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.0.0/mellon-1.0.0.zip" length="59626567" type="application/octet-stream" sparkle:edSignature="lp7ROQuO4lplDHxI94nGz1dJx8TLUIJ5NZ6n26s2gK2jv+JfPtK6q/dTK/hZNm1xIbKBpRLKE5l70aMJPJ7xBQ=="/>
+        </item>
+    </channel>
+</rss>
