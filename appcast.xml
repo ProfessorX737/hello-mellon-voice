@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.7.4</title>
+            <pubDate>Fri, 06 Mar 2026 16:06:13 +1100</pubDate>
+            <sparkle:version>22</sparkle:version>
+            <sparkle:shortVersionString>1.7.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.7.4</h2>
+                <ul>
+                    <li>Fix first-press recording error (tap/hold timer now measures actual recording time), add [Flow] log tracing for debugging, remove debug file writes that triggered permission dialogs</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.7.4/mellon.zip" length="58227988" type="application/octet-stream" sparkle:edSignature="Lv958W6mK1Tuqq/3spPcBh2YNmN0Kk4AbZu38gevENmFtetz764JY3bPHR5LLJw3CdCQa+ROANiKnmMswOM4DA=="/>
+        </item>
+        <item>
             <title>1.7.3</title>
             <pubDate>Thu, 05 Mar 2026 23:51:42 +1100</pubDate>
             <sparkle:version>21</sparkle:version>
