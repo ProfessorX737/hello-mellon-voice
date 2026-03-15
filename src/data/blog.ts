@@ -1315,4 +1315,296 @@ Closes #442"</code></pre>
       </div>
     `,
   },
+  {
+    slug: "voice-dictation-nurses-epic-cerner",
+    title: "Voice Dictation for Nurses: Works in Epic, Cerner, and All EHRs",
+    description: "Nurses are switching to voice dictation for patient notes. See how it integrates with Epic, Cerner, and other EHR systems—HIPAA compliant, medical terms built-in.",
+    date: "2026-03-16",
+    excerpt: "Nurses spend 2+ hours per shift on documentation. Voice dictation cuts that time in half while improving accuracy. Works directly in Epic, Cerner, and any EHR with 100% HIPAA compliance.",
+    content: `
+      <p>Nurses spend <strong>2+ hours per shift</strong> on documentation. That's time not spent with patients. Voice dictation cuts documentation time by 50% while actually improving accuracy.</p>
+
+      <h2>The Nursing Documentation Burden</h2>
+      <p>A typical 12-hour shift includes:</p>
+      <ul>
+        <li>Patient assessments and charting</li>
+        <li>Medication administration records</li>
+        <li>Care plan updates</li>
+        <li>Handoff reports</li>
+        <li>Incident documentation</li>
+      </ul>
+      <p><strong>Result:</strong> 25-30% of a nurse's time is spent typing, not caring for patients.</p>
+
+      <h2>Why Nurses Need Specialized Dictation</h2>
+      
+      <h3>Medical Vocabulary Recognition</h3>
+      <p>Generic dictation struggles with:</p>
+      <ul>
+        <li>Medication names (metoprolol, phenylephrine)</li>
+        <li>Anatomical terms</li>
+        <li>Diagnostic terminology</li>
+        <li>Abbreviations and acronyms</li>
+      </ul>
+
+      <h3>HIPAA Compliance</h3>
+      <p>Patient data protection is non-negotiable. Cloud dictation services transmit voice data to external servers—creating compliance risks.</p>
+      <p><strong>Mellon Voice solution:</strong> 100% local processing. Patient data never leaves your Mac.</p>
+
+      <h2>EHR Integration</h2>
+      
+      <h3>Epic Integration</h3>
+      <p>Works seamlessly with Epic Hyperspace:</p>
+      <ul>
+        <li>Dictate directly into any text field</li>
+        <li>Patient notes, flowsheets, and orders</li>
+        <li>No Epic configuration required</li>
+      </ul>
+
+      <h3>Cerner Integration</h3>
+      <p>Compatible with Cerner PowerChart:</p>
+      <ul>
+        <li>Documentation in real-time</li>
+        <li>Assessment and care plan sections</li>
+        <li>Handoff report generation</li>
+      </ul>
+
+      <h3>All Other EHRs</h3>
+      <p>Mellon Voice works system-wide on Mac:</p>
+      <ul>
+        <li>Meditech</li>
+        <li>Allscripts</li>
+        <li>athenahealth</li>
+        <li>Custom hospital systems</li>
+      </ul>
+
+      <h2>Nursing-Specific Use Cases</h2>
+      
+      <h3>Patient Assessments</h3>
+      <p>Dictate head-to-toe assessments in real-time while examining patients. No more typing at the computer while the patient waits.</p>
+
+      <h3>Medication Documentation</h3>
+      <p>Document medication administration as you give it:</p>
+      <ul>
+        <li>Time and route</li>
+        <li>Patient response</li>
+        <li>Side effects or concerns</li>
+      </ul>
+
+      <h3>Shift Handoffs</h3>
+      <p>Dictate comprehensive handoff reports:</p>
+      <ul>
+        <li>Patient status summary</li>
+        <li>Pending tasks</li>
+        <li>Critical alerts</li>
+      </ul>
+
+      <h2>Time Savings Calculator</h2>
+      <p>Documentation time per 12-hour shift:</p>
+      <ul>
+        <li><strong>Typing:</strong> 2.5 hours</li>
+        <li><strong>Voice dictation:</strong> 1.25 hours</li>
+        <li><strong>Time saved:</strong> 1.25 hours per shift</li>
+      </ul>
+      <p><strong>Annual impact:</strong> 300+ hours reclaimed for patient care</p>
+
+      <h2>Setup for Nurses</h2>
+      <ol>
+        <li>Download Mellon Voice (free)</li>
+        <li>Add medical vocabulary (built-in)</li>
+        <li>Practice for 10 minutes</li>
+        <li>Start documenting in your EHR</li>
+      </ol>
+
+      <div class="cta-block">
+        <p><strong>Spend time with patients, not keyboards.</strong> <a href="/#pricing">Download Mellon Voice free</a>—HIPAA compliant, works in every EHR.</p>
+      </div>
+    `,
+  },
+  {
+    slug: "voice-dictation-cursor-ide-developers",
+    title: "Voice Dictation for Cursor IDE: Code Hands-Free at 150+ WPM",
+    description: "Developers using Cursor can now dictate code, comments, and documentation hands-free. Learn how voice dictation integrates with AI-powered coding.",
+    date: "2026-03-16",
+    excerpt: "Cursor IDE + voice dictation = the ultimate dev setup. Dictate code comments, documentation, and even pseudocode while Cursor's AI handles the implementation.",
+    content: `
+      <p>Cursor IDE changed how developers write code. Now add voice dictation and you've got the ultimate setup: <strong>describe what you want, let AI and voice handle the rest</strong>.</p>
+
+      <h2>The Cursor + Voice Workflow</h2>
+      
+      <h3>Step 1: Dictate Your Intent</h3>
+      <p>Speak naturally about what you want to build:</p>
+      <blockquote>"Create a function that takes a user ID, fetches their profile from the database, and returns it as JSON. Handle the case where the user doesn't exist."</blockquote>
+
+      <h3>Step 2: Let Cursor Generate</h3>
+      <p>Cursor's AI turns your description into working code. Tab to accept, or refine with voice:</p>
+      <blockquote>"Add error logging and input validation"</blockquote>
+
+      <h3>Step 3: Document by Voice</h3>
+      <p>While Cursor codes, you dictate documentation:</p>
+      <ul>
+        <li>Function docstrings</li>
+        <li>Inline comments</li>
+        <li>README updates</li>
+      </ul>
+
+      <h2>What Developers Can Dictate</h2>
+      
+      <h3>Code Comments</h3>
+      <p>Explain complex logic as you write it:</p>
+      <blockquote>"This recursive function uses memoization to optimize the Fibonacci calculation, reducing time complexity from exponential to linear"</blockquote>
+
+      <h3>Documentation</h3>
+      <p>Draft comprehensive docs:</p>
+      <ul>
+        <li>API documentation</li>
+        <li>Architecture decision records</li>
+        <li>Setup instructions</li>
+      </ul>
+
+      <h3>Commit Messages</h3>
+      <p>Dictate clear, descriptive commits:</p>
+      <blockquote>"Refactor authentication middleware to use JWT tokens instead of sessions, improving scalability and security"</blockquote>
+
+      <h3>Code Reviews</h3>
+      <p>Review PRs faster by dictating feedback:</p>
+      <blockquote>"Consider extracting this logic into a separate utility function for better testability"</blockquote>
+
+      <h2>Speed Comparison</h2>
+      <table>
+        <tr><th>Task</th><th>Typing</th><th>Voice</th></tr>
+        <tr><td>Function documentation</td><td>5 min</td><td>1 min</td></tr>
+        <tr><td>README section</td><td>10 min</td><td>3 min</td></tr>
+        <tr><td>Code review comments</td><td>8 min</td><td>2 min</td></tr>
+        <tr><td>Commit message batch</td><td>3 min</td><td>30 sec</td></tr>
+      </table>
+
+      <h2>Technical Vocabulary</h2>
+      <p>Mellon Voice understands developer terminology:</p>
+      <ul>
+        <li>Programming languages and frameworks</li>
+        <li>Design patterns (singleton, factory, observer)</li>
+        <li>Git commands and workflows</li>
+        <li>API and database terms</li>
+      </ul>
+
+      <h2>Privacy for Proprietary Code</h2>
+      <p>Critical for developers: <strong>your code never leaves your machine</strong>.</p>
+      <p>Unlike cloud dictation services, Mellon processes everything locally. Safe for:</p>
+      <ul>
+        <li>Proprietary codebases</li>
+        <li>Client work under NDA</li>
+        <li>Trade secrets</li>
+        <li>Patent-pending algorithms</li>
+      </ul>
+
+      <h2>Getting Started</h2>
+      <ol>
+        <li>Install Mellon Voice (free)</li>
+        <li>Open Cursor IDE</li>
+        <li>Start dictating in any text field</li>
+        <li>Use with Cursor's AI for maximum productivity</li>
+      </ol>
+
+      <div class="cta-block">
+        <p><strong>Code at the speed of thought.</strong> <a href="/#pricing">Download Mellon Voice free</a>—the perfect companion for Cursor IDE.</p>
+      </div>
+    `,
+  },
+  {
+    slug: "voice-dictation-rsi-wrist-health",
+    title: "Voice Dictation for RSI Prevention: Save Your Wrists, Extend Your Career",
+    description: "Repetitive strain injury affects 1 in 4 heavy computer users. Learn how voice dictation prevents carpal tunnel, reduces wrist pain, and extends your typing career.",
+    date: "2026-03-16",
+    excerpt: "RSI and carpal tunnel can end careers. Voice dictation offers an alternative input method that eliminates repetitive keystrokes while maintaining productivity.",
+    content: `
+      <p>Your wrists weren't designed for 8 hours of daily typing. <strong>Repetitive strain injury (RSI)</strong> is an active process happening right now—and it can end your career.</p>
+
+      <h2>The RSI Epidemic</h2>
+      <p>Computer professionals face unprecedented strain:</p>
+      <ul>
+        <li><strong>20,000+ keystrokes</strong> per day</li>
+        <li><strong>4,000+ mouse clicks</strong> per day</li>
+        <li><strong>8+ hours</strong> in typing posture</li>
+      </ul>
+      <p><strong>Result:</strong> 1 in 4 heavy computer users develop RSI.</p>
+
+      <h2>Common RSI Conditions</h2>
+      <ul>
+        <li><strong>Carpal tunnel syndrome:</strong> Compressed median nerve</li>
+        <li><strong>Tendonitis:</strong> Inflamed tendons from overuse</li>
+        <li><strong>Trigger finger:</strong> Locking or catching of tendons</li>
+        <li><strong>Tennis elbow:</strong> Elbow tendon inflammation</li>
+      </ul>
+
+      <h2>Early Warning Signs</h2>
+      <p>Recognize RSI before it becomes debilitating:</p>
+      <ul>
+        <li>Stiffness in fingers or wrists (especially morning)</li>
+        <li>Tingling or numbness in hands</li>
+        <li>Aching between typing sessions</li>
+        <li>Weakness in grip strength</li>
+      </ul>
+      <p><strong>Warning:</strong> Ignoring these signs leads to permanent damage.</p>
+
+      <h2>How Voice Dictation Prevents RSI</h2>
+      
+      <h3>Eliminates Repetitive Motion</h3>
+      <p>Voice input removes the repetitive keystrokes that cause RSI:</p>
+      <ul>
+        <li>Zero keystrokes during dictation</li>
+        <li>Natural posture (no hunched shoulders)</li>
+        <li>Movement variety (stand, walk, change positions)</li>
+      </ul>
+
+      <h3>The 50/50 Rule</h3>
+      <p>Complete replacement of typing isn't necessary. The prevention protocol:</p>
+      <ul>
+        <li>50% of work via voice dictation</li>
+        <li>50% via traditional typing</li>
+        <li>Alternates muscle groups and motions</li>
+      </ul>
+
+      <h3>Research-Backed Benefits</h3>
+      <p>Studies show:</p>
+      <ul>
+        <li>50-80% reduction in typing-related strain with alternating input</li>
+        <li>Lower discomfort scores for voice vs. keyboard</li>
+        <li>40% reduction in lower back pressure when standing to dictate</li>
+      </ul>
+
+      <h2>Best Tasks for Voice</h2>
+      <p>Preserve your wrists for precision work:</p>
+      <ul>
+        <li><strong>Long-form writing:</strong> Documentation, reports, emails</li>
+        <li><strong>Brainstorming:</strong> Capture ideas without typing fatigue</li>
+        <li><strong>Communication:</strong> Slack, email, meeting notes</li>
+      </ul>
+
+      <h2>The Career-Saving Protocol</h2>
+      <ol>
+        <li><strong>Start now:</strong> Don't wait for pain</li>
+        <li><strong>Alternate inputs:</strong> 50% voice, 50% typing</li>
+        <li><strong>Take breaks:</strong> Change position every hour</li>
+        <li><strong>Use proper setup:</strong> Quality microphone, good posture</li>
+      </ol>
+
+      <h2>Success Stories</h2>
+      <blockquote>
+        "Diagnosed with early-stage carpal tunnel at 28. Six months of 50/50 voice/typing—symptoms completely resolved. I'm 34 now, zero issues."
+        <br>— Senior Developer, fintech
+      </blockquote>
+
+      <h2>Getting Started</h2>
+      <ol>
+        <li>Download Mellon Voice (free)</li>
+        <li>Set up microphone properly</li>
+        <li>Start with 30 minutes of voice per day</li>
+        <li>Gradually increase to 50% of work time</li>
+      </ol>
+
+      <div class="cta-block">
+        <p><strong>Your career depends on your wrists.</strong> <a href="/#pricing">Download Mellon Voice free</a>—prevent RSI before it starts.</p>
+      </div>
+    `,
+  },
 ];
