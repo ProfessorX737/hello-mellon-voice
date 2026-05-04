@@ -13,12 +13,80 @@ import FAQSection from '../components/sections/FAQSection.astro';
 import FoundersSection from '../components/sections/FoundersSection.astro';
 import CTASection from '../components/sections/CTASection.astro';
 import { apps } from '../data/apps';
+import { blogPosts } from '../data/blog';
+
+const recentPosts = blogPosts.slice(0, 3);
+
+const softwareJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Mellon',
+  operatingSystem: 'macOS',
+  applicationCategory: 'UtilitiesApplication',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  description: 'Privacy-first AI voice dictation for Mac. 100% local, works in every app, no subscription.',
+  url: 'https://voice.mellon.chat',
+  downloadUrl: 'https://voice.mellon.chat/download',
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the best dictation app for Mac?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mellon is one of the best dictation apps for Mac—and it\'s free. It runs 100% locally on your Mac (no cloud), works in every app, reaches 150+ WPM, and requires no subscription.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the best free dictation software?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mellon is the best free dictation software for Mac. Unlike many "free" options that send your voice to the cloud or limit usage, Mellon processes everything on your Mac. No account, no subscription, no data collection.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is there a free speech-to-text app for Mac?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Mellon is a free speech-to-text app for Mac that runs entirely on your device. No signup, no payment, no limits. Your voice stays on your Mac—we never collect or process it on our servers.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is Mellon different from built-in macOS dictation?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Apple\'s dictation sends your voice to their servers. Mellon processes everything locally on your Mac—faster, more private, and works offline.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which macOS versions are supported?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mellon works on macOS 12 (Monterey) and newer.',
+      },
+    },
+  ],
+};
 ---
 
-<BaseLayout 
+<BaseLayout
   title="Best AI Dictation for Mac | Mellon: Private & Offline"
   description="Stop subscriptions. Mellon is the one-time purchase AI dictation for Mac. 100% private, local & works in every app. Dictate 4x faster. Never type again."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(softwareJsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   <HeroSection apps={apps} />
   <VideoSection1/>
   <AppsSection apps={apps} />
@@ -31,4 +99,89 @@ import { apps } from '../data/apps';
   <FAQSection />
   <FoundersSection />
   <!-- <CTASection /> -->
+
+  <section class="blog-preview-section">
+    <div class="container">
+      <h2 class="section-title text-center">From our blog</h2>
+      <div class="blog-preview-grid">
+        {recentPosts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="blog-preview-card">
+            <time class="blog-preview-date" datetime={post.date}>
+              {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </time>
+            <h3 class="blog-preview-title">{post.title}</h3>
+            <p class="blog-preview-excerpt">{post.excerpt}</p>
+            <span class="blog-preview-link">Read more →</span>
+          </a>
+        ))}
+      </div>
+      <div class="blog-preview-more">
+        <a href="/blog" class="btn btn-secondary">View all articles</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .blog-preview-section {
+    padding: var(--space-5xl) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .blog-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-3xl);
+  }
+
+  .blog-preview-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    background: var(--color-bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    text-decoration: none;
+    transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  }
+
+  .blog-preview-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 24px rgba(99, 102, 241, 0.1);
+  }
+
+  .blog-preview-date {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .blog-preview-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  .blog-preview-excerpt {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .blog-preview-link {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-accent-primary);
+    margin-top: var(--space-sm);
+  }
+
+  .blog-preview-more {
+    text-align: center;
+    margin-top: var(--space-3xl);
+  }
+</style>

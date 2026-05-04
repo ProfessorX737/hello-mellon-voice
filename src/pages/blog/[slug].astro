@@ -10,12 +10,36 @@ export function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+
+const postUrl = new URL(`/blog/${post.slug}`, Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.description,
+  datePublished: post.date,
+  dateModified: post.date,
+  url: postUrl,
+  author: {
+    '@type': 'Organization',
+    name: 'Mellon',
+    url: 'https://voice.mellon.chat',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Mellon',
+    url: 'https://voice.mellon.chat',
+  },
+};
 ---
 
-<BaseLayout 
+<BaseLayout
   title={`${post.title} | Mellon Blog`}
   description={post.description}
+  ogType="article"
+  publishedDate={post.date}
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <article class="post-section">
     <div class="container">
       <header class="post-header">
@@ -24,9 +48,25 @@ const { post } = Astro.props;
           {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
         <h1 class="post-title">{post.title}</h1>
+        <p class="post-byline">By the <a href="/about">Mellon team</a></p>
       </header>
 
       <div class="post-content" set:html={post.content} />
+
+      <aside class="post-footer-cta" aria-label="About Mellon Voice">
+        <h2 class="cta-heading">About <a href="/">Mellon Voice</a></h2>
+        <p>
+          <a href="/"><strong>Mellon Voice</strong></a> is a free, private <a href="/">AI dictation app for Mac</a>.
+          It runs entirely on your device — no cloud, no subscription, no signup. Works in any text field, in any app.
+        </p>
+        <p class="cta-actions">
+          <a href="/download" class="cta-link-primary">Download Mellon for Mac →</a>
+          <span class="cta-divider">•</span>
+          <a href="/blog">More from the blog</a>
+          <span class="cta-divider">•</span>
+          <a href="/about">About the team</a>
+        </p>
+      </aside>
     </div>
   </article>
 </BaseLayout>
@@ -68,6 +108,18 @@ const { post } = Astro.props;
     letter-spacing: -0.03em;
     color: var(--color-text-primary);
     line-height: 1.2;
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-byline {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .post-byline a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
   }
 
   .post-content {
@@ -135,5 +187,62 @@ const { post } = Astro.props;
   .post-content :global(.cta-block a) {
     font-weight: 600;
     text-decoration: underline;
+  }
+
+  .post-footer-cta {
+    max-width: 720px;
+    margin: var(--space-3xl) auto 0;
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    border-radius: var(--radius-md);
+  }
+
+  .cta-heading {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .cta-heading a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .post-footer-cta p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .post-footer-cta p:last-child {
+    margin-bottom: 0;
+  }
+
+  .post-footer-cta a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+  }
+
+  .post-footer-cta a:hover {
+    text-decoration: underline;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .cta-link-primary {
+    font-weight: 600;
+  }
+
+  .cta-divider {
+    color: var(--color-text-muted);
+    opacity: 0.5;
   }
 </style>
