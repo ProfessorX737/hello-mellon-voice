@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.4</title>
+            <pubDate>Sat, 16 May 2026 18:36:23 +1000</pubDate>
+            <sparkle:version>27</sparkle:version>
+            <sparkle:shortVersionString>1.8.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.4</h2>
+                <ul>
+                    <li>Uses Screen Sharing's app-level paste shortcut instead of PID-targeted key events.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.4/mellon.zip" length="61666581" type="application/octet-stream" sparkle:edSignature="dhHuBbEboaTrS/vM75s1umTfG8i3F+oBSXdckVUfRiWWd4CpkTzyRTp7BtMCJg9WbC3XsBtIcXvYvxKRLc2pDQ=="/>
+        </item>
+        <item>
             <title>1.8.3</title>
             <pubDate>Sat, 16 May 2026 18:01:58 +1000</pubDate>
             <sparkle:version>26</sparkle:version>
