@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.2</title>
+            <pubDate>Sat, 16 May 2026 17:33:40 +1000</pubDate>
+            <sparkle:version>25</sparkle:version>
+            <sparkle:shortVersionString>1.8.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.2</h2>
+                <ul>
+                    <li>Improves pasting into Macs controlled through Screen Sharing.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.2/mellon.zip" length="61671765" type="application/octet-stream" sparkle:edSignature="6aiV/Ta0kB+xlSFQ03tLiQLqHBORMmgGfY3AoGHcgLNbXFVbgN/cOrl5TsOQVg16VDiEvnzMCbDm51bVq2fSCg=="/>
+        </item>
+        <item>
             <title>1.8.1</title>
             <pubDate>Sat, 16 May 2026 16:42:59 +1000</pubDate>
             <sparkle:version>24</sparkle:version>
