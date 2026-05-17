@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.9</title>
+            <pubDate>Sun, 17 May 2026 14:18:14 +1000</pubDate>
+            <sparkle:version>32</sparkle:version>
+            <sparkle:shortVersionString>1.8.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.9</h2>
+                <ul>
+                    <li>Types dictated text directly into Screen Sharing instead of relying on stale shared clipboard paste.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.9/mellon.zip" length="61699818" type="application/octet-stream" sparkle:edSignature="3rbdS6w6ZPORsA7SIJQDSjBoq1yJotdYnTwxjFZ9SnHycHhxfq9ZT6o3Ikau/+7A+uK7rgpTFYxRi3nHvKp/AA=="/>
+        </item>
+        <item>
             <title>1.8.8</title>
             <pubDate>Sun, 17 May 2026 14:04:00 +1000</pubDate>
             <sparkle:version>31</sparkle:version>
