@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.8</title>
+            <pubDate>Sun, 17 May 2026 14:04:00 +1000</pubDate>
+            <sparkle:version>31</sparkle:version>
+            <sparkle:shortVersionString>1.8.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.8</h2>
+                <ul>
+                    <li>Uses a real wait for Screen Sharing shared clipboard propagation before triggering remote paste.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.8/mellon.zip" length="61698861" type="application/octet-stream" sparkle:edSignature="iUmnl3tbQU4k7uXQ7WCMMYGSaIpNMUuBcUTwcC8z+wWJFD94PhNmA0c78RMCgpaJx6MFG4RbxgX7NZGhq2IsDQ=="/>
+        </item>
+        <item>
             <title>1.8.7</title>
             <pubDate>Sun, 17 May 2026 13:16:10 +1000</pubDate>
             <sparkle:version>30</sparkle:version>
