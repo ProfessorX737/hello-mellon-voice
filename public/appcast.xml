@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.6</title>
+            <pubDate>Sun, 17 May 2026 13:04:00 +1000</pubDate>
+            <sparkle:version>29</sparkle:version>
+            <sparkle:shortVersionString>1.8.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.6</h2>
+                <ul>
+                    <li>Refreshes Screen Sharing clipboard ownership for each dictation so repeated remote pastes do not reuse stale text.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.6/mellon.zip" length="61671385" type="application/octet-stream" sparkle:edSignature="nGl+TispUm8fSHe7YRsmbSV4/lvDp0N6Czka9ZutcptHv4h7fcboNCxcHmRFeCbwTtLr8doMm790nOaho1IODA=="/>
+        </item>
+        <item>
             <title>1.8.5</title>
             <pubDate>Sun, 17 May 2026 10:55:11 +1000</pubDate>
             <sparkle:version>28</sparkle:version>
