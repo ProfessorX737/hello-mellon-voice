@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.17</title>
+            <pubDate>Wed, 20 May 2026 20:10:11 +1000</pubDate>
+            <sparkle:version>40</sparkle:version>
+            <sparkle:shortVersionString>1.8.17</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.17</h2>
+                <ul>
+                    <li>Uses a direct app-owned pasteboard write for Screen Sharing clipboard sync before falling back to pbcopy.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.17/mellon.zip" length="61711386" type="application/octet-stream" sparkle:edSignature="X+QeTDSHAdR3q+cRwSz6heLRgCmqvszHAnFGdqSAZ6fIwqmG7qGWoioyS2Xes5xDgIsjADPIQJ3MdW+e+//dCg=="/>
+        </item>
+        <item>
             <title>1.8.16</title>
             <pubDate>Wed, 20 May 2026 13:11:16 +1000</pubDate>
             <sparkle:version>39</sparkle:version>
