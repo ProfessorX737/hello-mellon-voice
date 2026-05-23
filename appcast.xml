@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.20</title>
+            <pubDate>Sat, 23 May 2026 16:19:47 +1000</pubDate>
+            <sparkle:version>43</sparkle:version>
+            <sparkle:shortVersionString>1.8.20</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.20</h2>
+                <ul>
+                    <li>Logs local clipboard state before and after Cmd+V in Screen Sharing to diagnose stale remote clipboard sync.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.20/mellon.zip" length="61723395" type="application/octet-stream" sparkle:edSignature="plK5yWHwlQxwb8ZX7xda28KyE0nucLv5aWePVPmM7rDKMDR4OgF4lbZLyrWusMXUZm+PZ5UJUDaVoespe8hbAg=="/>
+        </item>
+        <item>
             <title>1.8.19</title>
             <pubDate>Sat, 23 May 2026 15:30:17 +1000</pubDate>
             <sparkle:version>42</sparkle:version>
