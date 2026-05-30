@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.21</title>
+            <pubDate>Sat, 30 May 2026 18:32:22 +1000</pubDate>
+            <sparkle:version>44</sparkle:version>
+            <sparkle:shortVersionString>1.8.21</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.21</h2>
+                <ul>
+                    <li>Add HTTP API endpoints for dictionary settings, custom terms, and word replacements.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.21/mellon.zip" length="61753693" type="application/octet-stream" sparkle:edSignature="HyYICV5ZMnz7oTFLZglAXx5s1g7cEq/gTXlEKIdTq427Ddg+2zsEmayYdycDhsi0AhDvKEL5Wm1UtBjCZXazCg=="/>
+        </item>
+        <item>
             <title>1.8.20</title>
             <pubDate>Sat, 23 May 2026 16:19:47 +1000</pubDate>
             <sparkle:version>43</sparkle:version>
