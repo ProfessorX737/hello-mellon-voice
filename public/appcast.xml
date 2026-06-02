@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.22</title>
+            <pubDate>Tue, 02 Jun 2026 13:42:37 +1000</pubDate>
+            <sparkle:version>45</sparkle:version>
+            <sparkle:shortVersionString>1.8.22</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.22</h2>
+                <ul>
+                    <li>Fix HTTP API response framing so standard clients can parse dictionary endpoint responses.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.22/mellon.zip" length="61753449" type="application/octet-stream" sparkle:edSignature="HAOzNvVKv3efEV3NGSw0QC8iYly2k671lbTna/YEeLftk3conm1LOgUyoI90zwOAqWLSlUqaPfOjOqJWvsUBCA=="/>
+        </item>
+        <item>
             <title>1.8.21</title>
             <pubDate>Sat, 30 May 2026 18:32:22 +1000</pubDate>
             <sparkle:version>44</sparkle:version>
