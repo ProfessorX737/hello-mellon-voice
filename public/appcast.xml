@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.23</title>
+            <pubDate>Mon, 13 Jul 2026 17:23:49 +1000</pubDate>
+            <sparkle:version>46</sparkle:version>
+            <sparkle:shortVersionString>1.8.23</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.23</h2>
+                <ul>
+                    <li>Streaming final transcripts now run the dictionary, replacements, and medical spellcheck correction pipeline.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.23/mellon.zip" length="61754802" type="application/octet-stream" sparkle:edSignature="f1m+mJuyXw//YoRhvfmCN/LY4ooOaN0y45PRolS2+FdR+LA3eTil1Wsi3PMV94gY0H88NkEX4ehhkQ4tQCHNCQ=="/>
+        </item>
+        <item>
             <title>1.8.22</title>
             <pubDate>Tue, 02 Jun 2026 13:42:37 +1000</pubDate>
             <sparkle:version>45</sparkle:version>
