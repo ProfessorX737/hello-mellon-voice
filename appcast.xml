@@ -3,6 +3,20 @@
     <channel>
         <title>mellon</title>
         <item>
+            <title>1.8.24</title>
+            <pubDate>Tue, 14 Jul 2026 17:00:58 +1000</pubDate>
+            <sparkle:version>47</sparkle:version>
+            <sparkle:shortVersionString>1.8.24</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>What's New in 1.8.24</h2>
+                <ul>
+                    <li>Expose structured correction reports for final HTTP transcriptions and add shared smart dictionary actions for client toasts.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://github.com/ProfessorX737/hello-mellon-voice/releases/download/v1.8.24/mellon.zip" length="61772830" type="application/octet-stream" sparkle:edSignature="ORIG0eUkpBlE/m6Ad5xQ92Bt4mqJeh+fu4NUf0dVTutMjpGnKkvSHXviUZq8hGoqeNFCyERcxls8TcQgHyt4DA=="/>
+        </item>
+        <item>
             <title>1.8.23</title>
             <pubDate>Mon, 13 Jul 2026 17:23:49 +1000</pubDate>
             <sparkle:version>46</sparkle:version>
