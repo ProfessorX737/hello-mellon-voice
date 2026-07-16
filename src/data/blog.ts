@@ -16,12 +16,13 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "mellon-api-complete-guide",
     title: "Mellon API: Complete Guide to Local Speech-to-Text Endpoints",
-    description: "Full reference for Mellon's local HTTP transcription API — batch endpoints, OpenAI-compatible interface, streaming sessions for long-form audio, Agent Mode, and more. All on-device, no cloud required.",
-    date: "2026-03-05",
-    excerpt: "Everything you need to integrate with Mellon's local transcription server. Batch transcription, OpenAI-compatible endpoint, real-time streaming for long recordings, and voice-activated AI commands — all running on your Mac with zero cloud dependency.",
+    description: "Guide to Mellon's local HTTP transcription API — batch and streaming transcription, structured correction reports, interactive dictionary actions, OpenAI compatibility, and Agent Mode.",
+    date: "2026-07-16",
+    excerpt: "Integrate with Mellon's local transcription server using batch audio, streaming sessions, structured spellcheck reports, and APIs that let your client add or fix unknown words.",
     content: `
       <p>Mellon runs a local HTTP server on your Mac that exposes <strong>Whisper speech-to-text</strong> through a simple API. Whether you're building an AI agent, automating transcription workflows, or integrating voice into your app — everything runs on-device with no API keys, no cloud, and no per-minute billing.</p>
-      <p><em>Available in Mellon v1.4.0+. Streaming endpoints available in v1.5.0+.</em></p>
+      <p>As of Mellon Voice 1.8.24, final transcription responses can also include a <strong>structured correction report</strong>. Your app can show the same kind of spellcheck summary as Mellon itself, then let users add accepted words or submit smarter fixes through the dictionary API.</p>
+      <p><em>Core API available in Mellon v1.4.0+. Streaming available in v1.5.0+. Correction reports and smart unknown-word actions require v1.8.24+ (API v1.3).</em></p>
 
       <h2>Getting Started</h2>
 
@@ -77,8 +78,32 @@ export const blogPosts: BlogPost[] = [
 #   "text": "I updated ChronoCat and opened Mellon.",
 #   "whisper_text": "I updated chrono cat and opened melon.",
 #   "corrections": [
-#     {"original": "chrono cat", "corrected": "ChronoCat", "source": "custom"}
+#     {
+#       "original": "chrono cat",
+#       "corrected": "ChronoCat",
+#       "source": "custom",
+#       "sources": ["custom"],
+#       "count": 1
+#     }
 #   ],
+#   "correction_report": {
+#     "pipeline_applied": true,
+#     "medical_dictionary_enabled": true,
+#     "changed": true,
+#     "correction_count": 1,
+#     "corrections": [
+#       {
+#         "original": "chrono cat",
+#         "corrected": "ChronoCat",
+#         "source": "custom",
+#         "sources": ["custom"],
+#         "count": 1
+#       }
+#     ],
+#     "unknown_word_count": 0,
+#     "unknown_words": [],
+#     "duration_ms": 2
+#   },
 #   "timing": {"whisper_ms": 1024, "spellcheck_ms": 2, "total_ms": 1026}
 # }</code></pre>
 
@@ -98,7 +123,7 @@ export const blogPosts: BlogPost[] = [
       <ol>
         <li><strong>Start</strong> a session — you get back a <code>session_id</code></li>
         <li><strong>Feed</strong> raw PCM audio chunks as they're recorded (16kHz, mono)</li>
-        <li><strong>End</strong> the session — Mellon transcribes any remaining audio and returns the full text</li>
+        <li><strong>End</strong> the session — Mellon transcribes any remaining audio, applies the final correction pipeline once, and returns the corrected full text plus its report</li>
       </ol>
       <p>Behind the scenes, Mellon accumulates samples, runs VAD every ~5 seconds of new audio, and splits at silence boundaries (minimum 30s chunks, hard cap at 2 minutes). Each chunk is transcribed independently, so text accumulates as you record.</p>
 
@@ -124,6 +149,7 @@ export const blogPosts: BlogPost[] = [
 
 # {
 #   "success": true,
+#   "text_so_far": "",
 #   "words_so_far": 42,
 #   "minutes_transcribed": 1.5,
 #   "minutes_recorded": 2.3,
@@ -131,18 +157,41 @@ export const blogPosts: BlogPost[] = [
 # }</code></pre>
       <p><strong>Response fields:</strong></p>
       <ul>
+        <li><code>text_so_far</code> — text from completed chunks only; it can be empty for a short recording</li>
         <li><code>words_so_far</code> — number of words transcribed from completed chunks</li>
         <li><code>minutes_transcribed</code> — how many minutes of audio have been transcribed</li>
         <li><code>minutes_recorded</code> — total audio duration fed so far</li>
         <li><code>bytes_fed</code> — size of this particular chunk in bytes</li>
       </ul>
+      <p><strong>Important:</strong> this is chunk progress, not token-by-token streaming. Do not treat an empty <code>text_so_far</code> as a failed recording. The remaining audio is flushed when you end the session.</p>
 
       <h3>POST /v1/audio/transcriptions/stream/end</h3>
-      <p>End the session. Mellon transcribes any remaining buffered audio and returns the complete text for the entire session.</p>
+      <p>End the session. Mellon transcribes any remaining buffered audio, runs the same final custom/medical dictionary pipeline as <code>/transcribe-full</code>, and returns the corrected complete text plus a structured correction report.</p>
       <pre><code>curl -X POST http://localhost:8765/v1/audio/transcriptions/stream/end \\
   -H "X-Session-Id: A1B2C3D4-..."
 
-# {"success": true, "text": "The complete transcription of the entire recording session..."}</code></pre>
+# {
+#   "success": true,
+#   "text": "The corrected complete transcription...",
+#   "correction_report": {
+#     "pipeline_applied": true,
+#     "medical_dictionary_enabled": true,
+#     "changed": true,
+#     "correction_count": 1,
+#     "corrections": [
+#       {
+#         "original": "melon",
+#         "corrected": "Mellon",
+#         "source": "custom",
+#         "sources": ["custom"],
+#         "count": 1
+#       }
+#     ],
+#     "unknown_word_count": 1,
+#     "unknown_words": ["chronocat"],
+#     "duration_ms": 2
+#   }
+# }</code></pre>
 
       <h3>Streaming Example (Python)</h3>
       <p>Here's a complete example that records from the microphone and streams to Mellon:</p>
@@ -174,7 +223,56 @@ except KeyboardInterrupt:
 # End session and get full text
 r = requests.post(f"{BASE}/end",
                   headers={"X-Session-Id": session_id})
-print(f"\\nFinal: {r.json()['text']}")</code></pre>
+result = r.json()
+print(f"\\nFinal: {result['text']}")
+print(f"Corrections: {result['correction_report']['correction_count']}")</code></pre>
+
+      <h2>Correction Reports and Client Toasts</h2>
+      <p>Mellon returns <em>data</em>, not a remote UI. If your integration wants a spellcheck banner or toast, render it from <code>correction_report</code> after the final transcript succeeds.</p>
+      <ul>
+        <li><code>correction_count</code> is the total number of corrected occurrences.</li>
+        <li><code>corrections</code> groups matching original/corrected pairs and gives each pair a <code>count</code>.</li>
+        <li><code>source</code> identifies the primary correction source: <code>medical</code>, <code>custom</code>, <code>context</code>, or <code>replacement</code>.</li>
+        <li><code>unknown_words</code> lists terms the pipeline could not resolve.</li>
+        <li><code>medical_dictionary_enabled</code> tells the client which dictionary mode produced the report.</li>
+      </ul>
+      <p>The report is additive. Older clients can continue reading only <code>success</code> and <code>text</code>. Proxies that want the report must explicitly forward it instead of reducing the response to text alone.</p>
+
+      <h2>Dictionary Management API</h2>
+      <p>A client can turn unknown words into actions without recreating Mellon's native decision logic.</p>
+
+      <h3>Add an accepted word</h3>
+      <p>If the unknown spelling is correct, add it as a custom term:</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/dictionary/terms \\
+  -H "Content-Type: application/json" \\
+  -d '{"term": "ChronoCat", "source": "user"}'</code></pre>
+
+      <h3>Fix an unknown word</h3>
+      <p>When the user supplies the intended spelling, call the smart resolver. Mellon decides whether the durable result should be a term, an exact replacement, or both:</p>
+      <pre><code>curl -X POST http://localhost:8765/v1/dictionary/resolve-unknown \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "unknown_word": "cronocat",
+    "proposed_correction": "ChronoCat"
+  }'
+
+# {
+#   "success": true,
+#   "unknown_word": "cronocat",
+#   "proposed_correction": "ChronoCat",
+#   "strategy": "term_and_replacement",
+#   "term_added": true,
+#   "replacement_added": true
+# }</code></pre>
+      <p>Possible strategies are <code>replacement</code>, <code>term</code>, and <code>term_and_replacement</code>. Use this endpoint for a client-side “Fix” button rather than duplicating the term-versus-replacement workflow.</p>
+
+      <h3>Direct dictionary CRUD</h3>
+      <ul>
+        <li><code>GET/POST/DELETE /v1/dictionary/terms</code> — search, add, or remove custom terms</li>
+        <li><code>GET/POST/PATCH/DELETE /v1/dictionary/replacements</code> — manage exact word mappings</li>
+        <li><code>GET/PATCH /v1/dictionary/settings</code> — inspect or update medical-dictionary and toast settings</li>
+        <li><code>GET /v1/dictionary</code> — load status, counts, settings, and endpoint summary</li>
+      </ul>
 
       <h2>Agent Mode Endpoints</h2>
       <p>These endpoints power Mellon's <a href="/blog/mellon-agent-mode-voice-ai-commands">Agent Mode</a> — voice-activated AI commands. They're primarily used for end-to-end testing but are available if you want to build your own integrations.</p>
@@ -215,7 +313,7 @@ print(f"\\nFinal: {r.json()['text']}")</code></pre>
       </ul>
 
       <h2>Privacy</h2>
-      <p>The API server only listens on <code>localhost</code>. All processing happens on your Mac using Apple Silicon's Neural Engine. No audio data leaves your device. No API keys, no accounts, no usage tracking.</p>
+      <p>Transcription processing stays on the Mac running Mellon Voice. For same-machine integrations, use <code>http://127.0.0.1:8765</code>. The HTTP listener has no built-in authentication or TLS, so do not expose it directly to the public internet. If another trusted machine needs access, protect the connection with your firewall, VPN, or an authenticated reverse proxy.</p>
 
       <div class="cta-block">
         <p><strong>Ready to integrate local speech-to-text?</strong> <a href="/#pricing">Download Mellon free</a> — the API server is included with every installation.</p>
@@ -314,6 +412,7 @@ print(f"\\nFinal: {r.json()['text']}")</code></pre>
     content: `
       <p>If you're using <a href="https://openclaw.com">OpenClaw</a> to build AI agents that handle voice messages, you need a speech-to-text backend. Most setups send audio to cloud APIs like OpenAI's Whisper — but what if you want it <strong>fast, private, and free</strong>?</p>
       <p><strong>Mellon</strong> runs a local Whisper model on your Mac and exposes an OpenAI-compatible API. That means OpenClaw can use it as a drop-in replacement — no API keys, no cloud, no per-minute billing. Your audio never leaves your device.</p>
+      <p>For the complete endpoint reference — including streaming correction reports and dictionary-management actions — see the <a href="/blog/mellon-api-complete-guide">Mellon HTTP API guide</a>.</p>
       <p><em>Available in Mellon v1.4.0+.</em></p>
 
       <h2>Setup (2 minutes)</h2>
@@ -407,7 +506,7 @@ print(f"\\nFinal: {r.json()['text']}")</code></pre>
       <p>These corrections apply automatically to every API transcription — no configuration per-request.</p>
 
       <h2>Privacy</h2>
-      <p>The API server only listens on <code>localhost</code>. All processing happens on your Mac using Apple Silicon's Neural Engine. No audio data leaves your device, ever. No API keys, no accounts, no usage tracking.</p>
+      <p>All transcription processing happens on the Mac running Mellon Voice. Use <code>127.0.0.1</code> for a same-machine OpenClaw setup. The API has no built-in authentication or TLS, so remote access should be limited to a trusted network and protected with a firewall, VPN, or authenticated reverse proxy.</p>
 
       <div class="cta-block">
         <p><strong>Ready to add local speech-to-text to your OpenClaw agent?</strong> <a href="/#pricing">Download Mellon free</a> — the API server is included with every installation.</p>
